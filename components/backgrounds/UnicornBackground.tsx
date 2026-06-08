@@ -41,16 +41,16 @@ export default function UnicornBackground({
   }, []);
 
   return (
-    <div className={`absolute inset-0 -z-10 overflow-hidden bg-black ${className}`}>
+    <div className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden bg-black ${className}`}>
       <div
         ref={ref}
         data-us-project={projectId}
-        className="absolute inset-0 h-full w-full"
+        className="pointer-events-none absolute inset-0 h-full w-full"
         style={invert ? { filter: "invert(1) grayscale(1) brightness(1.6)" } : undefined}
       />
       {/* Camadas de escurecimento p/ manter o preto dominante */}
-      <div className="absolute inset-0 bg-black" style={{ opacity: dim }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
+      <div className="pointer-events-none absolute inset-0 bg-black" style={{ opacity: dim }} />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
     </div>
   );
 }

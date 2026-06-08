@@ -3,7 +3,7 @@ import SplineOrb from "@/components/backgrounds/SplineOrb";
 
 export default function About() {
   return (
-    <section id="sobre" className="relative overflow-hidden border-t border-white/5 bg-base py-32">
+    <section id="sobre" className="relative overflow-hidden bg-base py-32">
       {/* Spline orb sutil ao fundo da direita */}
       <div className="pointer-events-none absolute right-0 top-0 h-full w-full opacity-60">
         <SplineOrb />

@@ -11,7 +11,11 @@ export default function SplineOrb({ className = "" }: { className?: string }) {
         height="100%"
         title="JV orb"
         className="absolute inset-0 h-full w-full"
-        style={{ filter: "grayscale(1) brightness(0.9) contrast(1.1)" }}
+        style={{
+          filter: "grayscale(1) brightness(0.9) contrast(1.1)",
+          transform: "scale(1.4)",
+          transformOrigin: "center",
+        }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black" />
       {/* tinte dourado bem sutil */}

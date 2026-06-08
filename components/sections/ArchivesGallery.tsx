@@ -146,7 +146,7 @@ export default function ArchivesGallery() {
 
                     <div className="archive-panel__content">
                       <span className="tech-tag">{seg.tagline}</span>
-                      <h3 className="mt-3 font-display text-2xl font-bold leading-tight md:text-3xl">
+                      <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-gold-metal md:text-3xl">
                         {seg.label}
                       </h3>
                       <p className="mt-2 max-w-xs text-sm text-neutral-300">{seg.desc}</p>
@@ -222,7 +222,7 @@ export default function ArchivesGallery() {
                   <span className="archive-panel__mark font-display">JV</span>
 
                   <div className="archive-panel__content">
-                    <h3 className="font-display text-2xl font-bold leading-tight md:text-3xl">
+                    <h3 className="font-display text-2xl font-bold leading-tight text-gold-metal md:text-3xl">
                       {item.title}
                     </h3>
                     <p className="mt-2 max-w-md text-sm text-neutral-300">{item.desc}</p>

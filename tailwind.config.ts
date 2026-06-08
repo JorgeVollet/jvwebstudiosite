@@ -8,12 +8,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Preto / superfícies
-        base: "#050505",
-        surface: "#0a0a0a",
-        surface2: "#121212",
-        ink: "#f0f0f0",
-        muted: "#888888",
+        // Tema claro: fundo cinza claro neutro + cards brancos
+        base: "#ececee",
+        surface: "#ffffff",
+        surface2: "#f4f5f7",
+        // superfícies escuras (seções com fundo animado: Hero/About/Coverage)
+        dark: "#0a0a0a",
+        dark2: "#121212",
+        ink: "#1a1a1a",
+        muted: "#5a5a62",
         // Dourado metálico chique
         gold: {
           50: "#fbf3da",

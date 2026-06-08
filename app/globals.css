@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg: #050505;
-  --surface: #0a0a0a;
+  --bg: #ececee;
+  --surface: #ffffff;
+  --bg-deep: #0a0a0a;
   --gold-1: #f4d88a;
   --gold-2: #e5c76b;
   --gold-3: #c9a24b;
   --gold-4: #8c6d2f;
+  /* dourado escuro p/ títulos sobre fundo claro (contraste) */
+  --gold-deep: #8c6d2f;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -16,15 +19,15 @@
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
-  color: #f0f0f0;
+  color: #1a1a1a;
   overflow-x: hidden;
 }
 
-::selection { background: var(--gold-3); color: #050505; }
+::selection { background: var(--gold-3); color: #ffffff; }
 
 /* Scrollbar dourada fina */
 ::-webkit-scrollbar { width: 9px; }
-::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-track { background: #d8d9dd; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #c9a24b, #8c6d2f);
   border-radius: 9px;
@@ -48,6 +51,39 @@ body {
 @keyframes shineText {
   0% { background-position: 200% center; }
   100% { background-position: -200% center; }
+}
+
+/* === Seções com fundo animado (escuras) sobre tema claro ===
+   Marcadas com .section-dark. Dentro delas o texto volta a ser claro e as
+   bordas/divisórias claras, já que o fundo é preto. */
+.section-dark { color: #f0f0f0; }
+.section-dark .text-neutral-900 { color: #ffffff; }
+.section-dark .text-neutral-800 { color: #f0f0f0; }
+.section-dark .text-neutral-700 { color: #d4d4d4; }
+.section-dark .text-neutral-600 { color: #a3a3a3; }
+.section-dark .text-slate-600 { color: #94a3b8; }
+
+/* Barra de progresso de scroll — fina e discreta, logo abaixo do header */
+.scroll-progress {
+  position: fixed;
+  top: 68px; left: 0;          /* abaixo do header */
+  width: 100%;
+  height: 2px;
+  z-index: 40;                 /* abaixo do header (z-50) */
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-progress__bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,
+    #8c6d2f 0%,
+    #c9a24b 35%,
+    #e5c76b 70%,
+    #f4d88a 100%);
+  box-shadow: 0 0 8px rgba(201,162,75,0.7), 0 0 14px rgba(201,162,75,0.4);
+  border-radius: 0 2px 2px 0;
+  transition: width .12s linear;
 }
 
 /* Borda / divisória dourada */
@@ -172,8 +208,18 @@ body {
   background: linear-gradient(180deg, rgba(18,18,18,0.92), rgba(10,10,10,0.95));
   border: 1px solid rgba(255,255,255,0.07);
   border-radius: 20px;
+  color: #f0f0f0;
   transition: transform .5s var(--ease-out), border-color .5s var(--ease-out), box-shadow .5s var(--ease-out);
 }
+/* texto legível dentro dos cards escuros de pacote e glass-glow */
+.pacote-card h3, .glass-glow h3,
+.pacote-card .text-ink, .glass-glow .text-ink { color: #ffffff; }
+.glass-glow { color: #f0f0f0; }
+.pacote-card .text-neutral-300, .glass-glow .text-neutral-300,
+.pacote-card .text-neutral-700, .glass-glow .text-neutral-700 { color: #d4d4d4; }
+.pacote-card .text-neutral-400, .glass-glow .text-neutral-400,
+.pacote-card .text-neutral-500, .glass-glow .text-neutral-500,
+.pacote-card .text-neutral-600, .glass-glow .text-neutral-600 { color: #a3a3a3; }
 .pacote-card:hover {
   transform: translateY(-6px);
   border-color: rgba(201,162,75,0.4);
@@ -219,6 +265,15 @@ body {
   border-color: rgba(201,162,75,0.4);
   box-shadow: 0 24px 60px -24px rgba(201,162,75,0.3);
 }
+/* Cards escuros sobre o tema claro: texto volta a ser claro (legível no fundo escuro).
+   Os títulos seguem dourados via .text-gold-metal (já claro). */
+.card-dark { color: #f0f0f0; }
+.card-dark h3,
+.card-dark h4 { color: #ffffff; }
+.card-dark .text-neutral-900 { color: #ffffff; }
+.card-dark .text-neutral-800 { color: #f0f0f0; }
+.card-dark .text-neutral-700 { color: #d4d4d4; }
+.card-dark .text-neutral-600 { color: #a3a3a3; }
 
 /* === ArchivesGallery: painéis que expandem no hover (print do fluxo de fundo) === */
 .archive-strip {
@@ -236,7 +291,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   border: 1px solid rgba(255,255,255,0.06);
-  background: #0a0a0a;
+  background: var(--surface);
   outline: none;
   padding: 0;
   margin: 0;
@@ -257,7 +312,7 @@ body {
   position: absolute; inset: 0; z-index: 0;
   background:
     radial-gradient(120% 100% at 50% 0%, rgba(201,162,75,0.18), transparent 55%),
-    linear-gradient(180deg, #121212, #050505);
+    linear-gradient(180deg, #262a32, #16181d);
   transform: scale(1.05);
   transition: transform 1s var(--ease-out), opacity .6s var(--ease-out);
   opacity: .6;
@@ -276,7 +331,7 @@ body {
 .archive-panel--segment {
   background:
     radial-gradient(120% 100% at 50% 0%, rgba(201,162,75,0.16), transparent 55%),
-    linear-gradient(180deg, #121212, #050505);
+    linear-gradient(180deg, #262a32, #16181d);
 }
 .archive-seg__icon {
   position: absolute; top: 18px; right: 18px; z-index: 3;
@@ -556,7 +611,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 18px;
-  background: #0a0a0a;
+  background: var(--surface);
   transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out), border-color .5s var(--ease-out);
 }
 .process-card__img {
@@ -660,6 +715,7 @@ body {
 
 /* Marquee */
 .marquee { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+.marquee__group { display: flex; flex-shrink: 0; align-items: center; }
 .marquee--rev { animation-direction: reverse; }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -669,7 +725,131 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* ===== Floating Glassmorphism Testimonial Constellation ===== */
+.constel-glow {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 50% 45%, rgba(201,162,75,0.10), transparent 70%),
+    radial-gradient(40% 40% at 20% 30%, rgba(201,162,75,0.06), transparent 70%),
+    radial-gradient(40% 40% at 80% 70%, rgba(201,162,75,0.06), transparent 70%);
+}
+
+/* card de vidro */
+.constel-card {
+  position: relative;
+  width: 320px;
+  border-radius: 22px;
+  padding: 22px 22px 20px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.10);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  backdrop-filter: blur(16px) saturate(1.1);
+  box-shadow: 0 20px 50px -25px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.08);
+  color: #f0f0f0;
+}
+.constel-card--featured {
+  width: 380px;
+  padding: 30px 30px 26px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+  border-color: rgba(201,162,75,0.30);
+  box-shadow: 0 40px 90px -30px rgba(0,0,0,0.9), 0 0 50px -20px rgba(201,162,75,0.35), inset 0 1px 0 rgba(255,255,255,0.10);
+}
+.constel-card__top { display: flex; align-items: flex-start; justify-content: space-between; }
+.constel-stars { display: flex; gap: 3px; color: #e5c76b; font-size: 13px; letter-spacing: 1px; }
+.constel-card__quote {
+  font-family: var(--font-display), serif;
+  font-size: 40px; line-height: 0.6; color: rgba(255,255,255,0.18);
+}
+.constel-card__text {
+  margin-top: 16px;
+  font-size: 13.5px; line-height: 1.6; color: rgba(240,240,240,0.92);
+}
+.constel-card--featured .constel-card__text { font-size: 17px; line-height: 1.55; }
+.constel-card__author { margin-top: 20px; display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+.constel-card__avatar {
+  display: flex; align-items: center; justify-content: center;
+  height: 40px; width: 40px; flex-shrink: 0; border-radius: 999px;
+  background: linear-gradient(135deg, #f4d88a, #c9a24b 60%, #8c6d2f);
+  color: #1a1a1a; font-family: var(--font-display), sans-serif; font-weight: 700; font-size: 16px;
+}
+.constel-card__name { display: block; font-weight: 600; font-size: 14px; color: #fff; }
+.constel-card__role { display: block; font-family: var(--font-mono), monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(229,199,107,0.8); }
+
+/* layout da constelação (desktop) */
+.constel {
+  position: relative;
+  height: 680px;
+  margin-top: 32px;
+  transform: translateX(-25px); /* desloca toda a constelação 25px p/ esquerda */
+}
+.constel-center {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+.constel-float { position: absolute; z-index: 2; }
+/* posições ao redor do centro */
+/* pos-1 = Luana (texto longo): mais larga e no canto superior esquerdo */
+.constel-pos-1 { top: calc(-2% + 20px);  left: -85px; }
+.constel-pos-1 .constel-card { width: 420px; }
+/* pos-2 = Marcelo (texto longo): superior direito, card maior e fonte igual à do Ricardo */
+.constel-pos-2 { top: 6%;  right: calc(2% - 105px); }
+.constel-pos-2 .constel-card { width: 410px; }
+.constel-pos-2 .constel-card__text { font-size: 15px; line-height: 1.55; }
+/* pos-3 = Jardel (texto longo): inferior esquerdo, card largo p/ reduzir altura */
+.constel-pos-3 { bottom: calc(-2% - 40px); left: calc(8% - 180px); }
+.constel-pos-3 .constel-card { width: 430px; }
+.constel-pos-4 { bottom: 2%; right: 8%; }
+
+/* flutuação suave contínua (ritmos diferentes) */
+.constel-center { animation: constelFloat 7s ease-in-out infinite; }
+.constel-pos-1 { animation: constelFloat 6s ease-in-out infinite; }
+.constel-pos-2 { animation: constelFloat 8s ease-in-out infinite 0.6s; }
+.constel-pos-3 { animation: constelFloat 7.5s ease-in-out infinite 0.3s; }
+.constel-pos-4 { animation: constelFloat 6.8s ease-in-out infinite 0.9s; }
+@keyframes constelFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.constel-center { animation-name: constelFloatCenter; }
+@keyframes constelFloatCenter {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50% { transform: translate(-50%, calc(-50% - 12px)); }
+}
+
+.constel-card { transition: transform .45s var(--ease-out), box-shadow .45s var(--ease-out), filter .45s var(--ease-out), opacity .45s var(--ease-out); }
+
+/* hover: o card alvo vem à frente e foca; os demais desfocam/escurecem */
+.constel:hover .constel-card { filter: blur(2px) brightness(0.65); opacity: 0.7; }
+.constel .constel-center:hover,
+.constel .constel-float:hover { z-index: 20; animation-play-state: paused; }
+.constel .constel-center:hover .constel-card,
+.constel .constel-float:hover .constel-card {
+  filter: none; opacity: 1;
+  transform: scale(1.06);
+  border-color: rgba(201,162,75,0.5);
+  box-shadow: 0 50px 110px -25px rgba(0,0,0,0.9), 0 0 60px -15px rgba(201,162,75,0.5), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+/* carrossel mobile */
+.constel-carousel {
+  margin-top: 28px;
+  display: flex; gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 4px 16px;
+}
+.constel-carousel::-webkit-scrollbar { height: 4px; }
+.constel-carousel .constel-card {
+  scroll-snap-align: center;
+  flex: 0 0 82%;
+  width: auto;
+}
+.constel-carousel .constel-card--featured { width: auto; }
+
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .text-gold-shine, .marquee { animation: none; }
+  .constel-center, .constel-float { animation: none; }
 }

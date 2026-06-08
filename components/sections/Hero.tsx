@@ -5,7 +5,7 @@ import { ArrowDown } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-screen items-center overflow-hidden">
+    <section id="top" className="section-dark relative flex min-h-screen items-center overflow-hidden">
       {/* Background animado (UnicornStudio) — forçado preto */}
       <UnicornBackground projectId="cqcLtDwfoHqqRPttBbQE" dim={0.4} />
 

@@ -11,7 +11,7 @@ const POINTS = [
 
 export default function Coverage() {
   return (
-    <section className="relative overflow-hidden border-t border-white/5 py-32">
+    <section className="section-dark relative overflow-hidden border-t border-white/5 py-32">
       {/* Waves dourado sobre preto */}
       <WavesBackground />
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">

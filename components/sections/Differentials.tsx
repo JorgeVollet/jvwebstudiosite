@@ -3,14 +3,14 @@ import { DIFFERENTIALS } from "@/lib/site";
 
 export default function Differentials() {
   return (
-    <section className="relative border-t border-white/5 bg-base py-32">
+    <section className="relative border-t border-black/10 bg-base py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <Reveal>
           <div className="section-label">[ POR QUE JV WEB STUDIO ]</div>
           <h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-6xl">
             Nossos <span className="text-gold-metal">Diferenciais</span>
           </h2>
-          <p className="mt-4 max-w-2xl text-neutral-400">
+          <p className="mt-4 max-w-2xl text-neutral-600">
             O que você ganha ao escolher um estúdio que entrega de verdade.
           </p>
         </Reveal>
@@ -23,8 +23,13 @@ export default function Differentials() {
                   {d.n}
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-bold">{d.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-neutral-400">{d.desc}</p>
+                  <h3 className="font-display text-lg font-bold text-gold-metal">{d.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/85">{d.desc}</p>
+                  {"enfase" in d && d.enfase && (
+                    <p className="mt-3 inline-block rounded-md border border-gold-3/40 bg-gold-3/10 px-2.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-gold-100">
+                      {d.enfase}
+                    </p>
+                  )}
                 </div>
               </div>
             </Reveal>

@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WelcomePopup from "@/components/WelcomePopup";
+import ScrollProgress from "@/components/ScrollProgress";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
@@ -17,15 +18,31 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Header />
       <main>
         <Hero />
+        <Marquee />
         <About />
         <Services />
+        <Marquee
+          reverse
+          words={[
+            "DESIGN PREMIUM", "CÓDIGO PRÓPRIO", "PERFORMANCE REAL",
+            "ENTREGA NO PRAZO", "SUPORTE CONTÍNUO", "RESULTADO DE VERDADE",
+          ]}
+        />
         <Differentials />
         <HorizontalProcess />
         <Marquee />
         <PortfolioGallery />
+        <Marquee
+          reverse
+          words={[
+            "SAAS SOB MEDIDA", "BRIEFINGS DIGITAIS", "FLUXOS N8N",
+            "INTEGRAÇÕES", "PAINÉIS ADMIN", "CAPTAÇÃO DE LEADS",
+          ]}
+        />
         <ArchivesGallery />
         <Coverage />
         <Testimonials />

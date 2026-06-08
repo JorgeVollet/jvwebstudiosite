@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 import Reveal from "@/components/Reveal";
+import UnicornBackground from "@/components/backgrounds/UnicornBackground";
 
 export default function PortfolioGallery() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -38,17 +39,20 @@ export default function PortfolioGallery() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="portfolio" className="horizontal-section border-t border-white/5 bg-base">
+    <section ref={sectionRef} id="portfolio" className="section-dark horizontal-section border-t border-white/10 bg-dark">
       <div className="h-sticky">
+        {/* Background animado (UnicornStudio) atrás dos cards */}
+        <UnicornBackground projectId="N9XzvQXu7fA5SY2ewADJ" dim={0.25} className="!z-0" />
+
         <div className="absolute left-6 top-6 z-20 md:left-10">
           <div className="section-label">[ PORTFÓLIO · PROJETOS & CASES ]</div>
         </div>
-        <div ref={trackRef} className="h-track">
+        <div ref={trackRef} className="h-track relative z-10">
           <div className="flex w-[85vw] shrink-0 flex-col justify-center md:w-[38vw]">
             <h2 className="font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-7xl">
               Projetos<br /><span className="text-gold-metal">& Cases</span>
             </h2>
-            <p className="mt-6 max-w-md text-neutral-400">
+            <p className="mt-6 max-w-md text-neutral-600">
               Clique em qualquer projeto para ver o site <strong className="text-gold-100">rodando de verdade</strong> —
               com scroll, efeitos e tudo funcional. Arraste para percorrer.
             </p>
@@ -94,9 +98,9 @@ export default function PortfolioGallery() {
                 </div>
 
                 <div className="p-8">
-                  <h3 className="font-display text-2xl font-bold">{p.client}</h3>
+                  <h3 className="font-display text-2xl font-bold text-gold-metal">{p.client}</h3>
                   <div className="my-3 h-px w-12 bg-gold-3 transition-all duration-500 group-hover:w-24" />
-                  <p className="text-sm text-neutral-400">{p.desc}</p>
+                  <p className="text-sm text-white/85">{p.desc}</p>
                   <p className="mt-4 tech-mono text-[11px] uppercase tracking-widest text-gold-100/70">
                     {p.category}
                   </p>

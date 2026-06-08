@@ -72,7 +72,7 @@ export const PACOTES: Pacote[] = [
 /** Taxa fixa mensal de infraestrutura (além do valor do site). */
 export const MENSALIDADE_INFRA = {
   valor: "R$ 100/mês",
-  desc: "Database, backend e hospedagem — mantém seu projeto no ar, rápido e seguro.",
+  desc: "Apenas para sites full stack na Vercel (database, backend e hospedagem). Sites estáticos em HTML5 não têm cobrança de infraestrutura.",
 };
 
 /** Formas de pagamento do site. */

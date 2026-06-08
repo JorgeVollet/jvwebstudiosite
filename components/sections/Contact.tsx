@@ -12,7 +12,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contato" className="relative border-t border-white/5 bg-surface py-32">
+    <section id="contato" className="relative border-t border-black/10 bg-surface py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="grid gap-16 lg:grid-cols-2">
           <Reveal>
@@ -20,7 +20,7 @@ export default function Contact() {
             <h2 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">
               Pronto para começar <span className="text-gold-shine">o seu próximo projeto?</span>
             </h2>
-            <p className="mt-5 max-w-md text-neutral-300">
+            <p className="mt-5 max-w-md text-neutral-700">
               Fale com a JV WEB STUDIO. Respondemos em até 24 horas úteis.
             </p>
 

@@ -15,14 +15,14 @@ export default function Pacotes() {
       : "#contato";
 
   return (
-    <section id="pacotes" className="relative border-t border-white/5 bg-surface py-32">
+    <section id="pacotes" className="section-dark relative border-t border-white/10 bg-dark py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <Reveal>
           <div className="section-label">[ PLANOS · PACOTES DISPONÍVEIS ]</div>
           <h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-6xl">
             Nossos <span className="text-gold-metal">Pacotes</span>
           </h2>
-          <p className="mt-4 max-w-2xl text-neutral-400">
+          <p className="mt-4 max-w-2xl text-neutral-700">
             Três níveis pensados para cada momento do seu negócio — da presença online
             à máquina de clientes. O valor final é sempre um orçamento personalizado,
             entregue em até <strong className="text-gold-100">2 dias úteis</strong>.
@@ -88,6 +88,25 @@ export default function Pacotes() {
           ))}
         </div>
 
+        {/* Adendo: como o valor varia */}
+        <Reveal delay={120}>
+          <div className="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-gold-3/40 bg-gold-3/10 p-6 sm:flex-row sm:items-center">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gold-3/40 bg-gold-3/10 text-gold-100">
+              <Star className="h-6 w-6" />
+            </div>
+            <div className="flex-1">
+              <p className="font-display text-lg font-bold text-gold-100">
+                Importante: o valor de cada pacote é personalizado
+              </p>
+              <p className="mt-1 text-sm text-neutral-300">
+                O preço varia conforme a <strong className="text-gold-100">quantidade de seções</strong> e de{" "}
+                <strong className="text-gold-100">sistemas integrados</strong> que você precisa. Como padrão, o pacote
+                Profissional já inicia com <strong className="text-gold-100">8 seções e 1 sistema integrado</strong>.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
         {/* Faixa: mensalidade de infraestrutura */}
         <Reveal delay={150}>
           <div className="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-gold-3/25 bg-black/40 p-6 sm:flex-row sm:items-center">
@@ -97,12 +116,12 @@ export default function Pacotes() {
             <div className="flex-1">
               <p className="font-display text-lg font-bold">
                 + <span className="text-gold-metal">{MENSALIDADE_INFRA.valor}</span> de infraestrutura
+                <span className="ml-2 align-middle tech-mono text-[11px] font-normal uppercase tracking-widest text-neutral-500">
+                  · além do valor do site
+                </span>
               </p>
               <p className="mt-1 text-sm text-neutral-400">{MENSALIDADE_INFRA.desc}</p>
             </div>
-            <span className="tech-mono text-[11px] uppercase tracking-widest text-neutral-500">
-              além do valor do site
-            </span>
           </div>
         </Reveal>
 
@@ -145,6 +164,15 @@ export default function Pacotes() {
                     <p className="mt-0.5 text-sm text-neutral-400">{s.desc}</p>
                   </div>
                 ))}
+              </div>
+              {/* Benefício: desconto na infraestrutura ao contratar suporte */}
+              <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-gold-3/30 bg-gold-3/10 p-3.5">
+                <Star className="mt-0.5 h-4 w-4 shrink-0 text-gold-100" />
+                <p className="text-sm text-gold-100">
+                  Contratando o suporte, você ganha{" "}
+                  <strong className="font-semibold">R$ 50 de desconto</strong> na
+                  infraestrutura mensal do site.
+                </p>
               </div>
             </div>
           </Reveal>

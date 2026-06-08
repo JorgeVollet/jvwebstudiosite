@@ -45,10 +45,10 @@ export default function HorizontalProcess() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="processo" className="horizontal-section border-t border-white/5 bg-surface">
+    <section ref={sectionRef} id="processo" className="horizontal-section border-t border-black/10 bg-surface">
       <div className="h-sticky">
         {/* Barra de progresso dourada */}
-        <div className="absolute left-0 top-0 z-20 h-0.5 w-full bg-white/5">
+        <div className="absolute left-0 top-0 z-20 h-0.5 w-full bg-black/10">
           <div ref={fillRef} className="h-full bg-gold-metal" style={{ width: "0%" }} />
         </div>
         <div className="section-label absolute left-6 top-6 z-20 md:left-10">[ COMO TRABALHAMOS · ROLE PARA O LADO ]</div>
@@ -59,7 +59,7 @@ export default function HorizontalProcess() {
             <h2 className="font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-7xl">
               Nosso<br /><span className="text-gold-shine">Processo</span>
             </h2>
-            <p className="mt-6 max-w-md text-neutral-400">
+            <p className="mt-6 max-w-md text-neutral-600">
               Do pacote escolhido ao site no ar em <strong className="text-gold-100">7 dias úteis</strong>.
               Agilidade sem perder qualidade — role para o lado e veja cada etapa.
             </p>
@@ -86,9 +86,9 @@ export default function HorizontalProcess() {
                   {p.tag && <span className="tech-tag mt-2 shrink-0">{p.tag}</span>}
                 </div>
                 <div className="relative z-10">
-                  <h3 className="font-display text-2xl font-bold md:text-3xl">{p.title}</h3>
+                  <h3 className="font-display text-2xl font-bold text-gold-metal md:text-3xl">{p.title}</h3>
                   <div className="my-4 h-px w-16 bg-gold-3" />
-                  <p className="text-neutral-300">{p.desc}</p>
+                  <p className="text-white/90">{p.desc}</p>
                 </div>
               </div>
             </div>
