@@ -1,0 +1,3594 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0a0a0a" />
+<title>Sushi Art — Arte Japonesa no Coração do Alentejo · Évora & Estremoz</title>
+<meta name="description" content="Sushi Art — eleito o melhor sushi do Alentejo. Cozinha japonesa autêntica do Chef Guilherme Charão. Évora e Estremoz. Reserve a sua mesa." />
+<meta name="keywords" content="sushi évora, sushi estremoz, sushi art, melhor sushi alentejo, restaurante japonês évora, chef guilherme charão" />
+<meta property="og:title" content="Sushi Art — Arte Japonesa no Alentejo" />
+<meta property="og:description" content="Cozinha japonesa autoral. Eleito o melhor sushi do Alentejo." />
+<meta property="og:image" content="img/sushi-01.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+<!-- Bibliotecas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<style>
+/* =========================================================
+   SUSHI ART — Design System
+   Estilo: Japonês Minimalista Premium
+   ========================================================= */
+:root {
+  --sumi: #0a0a0a;
+  --sumi-soft: #161310;
+  --charcoal: #1c1a17;
+  --shiro: #faf7f1;
+  --shiro-warm: #f3ede2;
+  --paper: #ebe4d3;
+  --akane: #b8302c;
+  --akane-dark: #8e2320;
+  --kin: #b8956a;
+  --kin-soft: #d4b48a;
+  --line: rgba(184, 149, 106, 0.25);
+  --line-dark: rgba(250, 247, 241, 0.12);
+  --mute: #8a8175;
+
+  --f-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --f-sans: 'Inter', system-ui, sans-serif;
+  --f-jp: 'Noto Serif JP', serif;
+
+  --shadow-soft: 0 30px 80px rgba(0,0,0,.35);
+  --shadow-card: 0 10px 30px rgba(0,0,0,.25);
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--f-sans);
+  font-weight: 300;
+  background: var(--shiro);
+  color: var(--sumi);
+  line-height: 1.6;
+  overflow-x: hidden;
+  letter-spacing: .01em;
+}
+img { max-width:100%; display:block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; }
+input, textarea, select { font: inherit; color: inherit; }
+
+::selection { background: var(--akane); color: var(--shiro); }
+
+/* ----- Tipografia ----- */
+.eyebrow {
+  font-family: var(--f-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--kin);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.eyebrow::before, .eyebrow.bidir::after {
+  content:"";
+  display:inline-block;
+  width: 36px;
+  height: 1px;
+  background: var(--kin);
+  opacity:.7;
+}
+.eyebrow.bidir::after { display:inline-block; }
+h1,h2,h3,h4 {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(48px, 9vw, 144px); }
+h2 { font-size: clamp(36px, 5.5vw, 84px); }
+h3 { font-size: clamp(22px, 2.4vw, 36px); }
+h4 { font-size: clamp(18px, 1.6vw, 24px); }
+p  { font-size: clamp(15px, 1.05vw, 17px); color: #2a2722; }
+.lead { font-size: clamp(18px, 1.4vw, 22px); line-height: 1.6; font-weight: 300; color: #3a342c; }
+.jp { font-family: var(--f-jp); font-weight: 300; }
+
+/* Container */
+.wrap { width: min(1320px, 92%); margin: 0 auto; }
+.wrap-narrow { width: min(960px, 90%); margin: 0 auto; }
+
+/* Botões */
+.btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 16px 36px;
+  border: 1px solid currentColor;
+  font-family: var(--f-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  position: relative; overflow: hidden;
+  transition: color .5s var(--ease);
+  z-index: 0;
+}
+.btn::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--sumi);
+  transform: translateY(101%);
+  transition: transform .5s var(--ease);
+  z-index: -1;
+}
+.btn:hover { color: var(--shiro); }
+.btn:hover::before { transform: translateY(0); }
+.btn-light::before { background: var(--shiro); }
+.btn-light:hover { color: var(--sumi); }
+.btn-gold {
+  background: var(--kin);
+  color: var(--sumi);
+  border-color: var(--kin);
+}
+.btn-gold::before { background: var(--sumi); }
+.btn-gold:hover { color: var(--shiro); }
+.btn-akane {
+  background: var(--akane);
+  color: var(--shiro);
+  border-color: var(--akane);
+}
+.btn-akane::before { background: var(--sumi); }
+.btn-akane:hover { color: var(--shiro); }
+
+.btn .arrow {
+  width: 18px; height: 1px; background: currentColor; position: relative;
+  transition: width .4s var(--ease);
+}
+.btn .arrow::after {
+  content: ""; position: absolute; right: 0; top:-3px;
+  width: 7px; height: 7px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.btn:hover .arrow { width: 26px; }
+
+/* ===== LOADING ===== */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--sumi);
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  z-index: 9999;
+  transition: opacity .8s ease, visibility .8s;
+}
+#loader.hide { opacity: 0; visibility: hidden; }
+.loader-logo {
+  font-family: var(--f-serif);
+  color: var(--shiro);
+  font-size: clamp(40px, 5vw, 80px);
+  letter-spacing: .15em;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+.loader-logo::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--kin);
+  margin: 18px auto 0;
+  animation: lineGrow 1.4s ease .4s forwards;
+}
+.loader-jp {
+  color: var(--kin);
+  font-family: var(--f-jp);
+  font-size: 14px;
+  letter-spacing: .8em;
+  margin-top: 22px;
+  opacity: 0;
+  animation: fadeUp .8s ease 1.2s forwards;
+}
+@keyframes fadeUp { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes lineGrow { to { width: 100%; } }
+
+/* ===== Cursor custom (desktop) ===== */
+.cursor {
+  position: fixed; top:0; left:0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--akane);
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform .25s var(--ease), width .25s, height .25s;
+}
+.cursor.hover { width: 48px; height: 48px; background: var(--kin); }
+@media (max-width: 920px) { .cursor { display: none; } }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 22px 0;
+  transition: background .4s var(--ease), padding .4s var(--ease), border-color .4s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(14px);
+  padding: 14px 0;
+  border-bottom-color: var(--line-dark);
+}
+.nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 30px;
+}
+.nav-logo {
+  font-family: var(--f-serif);
+  color: var(--shiro);
+  font-size: 26px;
+  letter-spacing: .15em;
+  font-weight: 500;
+}
+.nav-logo .ja {
+  display: block;
+  font-family: var(--f-jp);
+  color: var(--kin);
+  font-size: 9px;
+  letter-spacing: .8em;
+  margin-top: 2px;
+}
+.nav-links {
+  display: flex; gap: 38px; justify-content: center;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--shiro);
+  font-size: 12px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+  padding: 6px 0;
+}
+.nav-links a::after {
+  content: ""; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--kin);
+  transition: width .4s var(--ease);
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-actions {
+  display: flex; gap: 16px; justify-content: flex-end; align-items: center;
+}
+.cart-btn, .menu-toggle {
+  color: var(--shiro);
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+  padding: 10px 14px;
+  border: 1px solid var(--line-dark);
+  transition: border-color .3s, background .3s;
+  position: relative;
+}
+.cart-btn:hover, .menu-toggle:hover { border-color: var(--kin); background: rgba(184,149,106,.08); }
+.cart-count {
+  background: var(--akane); color: var(--shiro);
+  border-radius: 100px;
+  padding: 1px 7px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0;
+  min-width: 18px;
+  text-align: center;
+}
+.menu-toggle { display: none; }
+
+@media (max-width: 980px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: inline-flex; }
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed; inset: 0;
+  background: var(--sumi);
+  z-index: 99;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s, visibility .4s;
+}
+.mobile-menu.open { opacity: 1; visibility: visible; }
+.mobile-menu a {
+  font-family: var(--f-serif);
+  font-size: 36px;
+  color: var(--shiro);
+}
+.mobile-menu a:hover { color: var(--kin); }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--sumi);
+  color: var(--shiro);
+  overflow: hidden;
+  display: flex; align-items: center;
+  padding-top: 80px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  z-index: 1;
+}
+.hero-bg::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,.5) 0%, rgba(10,10,10,.65) 60%, rgba(10,10,10,.95) 100%);
+  z-index: 2;
+}
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(.1) contrast(1.05);
+  transform: scale(1.08);
+}
+.hero-inner {
+  position: relative; z-index: 5;
+  width: min(1320px, 92%);
+  margin: 0 auto;
+  padding: 60px 0;
+}
+.hero-jp {
+  font-family: var(--f-jp);
+  color: var(--kin);
+  font-size: 13px;
+  letter-spacing: 1em;
+  display: block;
+  margin-bottom: 24px;
+  opacity: 0;
+}
+.hero h1 {
+  color: var(--shiro);
+  font-weight: 300;
+  line-height: 1;
+}
+.hero h1 .line { display: block; overflow: hidden; }
+.hero h1 .word { display: inline-block; }
+.hero h1 em {
+  font-style: italic;
+  color: var(--kin);
+  font-weight: 300;
+}
+.hero-sub {
+  margin-top: 30px;
+  max-width: 540px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(250, 247, 241, .8);
+  font-weight: 300;
+  opacity: 0;
+}
+.hero-actions {
+  margin-top: 50px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0;
+}
+.hero-actions .btn-light { color: var(--shiro); }
+.hero-actions .btn-gold { color: var(--sumi); }
+
+.hero-meta {
+  position: absolute; bottom: 40px; left: 0; right: 0;
+  z-index: 5;
+  width: min(1320px, 92%);
+  margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  flex-wrap: wrap; gap: 24px;
+  color: rgba(250, 247, 241, .6);
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+}
+.hero-meta .award {
+  color: var(--kin);
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-meta .award svg { width: 16px; height: 16px; }
+.hero-scroll {
+  display: flex; align-items: center; gap: 14px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.hero-scroll .line-anim {
+  width: 1px; height: 60px; background: var(--kin); position: relative; overflow: hidden;
+}
+.hero-scroll .line-anim::after {
+  content: ""; position: absolute; top: -60px; left: 0; right: 0; height: 60px;
+  background: var(--shiro);
+  animation: scrollLine 2s ease infinite;
+}
+@keyframes scrollLine {
+  to { top: 60px; }
+}
+
+/* ====== SECTION GENERIC ====== */
+section {
+  padding: clamp(80px, 12vw, 160px) 0;
+  position: relative;
+}
+.section-head {
+  margin-bottom: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+}
+.section-head .lead { margin-top: 24px; }
+.section-head h2 small {
+  display: block;
+  font-family: var(--f-jp);
+  color: var(--kin);
+  font-size: 14px;
+  letter-spacing: .8em;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+@media (max-width: 760px) {
+  .section-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 60px; }
+}
+
+/* ====== SOBRE ====== */
+.about { background: var(--shiro); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 100px;
+  align-items: center;
+}
+.about-imgs {
+  position: relative;
+  height: 720px;
+}
+.about-img {
+  position: absolute;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.about-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.4s var(--ease);
+}
+.about-img-1 {
+  top: 0; left: 0;
+  width: 65%; height: 70%;
+}
+.about-img-2 {
+  bottom: 0; right: 0;
+  width: 58%; height: 55%;
+  border: 8px solid var(--shiro);
+}
+.about-stamp {
+  position: absolute;
+  bottom: 38%;
+  left: 50%;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: var(--akane);
+  color: var(--shiro);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: .05em;
+  z-index: 3;
+  transform: translateX(-50%) rotate(-8deg);
+  box-shadow: var(--shadow-card);
+}
+.about-stamp small {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: .3em;
+  margin-top: 4px;
+  opacity: .8;
+}
+.about-text h2 .it { font-style: italic; color: var(--kin); }
+.about-features {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+.feat .feat-num {
+  font-family: var(--f-serif);
+  font-size: 42px;
+  color: var(--kin);
+  display: block;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.feat h4 { margin-bottom: 8px; color: var(--sumi); }
+.feat p { color: #5a5246; font-size: 14px; line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 60px; }
+  .about-imgs { height: 540px; }
+}
+
+/* ====== FILOSOFIA / CHEF (dark) ====== */
+.philosophy {
+  background: var(--sumi);
+  color: var(--shiro);
+  position: relative;
+  overflow: hidden;
+}
+.philosophy::before {
+  content: "鮨"; /* sushi em kanji */
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  transform: translateY(-50%);
+  font-family: var(--f-jp);
+  font-size: clamp(300px, 40vw, 700px);
+  color: rgba(184, 149, 106, .04);
+  z-index: 1;
+  font-weight: 700;
+  line-height: 1;
+}
+.philosophy-content { position: relative; z-index: 2; }
+.philosophy h2 { color: var(--shiro); }
+.philosophy h2 .gold { color: var(--kin); font-style: italic; }
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 100px;
+  align-items: center;
+  margin-top: 60px;
+}
+.philosophy-text p {
+  color: rgba(250,247,241,.78);
+  font-size: 17px;
+  line-height: 1.85;
+  margin-bottom: 22px;
+}
+.philosophy-text .signature {
+  margin-top: 40px;
+  display: flex; align-items: center; gap: 24px;
+}
+.philosophy-text .signature-name {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 32px;
+  color: var(--kin);
+}
+.philosophy-text .signature-role {
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(250,247,241,.6);
+  margin-top: 4px;
+}
+.philosophy-img {
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--line-dark);
+}
+.philosophy-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(.3) contrast(1.1);
+}
+.philosophy-quote {
+  position: absolute;
+  left: -40px;
+  bottom: 40px;
+  background: var(--akane);
+  color: var(--shiro);
+  padding: 24px 32px;
+  max-width: 280px;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.5;
+  box-shadow: var(--shadow-card);
+}
+.philosophy-quote::before {
+  content: "\"";
+  font-family: var(--f-serif);
+  font-size: 80px;
+  position: absolute;
+  top: -20px; left: 12px;
+  color: rgba(250,247,241,.3);
+  line-height: 1;
+}
+@media (max-width: 900px) {
+  .philosophy-grid { grid-template-columns: 1fr; gap: 50px; }
+  .philosophy-img { height: 440px; }
+  .philosophy-quote { left: 16px; bottom: 16px; max-width: 70%; }
+}
+
+/* ============ Loader fade-in baseline para fadeIn ============ */
+.fade-up { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ============ Util ============ */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  margin: 0;
+}
+.divider-dark { background: var(--line-dark); }
+
+/* ============ CARDÁPIO ============ */
+.menu-section {
+  background: var(--shiro);
+  position: relative;
+  overflow: hidden;
+}
+.menu-section::before {
+  content: "献 立";
+  position: absolute;
+  top: 80px; right: -40px;
+  font-family: var(--f-jp);
+  font-size: clamp(200px, 24vw, 380px);
+  color: rgba(184, 149, 106, .05);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+.menu-tabs {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 50px;
+  padding-bottom: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.menu-tabs::-webkit-scrollbar { display: none; }
+.menu-tab {
+  padding: 16px 26px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  white-space: nowrap;
+  position: relative;
+  transition: color .3s;
+}
+.menu-tab .jp {
+  display: block;
+  font-family: var(--f-jp);
+  font-size: 10px;
+  letter-spacing: .4em;
+  margin-top: 4px;
+  opacity: .7;
+}
+.menu-tab::after {
+  content: ""; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 2px; background: var(--akane);
+  transition: width .4s var(--ease);
+}
+.menu-tab:hover { color: var(--sumi); }
+.menu-tab.active { color: var(--akane); }
+.menu-tab.active::after { width: 100%; }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+.menu-card {
+  background: var(--shiro);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-soft);
+}
+.menu-card-img {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+.menu-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+.menu-card:hover .menu-card-img img { transform: scale(1.1); }
+.menu-card-img::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.4) 100%);
+}
+.menu-card-tag {
+  position: absolute; top: 16px; left: 16px;
+  background: var(--shiro);
+  color: var(--sumi);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  font-weight: 500;
+  z-index: 2;
+}
+.menu-card-tag.chef {
+  background: var(--akane);
+  color: var(--shiro);
+}
+.menu-card-body {
+  padding: 26px 24px 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.menu-card-head {
+  display: flex; justify-content: space-between; gap: 18px; align-items: baseline;
+  margin-bottom: 12px;
+}
+.menu-card-name {
+  font-family: var(--f-serif);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--sumi);
+}
+.menu-card-name small {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--kin);
+  font-weight: 500;
+  margin-top: 4px;
+}
+.menu-card-price {
+  font-family: var(--f-serif);
+  font-size: 22px;
+  color: var(--akane);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.menu-card-desc {
+  color: #5a5246;
+  font-size: 14px;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 18px;
+}
+.menu-card-add {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.menu-card-add-btn {
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--sumi);
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: color .3s;
+}
+.menu-card-add-btn:hover { color: var(--akane); }
+.menu-card-add-btn .plus {
+  width: 32px; height: 32px;
+  border: 1px solid var(--sumi);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.menu-card-add-btn:hover .plus {
+  background: var(--akane);
+  color: var(--shiro);
+  border-color: var(--akane);
+}
+.menu-card-veg {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #6b8e23;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.menu-card-veg::before { content: "●"; }
+
+/* ============ GALERIA ============ */
+.gallery {
+  background: var(--sumi);
+  color: var(--shiro);
+  padding-bottom: 0;
+}
+.gallery h2 { color: var(--shiro); }
+.gallery .lead { color: rgba(250,247,241,.7); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 120px;
+  gap: 14px;
+  margin-top: 30px;
+}
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s var(--ease), filter .6s;
+  filter: brightness(.92);
+}
+.gallery-item:hover img { transform: scale(1.08); filter: brightness(1.05); }
+.gallery-item::after {
+  content: "VER";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(.85);
+  background: var(--akane);
+  color: var(--shiro);
+  padding: 12px 22px;
+  font-size: 10px;
+  letter-spacing: .3em;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity .4s, transform .4s var(--ease);
+  z-index: 2;
+}
+.gallery-item:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+/* Layout masonry custom */
+.g-1 { grid-column: span 6; grid-row: span 4; }
+.g-2 { grid-column: span 3; grid-row: span 2; }
+.g-3 { grid-column: span 3; grid-row: span 2; }
+.g-4 { grid-column: span 3; grid-row: span 3; }
+.g-5 { grid-column: span 3; grid-row: span 3; }
+.g-6 { grid-column: span 4; grid-row: span 3; }
+.g-7 { grid-column: span 4; grid-row: span 3; }
+.g-8 { grid-column: span 4; grid-row: span 3; }
+@media (max-width: 900px) {
+  .gallery-grid { grid-auto-rows: 100px; }
+  .g-1,.g-2,.g-3,.g-4,.g-5,.g-6,.g-7,.g-8 { grid-column: span 6; grid-row: span 2; }
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.95);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9000;
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s;
+  padding: 30px;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox img { max-width: 90%; max-height: 88vh; }
+.lightbox-close {
+  position: absolute; top: 30px; right: 30px;
+  color: var(--shiro);
+  font-size: 28px;
+  width: 50px; height: 50px;
+  border: 1px solid var(--line-dark);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ============ RESERVAS ============ */
+.reserve {
+  background: var(--shiro-warm);
+  position: relative;
+  overflow: hidden;
+}
+.reserve::before {
+  content: "予 約";
+  position: absolute;
+  top: 50%; left: -3%;
+  transform: translateY(-50%);
+  font-family: var(--f-jp);
+  font-size: clamp(200px, 28vw, 460px);
+  color: rgba(184, 48, 44, .035);
+  z-index: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+.reserve-content { position: relative; z-index: 2; }
+.reserve-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+}
+.reserve-visual {
+  position: relative;
+  height: 580px;
+}
+.reserve-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+  box-shadow: var(--shadow-soft);
+}
+.reserve-visual .info-card {
+  position: absolute;
+  bottom: -30px; right: -30px;
+  background: var(--sumi);
+  color: var(--shiro);
+  padding: 30px 36px;
+  max-width: 280px;
+  box-shadow: var(--shadow-card);
+}
+.reserve-visual .info-card .jp {
+  color: var(--kin);
+  font-size: 11px;
+  letter-spacing: .6em;
+  display: block;
+  margin-bottom: 10px;
+}
+.reserve-visual .info-card h4 {
+  color: var(--shiro);
+  font-family: var(--f-serif);
+  font-size: 22px;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.reserve-visual .info-card p {
+  color: rgba(250,247,241,.75);
+  font-size: 13px;
+}
+
+.reserve-form {
+  background: var(--shiro);
+  padding: 50px 50px 40px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+}
+.reserve-form h3 { margin-bottom: 8px; }
+.reserve-form .form-sub {
+  color: var(--mute);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.form-grid .full { grid-column: 1/-1; }
+.field {
+  position: relative;
+}
+.field label {
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--mute);
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--shiro-warm);
+  border: 1px solid transparent;
+  font-size: 14px;
+  color: var(--sumi);
+  transition: border-color .3s, background .3s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--kin);
+  background: var(--shiro);
+}
+.field textarea { resize: vertical; min-height: 90px; }
+.unit-choice {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-bottom: 6px;
+}
+.unit-card {
+  border: 1px solid var(--line);
+  padding: 16px 18px;
+  background: var(--shiro-warm);
+  cursor: pointer;
+  transition: all .3s var(--ease);
+  position: relative;
+}
+.unit-card:hover { border-color: var(--kin); }
+.unit-card.selected {
+  border-color: var(--akane);
+  background: var(--shiro);
+  box-shadow: 0 6px 20px rgba(184,48,44,.1);
+}
+.unit-card .ja {
+  font-family: var(--f-jp);
+  color: var(--kin);
+  font-size: 10px;
+  letter-spacing: .4em;
+  display: block;
+  margin-bottom: 4px;
+}
+.unit-card h5 {
+  font-family: var(--f-serif);
+  font-size: 20px;
+  color: var(--sumi);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.unit-card p {
+  font-size: 12px;
+  color: var(--mute);
+}
+.form-submit {
+  margin-top: 30px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.form-submit small {
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: var(--mute);
+  flex: 1;
+  min-width: 200px;
+}
+@media (max-width: 900px) {
+  .reserve-grid { grid-template-columns: 1fr; gap: 50px; }
+  .reserve-visual { height: 360px; }
+  .reserve-visual .info-card { bottom: -20px; right: 10px; padding: 20px; }
+  .reserve-form { padding: 32px 24px; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* ============ AVALIAÇÕES ============ */
+.reviews {
+  background: var(--shiro);
+  position: relative;
+  overflow: hidden;
+}
+.reviews-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+.reviews-score {
+  text-align: right;
+}
+.reviews-score .num {
+  font-family: var(--f-serif);
+  font-size: 80px;
+  line-height: 1;
+  color: var(--akane);
+  font-weight: 400;
+}
+.reviews-score .num span { font-size: 32px; color: var(--mute); }
+.reviews-score .stars { color: var(--kin); letter-spacing: 3px; font-size: 14px; margin-top: 4px; }
+.reviews-score .src {
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 6px;
+}
+
+.review-swiper { overflow: visible; padding-bottom: 40px; }
+.review-card {
+  background: var(--shiro);
+  border: 1px solid var(--line);
+  padding: 36px 34px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform .5s, box-shadow .5s;
+  min-height: 320px;
+}
+.review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
+}
+.review-card .stars {
+  color: var(--kin);
+  letter-spacing: 4px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.review-card .quote-mark {
+  font-family: var(--f-serif);
+  font-size: 64px;
+  color: var(--kin);
+  line-height: .4;
+  opacity: .35;
+  margin-bottom: 6px;
+}
+.review-card .text {
+  font-family: var(--f-serif);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--sumi);
+  font-style: italic;
+  flex: 1;
+}
+.review-card .person {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.review-card .name { font-weight: 500; font-size: 14px; color: var(--sumi); }
+.review-card .unit {
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--akane);
+}
+.review-card .unit::before {
+  content: "·"; margin-right: 8px; color: var(--kin);
+}
+
+/* ============ LOCALIZAÇÃO ============ */
+.locations {
+  background: var(--sumi);
+  color: var(--shiro);
+}
+.locations h2 { color: var(--shiro); }
+.locations .lead { color: rgba(250,247,241,.7); }
+.locations-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.location-card {
+  background: var(--charcoal);
+  border: 1px solid var(--line-dark);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.location-img {
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+}
+.location-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+.location-card:hover .location-img img { transform: scale(1.07); }
+.location-img-tag {
+  position: absolute; top: 18px; left: 18px;
+  background: var(--akane);
+  color: var(--shiro);
+  font-size: 10px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  font-weight: 500;
+}
+.location-body { padding: 36px 34px; flex: 1; display: flex; flex-direction: column; }
+.location-body h3 {
+  color: var(--shiro);
+  margin-bottom: 6px;
+}
+.location-body h3 .ja {
+  display: block;
+  font-family: var(--f-jp);
+  color: var(--kin);
+  font-size: 11px;
+  letter-spacing: .6em;
+  margin-bottom: 10px;
+}
+.location-info {
+  margin: 20px 0 28px;
+  display: grid; gap: 14px;
+}
+.location-info-row {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  align-items: start;
+  color: rgba(250,247,241,.78);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.location-info-row svg {
+  width: 18px; height: 18px;
+  color: var(--kin);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.location-info-row strong { color: var(--shiro); font-weight: 500; }
+.location-actions {
+  display: flex; gap: 12px; margin-top: auto;
+  flex-wrap: wrap;
+}
+.location-actions .btn { padding: 14px 20px; font-size: 11px; }
+.map-embed {
+  height: 220px;
+  border-top: 1px solid var(--line-dark);
+}
+.map-embed iframe { width: 100%; height: 100%; border: 0; filter: invert(.92) hue-rotate(180deg) brightness(.95) saturate(1.2); }
+
+@media (max-width: 900px) {
+  .locations-grid { grid-template-columns: 1fr; }
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: #050505;
+  color: rgba(250,247,241,.65);
+  padding: 90px 0 30px;
+  position: relative;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 50px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--line-dark);
+}
+.footer h4 {
+  color: var(--shiro);
+  font-family: var(--f-sans);
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+.footer-brand .nav-logo {
+  color: var(--shiro);
+  font-size: 28px;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+.footer-brand p {
+  font-size: 14px;
+  color: rgba(250,247,241,.55);
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+.footer-social {
+  display: flex; gap: 14px;
+}
+.footer-social a {
+  width: 40px; height: 40px;
+  border: 1px solid var(--line-dark);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .3s, border-color .3s;
+}
+.footer-social a:hover { background: var(--kin); border-color: var(--kin); color: var(--sumi); }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; font-size: 14px; }
+.footer ul a:hover { color: var(--kin); }
+.footer-bottom {
+  padding-top: 26px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 14px;
+  font-size: 12px;
+  color: rgba(250,247,241,.45);
+}
+.staff-only {
+  font-size: 10px;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid var(--line-dark);
+  color: rgba(250,247,241,.4);
+  transition: all .3s;
+}
+.staff-only:hover {
+  border-color: var(--akane);
+  color: var(--akane);
+}
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+/* ============ CARRINHO LATERAL ============ */
+.cart-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  width: 440px;
+  max-width: 100%;
+  height: 100vh;
+  background: var(--shiro);
+  z-index: 200;
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .5s var(--ease);
+  box-shadow: var(--shadow-soft);
+}
+.cart-drawer.open { transform: translateX(0); }
+.cart-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 199;
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s;
+}
+.cart-overlay.open { opacity: 1; visibility: visible; }
+.cart-head {
+  padding: 30px 34px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.cart-head h3 { margin: 0; }
+.cart-head .ja {
+  font-family: var(--f-jp);
+  font-size: 11px;
+  letter-spacing: .5em;
+  color: var(--kin);
+  display: block;
+  margin-bottom: 2px;
+}
+.cart-close {
+  font-size: 24px;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line);
+  transition: background .3s;
+}
+.cart-close:hover { background: var(--sumi); color: var(--shiro); border-color: var(--sumi); }
+.cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 34px;
+}
+.cart-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--mute);
+}
+.cart-empty .ja {
+  font-family: var(--f-jp);
+  font-size: 24px;
+  color: var(--kin);
+  display: block;
+  margin-bottom: 14px;
+}
+.cart-item {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.cart-item img { width: 70px; height: 70px; object-fit: cover; }
+.cart-item-info h5 {
+  font-family: var(--f-serif);
+  font-size: 16px;
+  color: var(--sumi);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.cart-item-info .price {
+  font-size: 13px;
+  color: var(--akane);
+  font-weight: 600;
+}
+.cart-item-qty {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 6px;
+}
+.qty-btn {
+  width: 24px; height: 24px;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .3s;
+}
+.qty-btn:hover { background: var(--sumi); color: var(--shiro); border-color: var(--sumi); }
+.qty-val { font-size: 13px; min-width: 18px; text-align: center; }
+.cart-remove {
+  font-size: 11px;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: .15em;
+}
+.cart-remove:hover { color: var(--akane); }
+.cart-foot {
+  padding: 24px 34px 30px;
+  border-top: 1px solid var(--line);
+  background: var(--shiro-warm);
+}
+.cart-total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 16px;
+  font-family: var(--f-serif);
+}
+.cart-total span { font-size: 14px; color: var(--mute); text-transform: uppercase; letter-spacing: .2em; font-family: var(--f-sans); }
+.cart-total strong { font-size: 32px; color: var(--akane); font-weight: 500; }
+.cart-checkout {
+  width: 100%;
+  background: var(--sumi);
+  color: var(--shiro);
+  padding: 18px;
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: background .3s;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.cart-checkout:hover { background: var(--akane); }
+
+/* ============ MODAL CHECKOUT ============ */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 300;
+  display: flex; align-items: center; justify-content: center;
+  padding: 30px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s;
+}
+.modal.open { opacity: 1; visibility: visible; }
+.modal-inner {
+  background: var(--shiro);
+  width: min(640px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 50px 50px 40px;
+  position: relative;
+  box-shadow: var(--shadow-soft);
+}
+.modal-close {
+  position: absolute; top: 22px; right: 22px;
+  width: 38px; height: 38px;
+  font-size: 22px;
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .3s;
+}
+.modal-close:hover { background: var(--sumi); color: var(--shiro); }
+.modal h3 { margin-bottom: 6px; }
+.modal .ja {
+  font-family: var(--f-jp);
+  color: var(--kin);
+  font-size: 11px;
+  letter-spacing: .5em;
+  display: block;
+  margin-bottom: 8px;
+}
+.delivery-choice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.delivery-opt {
+  border: 1px solid var(--line);
+  padding: 18px;
+  cursor: pointer;
+  text-align: center;
+  background: var(--shiro-warm);
+  transition: all .3s;
+}
+.delivery-opt.selected {
+  border-color: var(--akane);
+  background: var(--shiro);
+  box-shadow: 0 4px 16px rgba(184,48,44,.12);
+}
+.delivery-opt svg { width: 28px; height: 28px; color: var(--kin); margin-bottom: 10px; }
+.delivery-opt h5 { font-family: var(--f-serif); font-size: 18px; color: var(--sumi); font-weight: 500; }
+.delivery-opt p { font-size: 12px; color: var(--mute); }
+
+@media (max-width: 600px) {
+  .modal-inner { padding: 36px 24px 28px; }
+}
+
+/* ============ TOAST ============ */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  background: var(--sumi);
+  color: var(--shiro);
+  padding: 16px 28px;
+  font-size: 13px;
+  letter-spacing: .1em;
+  z-index: 9500;
+  display: flex; align-items: center; gap: 14px;
+  transition: transform .5s var(--ease);
+  border-left: 3px solid var(--akane);
+  box-shadow: var(--shadow-card);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast svg { color: var(--kin); width: 18px; height: 18px; }
+
+/* ============ STAFF PANEL ============ */
+.staff-panel {
+  position: fixed; inset: 0;
+  background: #f5f3ee;
+  z-index: 500;
+  display: none;
+  flex-direction: column;
+}
+.staff-panel.open { display: flex; }
+.staff-topbar {
+  background: var(--sumi);
+  color: var(--shiro);
+  padding: 16px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--line-dark);
+}
+.staff-topbar .brand {
+  font-family: var(--f-serif);
+  font-size: 22px;
+  letter-spacing: .15em;
+  display: flex; align-items: center; gap: 14px;
+}
+.staff-topbar .brand small {
+  font-size: 9px;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--kin);
+  background: rgba(184,149,106,.12);
+  padding: 4px 10px;
+  border: 1px solid rgba(184,149,106,.25);
+}
+.staff-topbar .user {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13px;
+}
+.staff-topbar .avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--kin); color: var(--sumi);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 13px;
+}
+.staff-logout {
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: rgba(250,247,241,.6);
+  padding: 8px 14px;
+  border: 1px solid var(--line-dark);
+  transition: all .3s;
+}
+.staff-logout:hover { border-color: var(--akane); color: var(--akane); }
+
+.staff-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  flex: 1;
+  min-height: 0;
+}
+.staff-side {
+  background: var(--sumi-soft);
+  color: rgba(250,247,241,.7);
+  padding: 26px 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--line-dark);
+}
+.staff-side h6 {
+  font-size: 10px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--mute);
+  padding: 14px 24px 8px;
+  font-weight: 500;
+}
+.staff-nav-item {
+  width: 100%;
+  text-align: left;
+  padding: 12px 24px;
+  display: flex; align-items: center; gap: 14px;
+  font-size: 13px;
+  color: rgba(250,247,241,.7);
+  letter-spacing: .04em;
+  transition: all .3s;
+  position: relative;
+}
+.staff-nav-item:hover { color: var(--shiro); background: rgba(250,247,241,.04); }
+.staff-nav-item.active {
+  color: var(--shiro);
+  background: rgba(184,149,106,.08);
+}
+.staff-nav-item.active::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--akane);
+}
+.staff-nav-item svg { width: 16px; height: 16px; color: var(--kin); }
+.staff-nav-item .badge {
+  margin-left: auto;
+  background: var(--akane);
+  color: var(--shiro);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 100px;
+  font-weight: 600;
+}
+
+.staff-content {
+  padding: 30px 38px;
+  overflow-y: auto;
+  background: #f5f3ee;
+}
+.staff-content h2 {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+.staff-content .breadcrumb {
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 30px;
+}
+.staff-section { display: none; }
+.staff-section.active { display: block; animation: fadeIn .3s ease; }
+@keyframes fadeIn { from {opacity:0;transform:translateY(10px);} to {opacity:1; transform:none;} }
+
+/* Dashboard cards */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.stat-card {
+  background: var(--shiro);
+  padding: 24px 26px;
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+  background: var(--akane);
+}
+.stat-card.gold::before { background: var(--kin); }
+.stat-card.green::before { background: #5d8a4e; }
+.stat-card.dark::before { background: var(--sumi); }
+.stat-card .label {
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 12px;
+}
+.stat-card .value {
+  font-family: var(--f-serif);
+  font-size: 36px;
+  color: var(--sumi);
+  font-weight: 500;
+  line-height: 1.1;
+}
+.stat-card .delta {
+  font-size: 12px;
+  margin-top: 8px;
+  color: #5d8a4e;
+}
+.stat-card .delta.down { color: var(--akane); }
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.chart-card {
+  background: var(--shiro);
+  padding: 26px 28px;
+  border: 1px solid var(--line);
+}
+.chart-card h4 { font-family: var(--f-serif); font-size: 22px; margin-bottom: 4px; }
+.chart-card .sub { color: var(--mute); font-size: 12px; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 18px; }
+.chart-card canvas { max-height: 280px; }
+
+.top-prods { list-style: none; }
+.top-prods li {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.top-prods li:last-child { border-bottom: 0; }
+.top-prods .rank {
+  font-family: var(--f-serif);
+  color: var(--kin);
+  font-size: 18px;
+}
+.top-prods .qty { color: var(--mute); font-size: 12px; }
+
+/* Pipeline kanban */
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 30px;
+}
+.pipe-col {
+  background: var(--shiro);
+  border: 1px solid var(--line);
+  padding: 18px 16px;
+  min-height: 320px;
+}
+.pipe-col h5 {
+  font-family: var(--f-sans);
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex; justify-content: space-between;
+}
+.pipe-col h5 span {
+  background: var(--shiro-warm);
+  color: var(--sumi);
+  padding: 2px 8px;
+  font-weight: 500;
+}
+.pipe-col[data-status="recebido"] h5 { color: #b8302c; }
+.pipe-col[data-status="preparo"] h5 { color: #c97f2d; }
+.pipe-col[data-status="pronto"] h5 { color: #5d8a4e; }
+.pipe-col[data-status="entregue"] h5 { color: var(--mute); }
+.order-card {
+  background: var(--shiro-warm);
+  padding: 14px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  border-left: 3px solid var(--kin);
+  cursor: grab;
+  transition: transform .2s;
+}
+.order-card:hover { transform: translateX(2px); }
+.order-card.dragging { opacity: .4; }
+.order-card .order-id { font-family: var(--f-serif); font-weight: 600; color: var(--sumi); font-size: 14px; }
+.order-card .order-meta { font-size: 11px; color: var(--mute); display: flex; justify-content: space-between; margin-top: 4px; }
+.order-card .order-items { margin-top: 8px; color: #5a5246; font-size: 12px; line-height: 1.4; }
+.order-card .order-total { margin-top: 8px; font-weight: 600; color: var(--akane); font-size: 14px; }
+
+/* Tabela */
+.data-table {
+  background: var(--shiro);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.data-table table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 13px;
+  border-bottom: 1px solid var(--line);
+}
+.data-table th {
+  background: var(--shiro-warm);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 600;
+}
+.data-table tr:last-child td { border-bottom: 0; }
+.data-table tr:hover { background: var(--shiro-warm); }
+.tag {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  font-weight: 500;
+}
+.tag.confirmed { background: rgba(93,138,78,.15); color: #5d8a4e; }
+.tag.pending { background: rgba(201,127,45,.15); color: #c97f2d; }
+.tag.cancelled { background: rgba(184,48,44,.15); color: var(--akane); }
+
+.toolbar {
+  display: flex; justify-content: space-between; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.toolbar input {
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  background: var(--shiro);
+  font-size: 13px;
+  min-width: 220px;
+}
+.btn-sm {
+  padding: 10px 18px;
+  font-size: 11px;
+  background: var(--sumi);
+  color: var(--shiro);
+  display: inline-flex; align-items: center; gap: 8px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.btn-sm:hover { background: var(--akane); }
+
+@media (max-width: 1100px) {
+  .chart-grid { grid-template-columns: 1fr; }
+  .pipeline { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .staff-layout { grid-template-columns: 1fr; }
+  .staff-side {
+    position: fixed; bottom: 0; left: 0; right: 0; top: auto;
+    display: flex; overflow-x: auto;
+    z-index: 10;
+    padding: 4px 0;
+    border-top: 1px solid var(--line-dark);
+    background: var(--sumi);
+  }
+  .staff-side h6 { display: none; }
+  .staff-nav-item { flex-shrink: 0; padding: 10px 14px; font-size: 11px; }
+  .staff-nav-item .badge { display: none; }
+  .pipeline { grid-template-columns: 1fr; }
+  .staff-content { padding: 20px; padding-bottom: 80px; }
+}
+
+/* LOGIN STAFF */
+.staff-login-modal {
+  position: fixed; inset: 0;
+  background: rgba(10,10,10,.95);
+  z-index: 600;
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 30px;
+}
+.staff-login-modal.open { display: flex; }
+.staff-login-card {
+  background: var(--sumi);
+  border: 1px solid var(--line-dark);
+  width: min(420px, 100%);
+  padding: 50px 44px;
+  color: var(--shiro);
+  position: relative;
+}
+.staff-login-card h3 { color: var(--shiro); font-family: var(--f-serif); font-size: 32px; margin-bottom: 4px; }
+.staff-login-card .ja { color: var(--kin); font-family: var(--f-jp); font-size: 11px; letter-spacing: .5em; margin-bottom: 8px; display: block; }
+.staff-login-card p { color: rgba(250,247,241,.6); font-size: 13px; margin-bottom: 30px; }
+.staff-login-card .field input {
+  background: var(--charcoal);
+  border: 1px solid var(--line-dark);
+  color: var(--shiro);
+}
+.staff-login-card .field label { color: rgba(250,247,241,.6); }
+.staff-login-card .field input:focus { border-color: var(--kin); background: var(--sumi-soft); }
+.login-hint {
+  font-size: 11px;
+  color: rgba(250,247,241,.4);
+  text-align: center;
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px dashed var(--line-dark);
+  letter-spacing: .05em;
+}
+.staff-login-card .modal-close { border-color: var(--line-dark); color: var(--shiro); }
+
+</style>
+</head>
+<body>
+
+<!-- ============== LOADER ============== -->
+<div id="loader">
+  <div class="loader-logo">SUSHI ART</div>
+  <div class="loader-jp">寿 司 芸 術</div>
+</div>
+
+<!-- ============== CURSOR ============== -->
+<div class="cursor" id="cursor"></div>
+
+<!-- ============== NAV ============== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="nav-logo">SUSHI ART<span class="ja">鮨 芸 術</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#cardapio">Cardápio</a></li>
+        <li><a href="#reservar">Reservar</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="cart-btn" id="openCart">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Carrinho</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle">Menu</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre">Sobre</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#reservar">Reservar</a>
+  <a href="#avaliacoes">Avaliações</a>
+  <a href="#contato">Contato</a>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="img/sushi-01.jpg" alt="Sushi Art - peças de sushi gourmet" />
+  </div>
+  <div class="hero-inner">
+    <span class="hero-jp">寿 司 芸 術</span>
+    <h1>
+      <span class="line"><span class="word">A arte do</span></span>
+      <span class="line"><span class="word"><em>peixe cru,</em></span></span>
+      <span class="line"><span class="word">no coração</span></span>
+      <span class="line"><span class="word">do Alentejo.</span></span>
+    </h1>
+    <p class="hero-sub">
+      Há lugares onde se come. E há lugares onde a refeição se torna memória.
+      Sushi Art é onde a tradição japonesa encontra o terroir alentejano —
+      criada à faca, peça a peça, pelo Chef Guilherme Charão.
+    </p>
+    <div class="hero-actions">
+      <a href="#reservar" class="btn btn-gold">Reservar Mesa <span class="arrow"></span></a>
+      <a href="#cardapio" class="btn btn-light">Ver Cardápio <span class="arrow"></span></a>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="award">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"/><path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+      <span>Eleito o Melhor Sushi do Alentejo</span>
+    </div>
+    <div>Évora &nbsp;·&nbsp; Estremoz</div>
+    <div class="hero-scroll"><span>scroll</span><span class="line-anim"></span></div>
+  </div>
+</section>
+
+<!-- ============== SOBRE ============== -->
+<section class="about" id="sobre">
+  <div class="wrap">
+    <div class="section-head">
+      <h2><small>由 来 ·  origem</small>Uma história <span class="it" style="font-style:italic;color:var(--kin)">contada à faca.</span></h2>
+      <p class="lead">
+        Nasceu em Évora, cresceu com o sonho de levar a arte japonesa para além das grandes cidades.
+        Hoje, o Sushi Art tem duas casas no Alentejo — e uma única obsessão: peixe fresco, técnica
+        precisa e a atenção quase artesanal a cada peça que sai do balcão.
+      </p>
+    </div>
+    <div class="about-grid">
+      <div class="about-imgs">
+        <div class="about-img about-img-1"><img src="img/sushi-04.jpg" alt="Sushi Art - apresentação artística" /></div>
+        <div class="about-img about-img-2"><img src="img/sushi-07.jpg" alt="Detalhe sushi" /></div>
+        <div class="about-stamp">Melhor Sushi do Alentejo<small>· prémio ·</small></div>
+      </div>
+      <div class="about-text">
+        <h2 style="margin-bottom:32px">Mais do que <span class="it">sushi</span>.<br/>Uma forma de hospitalidade.</h2>
+        <p class="lead">
+          Cada peça do nosso menu é resultado de uma decisão. Que peixe entrou esta manhã?
+          Como ele se comporta com este molho da casa? Que harumaki crispy traduz melhor a
+          textura que procuramos? Não fazemos sushi em série — fazemos sushi consciente.
+        </p>
+        <div class="about-features">
+          <div class="feat">
+            <span class="feat-num">7+</span>
+            <h4>Anos de cozinha</h4>
+            <p>Uma jornada que começou pela curiosidade e amadureceu no rigor.</p>
+          </div>
+          <div class="feat">
+            <span class="feat-num">2</span>
+            <h4>Casas no Alentejo</h4>
+            <p>Évora histórica e Estremoz autêntica. Mesma cozinha, dois ambientes.</p>
+          </div>
+          <div class="feat">
+            <span class="feat-num">9.5</span>
+            <h4>Avaliação TheFork</h4>
+            <p>316+ clientes que voltaram para contar. Top 10 de Évora.</p>
+          </div>
+          <div class="feat">
+            <span class="feat-num">100%</span>
+            <h4>Peixe selecionado</h4>
+            <p>Corte diário, escolha rigorosa, frescor que se prova na peça.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FILOSOFIA / CHEF ============== -->
+<section class="philosophy" id="filosofia">
+  <div class="wrap philosophy-content">
+    <div class="section-head" style="grid-template-columns: 1fr;">
+      <h2><small style="color:var(--kin)">職 人 · o artesão</small>O sushi é <span class="gold">paciência</span> que se serve em <span class="gold">pequenas peças.</span></h2>
+    </div>
+    <div class="philosophy-grid">
+      <div class="philosophy-text">
+        <p>
+          Aprendi cedo que o sushi não é apenas peixe sobre arroz. É temperatura.
+          É tempo. É a forma como a faca encontra o salmão e como o shari ainda
+          guarda o calor da mão de quem o preparou.
+        </p>
+        <p>
+          No Sushi Art, cada serviço começa horas antes da primeira reserva.
+          O arroz é feito de manhã. O peixe chega, descansa, é avaliado. Os molhos
+          da casa — o que acompanha o tataki, o que perfuma o ussuzukuri — são
+          ajustados todos os dias. Porque o peixe não é igual todos os dias.
+        </p>
+        <p>
+          Mais do que servir comida japonesa em Portugal, gosto de pensar que estamos
+          a traduzir uma maneira de cuidar. Da matéria-prima. Do tempo do cliente. Do
+          detalhe que ninguém pediu, mas que faz a diferença.
+        </p>
+        <div class="signature">
+          <div>
+            <div class="signature-name">Guilherme Charão</div>
+            <div class="signature-role">Chef · Fundador Sushi Art</div>
+          </div>
+        </div>
+      </div>
+      <div class="philosophy-img">
+        <img src="img/sushi-02.jpg" alt="Chef preparando sushi" />
+        <div class="philosophy-quote">
+          Cada peça que sai do balcão leva uma assinatura. A minha.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CARDÁPIO ============== -->
+<section class="menu-section" id="cardapio">
+  <div class="wrap">
+    <div class="section-head">
+      <h2><small>献 立 · ementa</small>O nosso <span style="font-style:italic;color:var(--kin)">cardápio.</span></h2>
+      <p class="lead">
+        Construído à volta dos ingredientes da estação e da curva de frescor diária.
+        Sem atalhos, sem fórmulas — peça a peça, criada à faca pelo Chef Charão e equipa.
+      </p>
+    </div>
+
+    <div class="menu-tabs" id="menuTabs">
+      <!-- Tabs preenchidas via JS -->
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <!-- Cards preenchidos via JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============== GALERIA ============== -->
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="section-head" style="grid-template-columns: 1fr;">
+      <h2 style="color:var(--shiro)"><small style="color:var(--kin)">作 品 · obras</small>Cada peça, uma <em style="color:var(--kin);font-style:italic">pequena obra</em>.</h2>
+      <p class="lead" style="color:rgba(250,247,241,.7); max-width: 700px;">
+        A apresentação importa. O peixe importa mais. Mas é a soma de ambos — o gesto e a matéria —
+        que define o nosso trabalho. Veja por si.
+      </p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item g-1" data-src="img/sushi-03.jpg"><img src="img/sushi-03.jpg" alt="Sushi premium" /></div>
+      <div class="gallery-item g-2" data-src="img/sushi-04.jpg"><img src="img/sushi-04.jpg" alt="Sashimi" /></div>
+      <div class="gallery-item g-3" data-src="img/sushi-05.jpg"><img src="img/sushi-05.jpg" alt="Maki rolls" /></div>
+      <div class="gallery-item g-4" data-src="img/sushi-06.jpg"><img src="img/sushi-06.jpg" alt="Combo sushi" /></div>
+      <div class="gallery-item g-5" data-src="img/sushi-08.jpg"><img src="img/sushi-08.jpg" alt="Apresentação" /></div>
+      <div class="gallery-item g-6" data-src="img/sushi-09.jpg"><img src="img/sushi-09.jpg" alt="Tartar" /></div>
+      <div class="gallery-item g-7" data-src="img/sushi-10.jpg"><img src="img/sushi-10.jpg" alt="Uramaki" /></div>
+      <div class="gallery-item g-8" data-src="img/sushi-07.jpg"><img src="img/sushi-07.jpg" alt="Detalhe" /></div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">×</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<!-- ============== RESERVAS ============== -->
+<section class="reserve" id="reservar">
+  <div class="wrap reserve-content">
+    <div class="section-head">
+      <h2><small>予 約 · reserva</small>Reserve a sua <span style="font-style:italic;color:var(--akane)">experiência</span>.</h2>
+      <p class="lead">
+        Casas pequenas, atenção grande. Sugerimos reservar com 24h de antecedência —
+        especialmente aos fins-de-semana. Confirmação imediata via WhatsApp.
+      </p>
+    </div>
+    <div class="reserve-grid">
+      <div class="reserve-visual">
+        <img src="img/sushi-05.jpg" alt="Ambiente Sushi Art" />
+        <div class="info-card">
+          <span class="jp">お も て な し</span>
+          <h4>Omotenashi</h4>
+          <p>A arte japonesa de receber. Cada reserva é preparada à medida do momento.</p>
+        </div>
+      </div>
+
+      <form class="reserve-form" id="reserveForm">
+        <h3>Reservar mesa</h3>
+        <p class="form-sub">Preencha os detalhes — entramos em contacto para confirmar.</p>
+
+        <div class="field">
+          <label>Unidade</label>
+          <div class="unit-choice">
+            <div class="unit-card selected" data-unit="Évora">
+              <span class="ja">エ ヴ ォ ラ</span>
+              <h5>Évora</h5>
+              <p>Tv. de Chartres 8 · centro histórico</p>
+            </div>
+            <div class="unit-card" data-unit="Estremoz">
+              <span class="ja">エ ス ト レ モ ス</span>
+              <h5>Estremoz</h5>
+              <p>Coração da vila branca</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid" style="margin-top: 22px;">
+          <div class="field">
+            <label>Data</label>
+            <input type="date" id="rDate" required />
+          </div>
+          <div class="field">
+            <label>Hora</label>
+            <select id="rTime" required>
+              <option value="">Selecionar</option>
+              <option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option>
+              <option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Pessoas</label>
+            <select id="rPeople" required>
+              <option value="">Selecionar</option>
+              <option>1 pessoa</option><option>2 pessoas</option><option>3 pessoas</option><option>4 pessoas</option>
+              <option>5 pessoas</option><option>6 pessoas</option><option>7+ pessoas</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Nome completo</label>
+            <input type="text" id="rName" placeholder="Como devemos chamá-lo?" required />
+          </div>
+          <div class="field">
+            <label>Telefone</label>
+            <input type="tel" id="rPhone" placeholder="+351" required />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="rEmail" placeholder="email@exemplo.pt" />
+          </div>
+          <div class="field full">
+            <label>Observações (opcional)</label>
+            <textarea id="rNotes" placeholder="Aniversário, restrições alimentares, mesa preferida..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-submit">
+          <small>Ao reservar, aceita a nossa política de cancelamento até 4h antes.</small>
+          <button type="submit" class="btn btn-akane">Confirmar Reserva <span class="arrow"></span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============== AVALIAÇÕES ============== -->
+<section class="reviews" id="avaliacoes">
+  <div class="wrap">
+    <div class="reviews-head">
+      <div>
+        <h2><small style="font-family:var(--f-jp);color:var(--kin);font-size:14px;letter-spacing:.8em;display:block;margin-bottom:14px;">声 ·  vozes</small>O que dizem <em style="font-style:italic;color:var(--akane)">os nossos clientes</em>.</h2>
+        <p class="lead" style="margin-top:20px; max-width: 640px;">
+          Avaliações reais, recolhidas no Google e no TheFork. A confiança constrói-se peça a peça,
+          serviço a serviço — e somos profundamente gratos a cada cliente.
+        </p>
+      </div>
+      <div class="reviews-score">
+        <div class="num">9.5<span>/10</span></div>
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <div class="src">316+ avaliações · TheFork</div>
+      </div>
+    </div>
+
+    <div class="swiper review-swiper" id="reviewSwiper">
+      <div class="swiper-wrapper" id="reviewWrapper">
+        <!-- Cards via JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LOCALIZAÇÃO ============== -->
+<section class="locations" id="contato">
+  <div class="wrap">
+    <div class="section-head" style="grid-template-columns:1fr;">
+      <h2 style="color:var(--shiro)"><small style="color:var(--kin)">場 所 · onde estamos</small>Duas casas. Um <em style="color:var(--kin);font-style:italic">mesmo cuidado.</em></h2>
+      <p class="lead" style="color:rgba(250,247,241,.7); max-width: 720px;">
+        Évora histórica, com as paredes brancas a guardarem o aroma do gengibre. Estremoz autêntica,
+        no ritmo calmo da vila. Escolha a casa, escolha o momento.
+      </p>
+    </div>
+
+    <div class="locations-grid">
+      <!-- Évora -->
+      <div class="location-card">
+        <div class="location-img">
+          <img src="img/sushi-08.jpg" alt="Sushi Art Évora" />
+          <div class="location-img-tag">Casa Mãe</div>
+        </div>
+        <div class="location-body">
+          <h3>
+            <span class="ja">エ ヴ ォ ラ</span>
+            Sushi Art Évora
+          </h3>
+          <div class="location-info">
+            <div class="location-info-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span><strong>Tv. de Chartres 8</strong><br/>7000-749 Évora · Centro Histórico</span>
+            </div>
+            <div class="location-info-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+              <span><strong>+351 937 292 629</strong></span>
+            </div>
+            <div class="location-info-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Ter–Sáb · 12:30–15:00 e 19:30–22:30<br/>Dom · 12:30–15:00 · Seg encerrado</span>
+            </div>
+          </div>
+          <div class="location-actions">
+            <a href="https://www.google.com/maps/place/Sushi+Art+%C3%89vora/@38.574897,-7.9204603,17z" target="_blank" class="btn btn-light">Como chegar <span class="arrow"></span></a>
+            <a href="#reservar" class="btn btn-gold">Reservar mesa</a>
+          </div>
+        </div>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3142.7!2d-7.9155948!3d38.5748971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19e5000b276eab%3A0x9182707e84184edd!2sSushi%20Art%20%C3%89vora!5e0!3m2!1spt-PT!2spt!4v1700000000000" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- Estremoz -->
+      <div class="location-card">
+        <div class="location-img">
+          <img src="img/sushi-03.jpg" alt="Sushi Art Estremoz" />
+          <div class="location-img-tag">Estremoz</div>
+        </div>
+        <div class="location-body">
+          <h3>
+            <span class="ja">エ ス ト レ モ ス</span>
+            Sushi Art Estremoz
+          </h3>
+          <div class="location-info">
+            <div class="location-info-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span><strong>Estremoz Centro</strong><br/>7100 Estremoz · Alentejo</span>
+            </div>
+            <div class="location-info-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+              <span><strong>+351 268 035 XXX</strong></span>
+            </div>
+            <div class="location-info-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Ter–Sáb · 12:30–15:00 e 19:30–22:30<br/>Dom · 12:30–15:00 · Seg encerrado</span>
+            </div>
+          </div>
+          <div class="location-actions">
+            <a href="https://www.google.com/maps/place/Sushi+Art+Estremoz/@38.8398387,-7.582678,17z" target="_blank" class="btn btn-light">Como chegar <span class="arrow"></span></a>
+            <a href="#reservar" class="btn btn-gold">Reservar mesa</a>
+          </div>
+        </div>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3138.0!2d-7.5800977!3d38.8398387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd176fc40cdc09f3%3A0x2e3e99d097242535!2sSushi%20Art%20Estremoz!5e0!3m2!1spt-PT!2spt!4v1700000000000" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="nav-logo">SUSHI ART<span class="ja">鮨 芸 術</span></a>
+        <p>Arte japonesa autoral no coração do Alentejo. Évora e Estremoz.<br/>Eleito o melhor sushi do Alentejo.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/gui_sushiart/" target="_blank" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.thefork.pt/restaurante/sushi-art-evora-r842670" target="_blank" aria-label="TheFork">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2v7a3 3 0 0 0 6 0V2"/><path d="M6 2v20"/><path d="M18 2v20"/><path d="M15 2c0 4 3 6 3 9"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
+          <li><a href="#reservar">Reservar</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#contato">Localização</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Évora</h4>
+        <ul>
+          <li>Tv. de Chartres 8</li>
+          <li>7000-749 Évora</li>
+          <li>+351 937 292 629</li>
+          <li>Ter–Dom</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Estremoz</h4>
+        <ul>
+          <li>Estremoz Centro</li>
+          <li>7100 Estremoz</li>
+          <li>+351 268 035 XXX</li>
+          <li>Ter–Dom</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Sushi Art · Todos os direitos reservados · NIF 000 000 000</div>
+      <button class="staff-only" id="staffBtn">STAFF ONLY</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== CARRINHO DRAWER ============== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <div>
+      <span class="ja" style="font-family:var(--f-jp); font-size:11px; letter-spacing:.5em; color:var(--kin); display:block; margin-bottom:2px;">注 文</span>
+      <h3>O seu pedido</h3>
+    </div>
+    <button class="cart-close" id="closeCart">×</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <!-- Items via JS -->
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><strong id="cartTotal">€0,00</strong></div>
+    <button class="cart-checkout" id="checkoutBtn">
+      Finalizar pedido
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
+</aside>
+
+<!-- ============== MODAL CHECKOUT ============== -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-inner">
+    <button class="modal-close" id="closeCheckout">×</button>
+    <span class="ja">配 達 · entrega</span>
+    <h3>Finalizar pedido</h3>
+    <p class="form-sub" style="color:var(--mute); font-size:14px; margin-bottom:24px;">Conte-nos como prefere receber.</p>
+
+    <div class="delivery-choice">
+      <div class="delivery-opt selected" data-mode="entrega">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <h5>Entrega</h5>
+        <p>Vamos até si</p>
+      </div>
+      <div class="delivery-opt" data-mode="levantamento">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M3 10h18"/><path d="M5 6 9 3"/><path d="M19 6 15 3"/><path d="M3 6h18l-2 4H5L3 6Z"/><path d="M5 10v11"/><path d="M19 10v11"/></svg>
+        <h5>Levantamento</h5>
+        <p>Vai à casa</p>
+      </div>
+    </div>
+
+    <form id="checkoutForm">
+      <div class="form-grid">
+        <div class="field">
+          <label>Unidade</label>
+          <select id="cUnit" required>
+            <option value="Évora">Évora</option>
+            <option value="Estremoz">Estremoz</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Horário desejado</label>
+          <input type="time" id="cTime" required />
+        </div>
+        <div class="field">
+          <label>Nome</label>
+          <input type="text" id="cName" required />
+        </div>
+        <div class="field">
+          <label>Telefone</label>
+          <input type="tel" id="cPhone" placeholder="+351" required />
+        </div>
+        <div class="field full" id="addrField">
+          <label>Endereço de entrega</label>
+          <input type="text" id="cAddr" placeholder="Rua, número, andar, cidade" />
+        </div>
+        <div class="field full">
+          <label>Observações</label>
+          <textarea id="cNotes" placeholder="Sem gengibre, alergias, ponto de referência..."></textarea>
+        </div>
+      </div>
+      <div class="form-submit" style="margin-top:24px;">
+        <small style="color:var(--mute); font-size:11px;">Confirmaremos por WhatsApp em poucos minutos.</small>
+        <button type="submit" class="btn btn-akane">Enviar pedido <span class="arrow"></span></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============== STAFF LOGIN ============== -->
+<div class="staff-login-modal" id="staffLoginModal">
+  <div class="staff-login-card">
+    <button class="modal-close" id="closeLogin">×</button>
+    <span class="ja">職 員  ·  staff</span>
+    <h3>Acesso Staff</h3>
+    <p>Painel restrito à equipa Sushi Art.</p>
+    <form id="loginForm">
+      <div class="field" style="margin-bottom:14px;">
+        <label>Utilizador</label>
+        <input type="text" id="loginUser" placeholder="admin" required />
+      </div>
+      <div class="field" style="margin-bottom:24px;">
+        <label>Palavra-passe</label>
+        <input type="password" id="loginPass" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center;">Entrar <span class="arrow"></span></button>
+      <div class="login-hint">demo: <strong>admin</strong> / <strong>sushiart</strong></div>
+    </form>
+  </div>
+</div>
+
+<!-- ============== STAFF PANEL ============== -->
+<div class="staff-panel" id="staffPanel">
+  <div class="staff-topbar">
+    <div class="brand">SUSHI ART <small>painel de gestão</small></div>
+    <div class="user">
+      <div class="avatar">GC</div>
+      <div>
+        <div style="font-weight:500">Guilherme Charão</div>
+        <div style="font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--kin)">Chef · Admin</div>
+      </div>
+      <button class="staff-logout" id="staffLogout">Sair</button>
+    </div>
+  </div>
+  <div class="staff-layout">
+    <aside class="staff-side">
+      <h6>Operação</h6>
+      <button class="staff-nav-item active" data-tab="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+      <button class="staff-nav-item" data-tab="orders">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11V5a3 3 0 0 1 6 0v6"/><rect x="5" y="11" width="14" height="11" rx="2"/></svg>
+        Pedidos
+        <span class="badge" id="ordersBadge">3</span>
+      </button>
+      <button class="staff-nav-item" data-tab="reservations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservas
+      </button>
+      <h6>Gestão</h6>
+      <button class="staff-nav-item" data-tab="menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2Z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7Z"/></svg>
+        Cardápio
+      </button>
+      <button class="staff-nav-item" data-tab="crm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        CRM Clientes
+      </button>
+      <button class="staff-nav-item" data-tab="suppliers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 16h6v6"/><path d="M21 12V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        Fornecedores
+      </button>
+      <button class="staff-nav-item" data-tab="reports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="m7 12 4-4 4 4 6-6"/></svg>
+        Relatórios
+      </button>
+    </aside>
+
+    <main class="staff-content" id="staffContent">
+      <!-- Conteúdo via JS -->
+    </main>
+  </div>
+</div>
+
+<!-- ============== TOAST ============== -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toastMsg">Adicionado ao carrinho</span>
+</div>
+
+<script>
+/* ====== Loader ====== */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 1600);
+});
+
+/* ====== Cursor ====== */
+const cursor = document.getElementById('cursor');
+if (cursor) {
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .menu-card, .gallery-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+}
+
+/* ====== Nav scroll ====== */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+/* ====== Mobile menu ====== */
+document.getElementById('menuToggle')?.addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+document.querySelectorAll('.mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+});
+
+/* ====== GSAP Animations ====== */
+window.addEventListener('load', () => {
+  if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    // Hero entrance
+    const tl = gsap.timeline({ delay: 1.8 });
+    tl.from('.hero-jp', { opacity: 0, y: 30, duration: 1, ease: 'power3.out' })
+      .from('.hero h1 .word', { y: 100, opacity: 0, stagger: 0.12, duration: 1.1, ease: 'power4.out' }, '-=0.6')
+      .to('.hero-sub', { opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.4')
+      .to('.hero-actions', { opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.6');
+
+    // parallax hero
+    gsap.to('.hero-bg img', {
+      yPercent: 15,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // Reveal section heads
+    gsap.utils.toArray('.section-head h2').forEach(h => {
+      gsap.from(h, {
+        y: 60, opacity: 0, duration: 1.1, ease: 'power3.out',
+        scrollTrigger: { trigger: h, start: 'top 85%' }
+      });
+    });
+
+    // About images
+    gsap.from('.about-img-1', {
+      y: 100, opacity: 0, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '.about-grid', start: 'top 75%' }
+    });
+    gsap.from('.about-img-2', {
+      y: 100, opacity: 0, duration: 1.2, ease: 'power3.out', delay: 0.2,
+      scrollTrigger: { trigger: '.about-grid', start: 'top 75%' }
+    });
+    gsap.from('.feat', {
+      y: 40, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '.about-features', start: 'top 85%' }
+    });
+
+    // Philosophy
+    gsap.from('.philosophy-text p, .philosophy-text .signature', {
+      y: 30, opacity: 0, duration: 1, stagger: 0.18, ease: 'power3.out',
+      scrollTrigger: { trigger: '.philosophy-grid', start: 'top 75%' }
+    });
+    gsap.from('.philosophy-img', {
+      y: 60, opacity: 0, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '.philosophy-grid', start: 'top 75%' }
+    });
+
+    // Cards menu reveal
+    ScrollTrigger.batch('.menu-card', {
+      onEnter: els => gsap.from(els, { y: 40, opacity: 0, stagger: .08, duration: .8, ease: 'power3.out' }),
+      start: 'top 88%'
+    });
+    // Gallery
+    ScrollTrigger.batch('.gallery-item', {
+      onEnter: els => gsap.from(els, { y: 30, opacity: 0, stagger: .06, duration: .7, ease: 'power3.out' }),
+      start: 'top 90%'
+    });
+    // Locations
+    ScrollTrigger.batch('.location-card', {
+      onEnter: els => gsap.from(els, { y: 50, opacity: 0, stagger: .12, duration: 1, ease: 'power3.out' }),
+      start: 'top 85%'
+    });
+    // Reserve
+    gsap.from('.reserve-visual, .reserve-form', {
+      y: 50, opacity: 0, duration: 1.1, stagger: .15, ease: 'power3.out',
+      scrollTrigger: { trigger: '.reserve-grid', start: 'top 80%' }
+    });
+  }
+});
+
+/* =====================================================================
+   ====================  CARDÁPIO + CARRINHO  ==========================
+   ===================================================================== */
+
+const MENU_DATA = [
+  // ENTRADAS
+  { id:'gyoza',     cat:'entradas', name:'Gyoza de Frango',     jp:'餃 子',    price:6.5, img:'img/sushi-09.jpg',
+    desc:'Raviolis japoneses recheados com frango e legumes da estação. Selados a vapor, finalizados na chapa.' },
+  { id:'spring',    cat:'entradas', name:'Spring Rolls',        jp:'春 巻 き',  price:5.5, img:'img/sushi-09.jpg', veg:true,
+    desc:'Rolinho primavera crocante recheado com legumes frescos. Servido com molho agridoce da casa.' },
+  { id:'harumaki',  cat:'entradas', name:'Harumaki Sushi Art',  jp:'春 巻 き', price:10,  img:'img/sushi-06.jpg', chef:true,
+    desc:'Massa de harumaki, salmão e cream cheese, finalizado com molho agridoce. Crocância e cremosidade na medida.' },
+  { id:'tempura',   cat:'entradas', name:'Tempura de Gambas',   jp:'天 ぷ ら', price:9.5, img:'img/sushi-05.jpg',
+    desc:'4 unidades · Camarão panado envolto com salmão e cream cheese. Equilíbrio perfeito de textura.' },
+
+  // SASHIMI / TATAKI
+  { id:'tataki',    cat:'sashimi',  name:'Tataki de Atum',      jp:'タ タ キ', price:15,  img:'img/sushi-04.jpg', chef:true,
+    desc:'10 fatias de atum selado em crosta de sésamo, ovas de masago e cebola roxa, regadas no molho especial da casa.' },
+  { id:'shakehara', cat:'sashimi',  name:'Shake Hara',          jp:'シ ャ ケ ハ ラ', price:15.5, img:'img/sushi-03.jpg', chef:true,
+    desc:'10 fatias de barriga de salmão temperadas, servidas com molho de soja da casa e crispy de batata doce.' },
+  { id:'sashimi4',  cat:'sashimi',  name:'Sashimi Tostado',     jp:'刺 身',   price:12,  img:'img/sushi-07.jpg',
+    desc:'4 unidades · Tenros pedaços de salmão temperados com creme trufado tostado. Para quem gosta de profundidade.' },
+  { id:'ussu-pb',   cat:'sashimi',  name:'Ussuzukuri · Peixe Branco / Atum', jp:'薄 造 り', price:15, img:'img/sushi-08.jpg',
+    desc:'12 fatias finíssimas do peixe à escolha. Servido com molho especial da casa. Pureza e técnica.' },
+  { id:'ussu-sal',  cat:'sashimi',  name:'Ussuzukuri · Salmão', jp:'薄 造 り', price:13, img:'img/sushi-08.jpg',
+    desc:'12 fatias finíssimas de salmão. Servido com molho especial da casa.' },
+  { id:'ussu-polv', cat:'sashimi',  name:'Ussuzukuri · Polvo / Vieira', jp:'薄 造 り', price:17, img:'img/sushi-08.jpg', chef:true,
+    desc:'12 fatias do mar — polvo ou vieira, à escolha. Texturas que vão surpreendê-lo.' },
+  { id:'ceviche',   cat:'sashimi',  name:'Ceviche do Chef',     jp:'セ ビ ー チ ェ', price:15.5, img:'img/sushi-10.jpg', chef:true,
+    desc:'Cubos de peixe branco, molho leite de tigre, pimenta, cebola roxa e hondashi. O frescor do mar com toque cítrico.' },
+  { id:'tartar-s',  cat:'sashimi',  name:'Tartar de Salmão',    jp:'タ ル タ ル', price:14, img:'img/sushi-10.jpg',
+    desc:'Cubos de salmão marinados em molho levemente picante, alho francês e topping de harumaki crispy.' },
+  { id:'tartar-a',  cat:'sashimi',  name:'Tartar de Atum',      jp:'タ ル タ ル', price:15.5, img:'img/sushi-10.jpg',
+    desc:'Cubos de atum marinados em molho levemente picante, alho francês e topping de ovas tobiko.' },
+
+  // URAMAKI
+  { id:'uramaki-sal', cat:'uramaki', name:'Uramaki Salmão',     jp:'裏 巻 き', price:14, img:'img/sushi-06.jpg',
+    desc:'10 unidades · Enrolado de salmão com ou sem cream cheese. O clássico, em alta forma.' },
+  { id:'uramaki-ebi', cat:'uramaki', name:'Uramaki Ebi',        jp:'裏 巻 き', price:14, img:'img/sushi-06.jpg',
+    desc:'10 unidades · Enrolado de camarão panado, crocante e generoso.' },
+  { id:'uramaki-art', cat:'uramaki', name:'Uramaki Sushi Art',  jp:'裏 巻 き', price:14, img:'img/sushi-04.jpg', chef:true,
+    desc:'10 unidades · Camarão panado, coberto com salmão braseado, creme black e alho francês crispy. A nossa assinatura.' },
+  { id:'uramaki-koy', cat:'uramaki', name:'Uramaki Koy',        jp:'裏 巻 き', price:14, img:'img/sushi-04.jpg',
+    desc:'10 unidades · Peixe branco panado com espargos, finalizado com creme tostado.' },
+  { id:'hotfila',     cat:'uramaki', name:'Hot Filadélfia',     jp:'ホ ッ ト', price:11, img:'img/sushi-02.jpg',
+    desc:'Salmão e cream cheese envoltos por shari e nori, finalizados com molho teriyaki, cebolete e sésamo.' },
+  { id:'gunkas',      cat:'uramaki', name:'Combo Gunkas',       jp:'軍 艦 巻 き', price:16, img:'img/sushi-03.jpg', chef:true,
+    desc:'8 unidades · 4 duplas de gunka com peixe fresco do dia à moda do chef.' },
+
+  // HOT / QUENTES
+  { id:'yakissoba', cat:'hot', name:'Yakissoba',                jp:'焼 き そ ば', price:14, img:'img/sushi-05.jpg',
+    desc:'Massa oriental salteada com legumes da estação. Escolha entre camarão ou frango.' },
+  { id:'noodles',   cat:'hot', name:'Noodles Frutos do Mar',    jp:'麺',     price:17, img:'img/sushi-05.jpg', chef:true,
+    desc:'Massa oriental com salmão, camarão e tomate cereja salteados em molho levemente picante agridoce.' },
+  { id:'teppan',    cat:'hot', name:'Teppanyaki Salmão',        jp:'鉄 板',  price:17, img:'img/sushi-07.jpg', chef:true,
+    desc:'Salmão grelhado com gohan (arroz de sushi), acompanhado de legumes salteados ou batata frita.' },
+
+  // COMBOS
+  { id:'combo20',   cat:'combos', name:'Combo Descoberta · 20 peças', jp:'コ ン ボ', price:24, img:'img/sushi-01.jpg',
+    desc:'Niguiri (4), Sashimi (4), Hossomaki (6), Uramaki (6). Ideal para 1 pessoa que quer provar de tudo.' },
+  { id:'combo40',   cat:'combos', name:'Combo Sushi Art · 40 peças',  jp:'コ ン ボ', price:42, img:'img/sushi-01.jpg', chef:true,
+    desc:'A escolha mais pedida. Niguiri, Sashimi, Hossomaki, Uramaki, Gunkas e peças especiais do chef. Para 2.' },
+  { id:'combo60',   cat:'combos', name:'Combo Festa · 60 peças',      jp:'コ ン ボ', price:62, img:'img/sushi-01.jpg',
+    desc:'Para 3-4 pessoas. Variedade completa, peças especiais e a generosidade do nosso balcão.' },
+
+  // BEBIDAS
+  { id:'sake-q',    cat:'bebidas', name:'Sake Quente',          jp:'酒',      price:6.5, img:'img/sushi-05.jpg',
+    desc:'150ml · Servido na temperatura tradicional, em tokkuri.' },
+  { id:'sake-f',    cat:'bebidas', name:'Sake Premium Frio',    jp:'冷 酒',   price:9.5, img:'img/sushi-05.jpg',
+    desc:'180ml · Junmai daiginjo, notas frutadas, servido fresco.' },
+  { id:'asahi',     cat:'bebidas', name:'Cerveja Asahi',        jp:'ビ ー ル', price:4.5, img:'img/sushi-05.jpg',
+    desc:'330ml · A cerveja japonesa clássica.' },
+  { id:'wine-w',    cat:'bebidas', name:'Vinho Branco Alentejo',jp:'ワ イ ン', price:5, img:'img/sushi-05.jpg',
+    desc:'Copo · Seleção da casa, que harmoniza com o nosso peixe.' },
+
+  // SOBREMESAS
+  { id:'petit',     cat:'sobremesas', name:'Petit Gâteau',      jp:'デ ザ ー ト', price:6, img:'img/sushi-07.jpg',
+    desc:'Bolo de chocolate quente com centro líquido, gelado de nata. Indulgência clássica.' },
+  { id:'mochi',     cat:'sobremesas', name:'Mochi Trio',        jp:'餅',      price:5.5, img:'img/sushi-07.jpg', veg:true,
+    desc:'3 unidades · Manga, matcha e morango. O fim doce e suave.' },
+  { id:'tempura-f', cat:'sobremesas', name:'Tempura de Fruta',  jp:'天 ぷ ら', price:6.5, img:'img/sushi-07.jpg', veg:true,
+    desc:'Banana e morango em tempura quente, gelado de baunilha e calda de chocolate.' },
+];
+
+const MENU_CATEGORIES = [
+  { id:'todos',     name:'Todos',          jp:'全 て' },
+  { id:'entradas',  name:'Entradas',       jp:'前 菜' },
+  { id:'sashimi',   name:'Sashimi · Tartar',jp:'刺 身' },
+  { id:'uramaki',   name:'Uramaki · Rolls',jp:'裏 巻 き' },
+  { id:'hot',       name:'Quentes',        jp:'温 か い' },
+  { id:'combos',    name:'Combos',         jp:'コ ン ボ' },
+  { id:'bebidas',   name:'Bebidas',        jp:'飲 み 物' },
+  { id:'sobremesas',name:'Sobremesas',     jp:'デ ザ ー ト' },
+];
+
+let currentCat = 'todos';
+let cart = JSON.parse(localStorage.getItem('sushiart_cart') || '[]');
+
+function renderTabs() {
+  const tabs = document.getElementById('menuTabs');
+  tabs.innerHTML = MENU_CATEGORIES.map(c => `
+    <button class="menu-tab ${c.id === currentCat ? 'active' : ''}" data-cat="${c.id}">
+      ${c.name}
+      <span class="jp">${c.jp}</span>
+    </button>
+  `).join('');
+  tabs.querySelectorAll('.menu-tab').forEach(b => {
+    b.addEventListener('click', () => {
+      currentCat = b.dataset.cat;
+      renderTabs();
+      renderMenu();
+    });
+  });
+}
+
+function renderMenu() {
+  const grid = document.getElementById('menuGrid');
+  // Pega cardápio do localStorage se existir (admin pode ter editado)
+  const stored = localStorage.getItem('sushiart_menu_custom');
+  const data = stored ? JSON.parse(stored) : MENU_DATA;
+  const items = currentCat === 'todos' ? data : data.filter(i => i.cat === currentCat);
+  grid.innerHTML = items.map(it => `
+    <article class="menu-card" data-id="${it.id}">
+      <div class="menu-card-img">
+        ${it.chef ? '<span class="menu-card-tag chef">Chef\'s Choice</span>' : (it.veg ? '<span class="menu-card-tag">Vegetariano</span>' : '')}
+        <img src="${it.img}" alt="${it.name}" loading="lazy" />
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-head">
+          <div class="menu-card-name">${it.name}<small>${it.jp}</small></div>
+          <div class="menu-card-price">€${it.price.toFixed(2).replace('.', ',')}</div>
+        </div>
+        <p class="menu-card-desc">${it.desc}</p>
+        <div class="menu-card-add">
+          ${it.veg ? '<span class="menu-card-veg">Vegetariano</span>' : '<span></span>'}
+          <button class="menu-card-add-btn" onclick="addToCart('${it.id}')">
+            Adicionar <span class="plus">+</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function getMenuData() {
+  const stored = localStorage.getItem('sushiart_menu_custom');
+  return stored ? JSON.parse(stored) : MENU_DATA;
+}
+
+function addToCart(id) {
+  const item = getMenuData().find(i => i.id === id);
+  if (!item) return;
+  const existing = cart.find(c => c.id === id);
+  if (existing) existing.qty++;
+  else cart.push({ ...item, qty: 1 });
+  saveCart();
+  renderCart();
+  toast(`${item.name} adicionado ao pedido`);
+  pulseCart();
+}
+
+function changeQty(id, delta) {
+  const it = cart.find(c => c.id === id);
+  if (!it) return;
+  it.qty += delta;
+  if (it.qty <= 0) cart = cart.filter(c => c.id !== id);
+  saveCart();
+  renderCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(c => c.id !== id);
+  saveCart();
+  renderCart();
+}
+
+function saveCart() {
+  localStorage.setItem('sushiart_cart', JSON.stringify(cart));
+}
+
+function pulseCart() {
+  const btn = document.querySelector('.cart-btn');
+  btn.animate([
+    { transform: 'scale(1)' },
+    { transform: 'scale(1.1)' },
+    { transform: 'scale(1)' }
+  ], { duration: 400, easing: 'cubic-bezier(.4,1.5,.3,1)' });
+}
+
+function renderCart() {
+  const body = document.getElementById('cartBody');
+  const total = document.getElementById('cartTotal');
+  const count = document.getElementById('cartCount');
+  if (cart.length === 0) {
+    body.innerHTML = `
+      <div class="cart-empty">
+        <span class="ja">空</span>
+        <p style="font-family:var(--f-serif); font-size:22px; color:var(--sumi); margin-bottom:8px;">O carrinho está vazio</p>
+        <p>Adicione peças do nosso cardápio<br/>para começar o seu pedido.</p>
+      </div>`;
+    total.textContent = '€0,00';
+    count.textContent = '0';
+    return;
+  }
+  body.innerHTML = cart.map(it => `
+    <div class="cart-item">
+      <img src="${it.img}" alt="${it.name}" />
+      <div class="cart-item-info">
+        <h5>${it.name}</h5>
+        <div class="price">€${(it.price * it.qty).toFixed(2).replace('.', ',')}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty('${it.id}', -1)">−</button>
+          <span class="qty-val">${it.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${it.id}', 1)">+</button>
+        </div>
+      </div>
+      <button class="cart-remove" onclick="removeFromCart('${it.id}')">remover</button>
+    </div>
+  `).join('');
+  const sum = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  total.textContent = '€' + sum.toFixed(2).replace('.', ',');
+  count.textContent = cart.reduce((s, i) => s + i.qty, 0);
+}
+
+document.getElementById('openCart').addEventListener('click', () => openCart());
+document.getElementById('closeCart').addEventListener('click', () => closeCart());
+document.getElementById('cartOverlay').addEventListener('click', () => closeCart());
+function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+renderTabs();
+renderMenu();
+renderCart();
+
+/* ===================== TOAST ===================== */
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* ===================== LIGHTBOX ===================== */
+document.querySelectorAll('.gallery-item').forEach(el => {
+  el.addEventListener('click', () => {
+    document.getElementById('lightboxImg').src = el.dataset.src;
+    document.getElementById('lightbox').classList.add('open');
+  });
+});
+document.getElementById('lightboxClose').addEventListener('click', () => document.getElementById('lightbox').classList.remove('open'));
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target.id === 'lightbox') document.getElementById('lightbox').classList.remove('open');
+});
+
+/* ===================== RESERVA ===================== */
+let reserveUnit = 'Évora';
+document.querySelectorAll('.unit-card').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('.unit-card').forEach(x => x.classList.remove('selected'));
+    c.classList.add('selected');
+    reserveUnit = c.dataset.unit;
+  });
+});
+
+document.getElementById('reserveForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const data = {
+    id: 'R' + Date.now().toString().slice(-6),
+    unit: reserveUnit,
+    date: document.getElementById('rDate').value,
+    time: document.getElementById('rTime').value,
+    people: document.getElementById('rPeople').value,
+    name: document.getElementById('rName').value,
+    phone: document.getElementById('rPhone').value,
+    email: document.getElementById('rEmail').value,
+    notes: document.getElementById('rNotes').value,
+    status: 'pending',
+    createdAt: new Date().toISOString(),
+  };
+  // Guarda no localStorage
+  const arr = JSON.parse(localStorage.getItem('sushiart_reservations') || '[]');
+  arr.unshift(data);
+  localStorage.setItem('sushiart_reservations', JSON.stringify(arr));
+
+  // Mensagem WhatsApp
+  const phoneNumber = '351937292629';
+  const msg = `*🍣 NOVA RESERVA · SUSHI ART*%0A%0A*Unidade:* ${data.unit}%0A*Data:* ${data.date} às ${data.time}%0A*Pessoas:* ${data.people}%0A*Nome:* ${data.name}%0A*Tel:* ${data.phone}${data.email ? '%0A*Email:* ' + data.email : ''}${data.notes ? '%0A*Obs:* ' + data.notes : ''}%0A%0ARef: ${data.id}`;
+  window.open(`https://wa.me/${phoneNumber}?text=${msg}`, '_blank');
+  toast('Reserva enviada! A confirmar via WhatsApp.');
+  e.target.reset();
+});
+
+/* ===================== AVALIAÇÕES SWIPER ===================== */
+const REVIEWS = [
+  { name:'Rodrigo S.', stars:5, unit:'Évora', text:'Para além da comida que estava incrível e do atendimento super simpático, ainda tiveram a simpatia de nos oferecer a sobremesa, um espumante e duas peças experimentais. Nota 10 para as peças de alho francês.' },
+  { name:'Joana M.',   stars:5, unit:'Évora', text:'O atendimento é extraordinário. O staff é muito afável e atencioso. A comida é fabulosa: peixe fresco, sabores equilibrados e ousados, com uma variedade de peças excecional. Super recomendo!' },
+  { name:'Vasco M.',   stars:5, unit:'Évora', text:'A comida estava divinalmente preparada, a qualidade do sushi é de topo e certamente vamos repetir a experiência. Aconselho vivamente o Tartare de atum!!!' },
+  { name:'Dario R.',   stars:5, unit:'Évora', text:'O combinado de 40 peças estava ótimo. O atendimento foi ágil e rápido. A combinação de sabores surpreendeu. O ambiente é bem agradável, arejado e romântico.' },
+  { name:'Maria Inês A.',stars:5, unit:'Évora', text:'Comida deliciosa, cheia de sabores diferentes em perfeita harmonia!' },
+  { name:'David M.',   stars:5, unit:'Estremoz', text:'O melhor sushi de sempre! Não há comparação com o que se encontra no resto do Alentejo. Voltarei sempre.' },
+  { name:'Diana F.',   stars:5, unit:'Évora', text:'Apesar da muita afluência conseguiram manter um bom serviço e a comida estava muito bem confeccionada. Recomendo Tempura e Gyozas.' },
+  { name:'Francisca R.',stars:5, unit:'Évora', text:'Comida espetacular e atendimento muito bom. Todos os empregados muito atenciosos. Vamos certamente voltar.' },
+  { name:'Nils D.',    stars:4, unit:'Estremoz', text:'A comida é excelente, o melhor sushi de sempre! O serviço é atencioso e muito simpático. Vamos certamente voltar.' },
+  { name:'margarida l.',stars:5, unit:'Estremoz', text:'Muita variedade de sushi e de qualidade, ambiente acolhedor e ótimo atendimento. Top do Alentejo.' },
+  { name:'Susana M.',  stars:5, unit:'Évora', text:'A comida e o atendimento são 5 estrelas. Sempre que vou a Évora é paragem obrigatória.' },
+  { name:'Vânia R.',   stars:5, unit:'Estremoz', text:'Uma experiência muito boa. Recomendo a quem quer experimentar sushi de qualidade no Alentejo.' },
+];
+
+function renderReviews() {
+  const wrap = document.getElementById('reviewWrapper');
+  wrap.innerHTML = REVIEWS.map(r => `
+    <div class="swiper-slide">
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+        <p class="text">${r.text}</p>
+        <div class="person">
+          <span class="name">${r.name}</span>
+          <span class="unit">${r.unit}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  new Swiper('#reviewSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: { delay: 4500, disableOnInteraction: false },
+    speed: 900,
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1100: { slidesPerView: 3 },
+    }
+  });
+}
+renderReviews();
+
+/* ===================== CHECKOUT ===================== */
+let deliveryMode = 'entrega';
+document.querySelectorAll('.delivery-opt').forEach(o => {
+  o.addEventListener('click', () => {
+    document.querySelectorAll('.delivery-opt').forEach(x => x.classList.remove('selected'));
+    o.classList.add('selected');
+    deliveryMode = o.dataset.mode;
+    document.getElementById('addrField').style.display = deliveryMode === 'entrega' ? 'block' : 'none';
+  });
+});
+
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+  if (cart.length === 0) { toast('Adicione peças antes de finalizar'); return; }
+  closeCart();
+  document.getElementById('checkoutModal').classList.add('open');
+});
+document.getElementById('closeCheckout').addEventListener('click', () => document.getElementById('checkoutModal').classList.remove('open'));
+
+document.getElementById('checkoutForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const order = {
+    id: 'P' + Date.now().toString().slice(-6),
+    unit: document.getElementById('cUnit').value,
+    mode: deliveryMode,
+    time: document.getElementById('cTime').value,
+    name: document.getElementById('cName').value,
+    phone: document.getElementById('cPhone').value,
+    addr: document.getElementById('cAddr').value,
+    notes: document.getElementById('cNotes').value,
+    items: cart.map(i => ({ id: i.id, name: i.name, qty: i.qty, price: i.price })),
+    total: cart.reduce((s, i) => s + i.price * i.qty, 0),
+    status: 'recebido',
+    createdAt: new Date().toISOString(),
+  };
+  const arr = JSON.parse(localStorage.getItem('sushiart_orders') || '[]');
+  arr.unshift(order);
+  localStorage.setItem('sushiart_orders', JSON.stringify(arr));
+
+  // WhatsApp msg
+  const phoneNumber = '351937292629';
+  let msg = `*🍣 NOVO PEDIDO · SUSHI ART*%0A%0A`;
+  msg += `*Ref:* ${order.id}%0A*Modo:* ${order.mode === 'entrega' ? 'Entrega' : 'Levantamento'}%0A`;
+  msg += `*Unidade:* ${order.unit}%0A*Horário:* ${order.time}%0A*Cliente:* ${order.name}%0A*Tel:* ${order.phone}%0A`;
+  if (order.mode === 'entrega' && order.addr) msg += `*Morada:* ${order.addr}%0A`;
+  msg += `%0A*PEDIDO:*%0A`;
+  order.items.forEach(i => { msg += `• ${i.qty}x ${i.name} — €${(i.price * i.qty).toFixed(2).replace('.', ',')}%0A`; });
+  msg += `%0A*TOTAL: €${order.total.toFixed(2).replace('.', ',')}*`;
+  if (order.notes) msg += `%0A%0A*Obs:* ${order.notes}`;
+  window.open(`https://wa.me/${phoneNumber}?text=${msg}`, '_blank');
+
+  cart = [];
+  saveCart();
+  renderCart();
+  document.getElementById('checkoutModal').classList.remove('open');
+  toast(`Pedido ${order.id} enviado! Aguarde confirmação.`);
+  e.target.reset();
+});
+
+/* ===================== STAFF LOGIN ===================== */
+document.getElementById('staffBtn').addEventListener('click', () => {
+  // Auto-login se já logado
+  if (sessionStorage.getItem('sushiart_staff') === 'ok') {
+    openStaffPanel();
+  } else {
+    document.getElementById('staffLoginModal').classList.add('open');
+  }
+});
+document.getElementById('closeLogin').addEventListener('click', () => document.getElementById('staffLoginModal').classList.remove('open'));
+
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const u = document.getElementById('loginUser').value;
+  const p = document.getElementById('loginPass').value;
+  if (u === 'admin' && p === 'sushiart') {
+    sessionStorage.setItem('sushiart_staff', 'ok');
+    document.getElementById('staffLoginModal').classList.remove('open');
+    openStaffPanel();
+  } else {
+    toast('Credenciais inválidas');
+  }
+});
+
+document.getElementById('staffLogout').addEventListener('click', () => {
+  sessionStorage.removeItem('sushiart_staff');
+  document.getElementById('staffPanel').classList.remove('open');
+});
+
+function openStaffPanel() {
+  document.getElementById('staffPanel').classList.add('open');
+  // Inicializa dados mock se ainda não existirem
+  seedMockData();
+  loadStaffTab('dashboard');
+}
+
+document.querySelectorAll('.staff-nav-item').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.staff-nav-item').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    loadStaffTab(b.dataset.tab);
+  });
+});
+
+/* ===================== STAFF MOCK DATA ===================== */
+function seedMockData() {
+  if (!localStorage.getItem('sushiart_seeded')) {
+    // Pedidos mock
+    const mockOrders = [
+      { id:'P847291', unit:'Évora', mode:'entrega', time:'20:30', name:'Margarida Lopes', phone:'+351912345678', addr:'Rua dos Mercadores 14, Évora', items:[{id:'combo40',name:'Combo Sushi Art · 40 peças',qty:1,price:42},{id:'sake-f',name:'Sake Premium Frio',qty:2,price:9.5}], total:61, status:'recebido', notes:'Sem gengibre', createdAt: new Date(Date.now() - 8*60000).toISOString() },
+      { id:'P847290', unit:'Évora', mode:'levantamento', time:'21:00', name:'João Pereira', phone:'+351936789012', items:[{id:'tataki',name:'Tataki de Atum',qty:1,price:15},{id:'uramaki-art',name:'Uramaki Sushi Art',qty:1,price:14},{id:'asahi',name:'Cerveja Asahi',qty:2,price:4.5}], total:38, status:'recebido', createdAt: new Date(Date.now() - 18*60000).toISOString() },
+      { id:'P847289', unit:'Estremoz', mode:'entrega', time:'21:30', name:'Sofia Mendes', phone:'+351914567890', addr:'Largo Dragão 7, Estremoz', items:[{id:'ceviche',name:'Ceviche do Chef',qty:1,price:15.5},{id:'tartar-s',name:'Tartar de Salmão',qty:1,price:14},{id:'mochi',name:'Mochi Trio',qty:1,price:5.5}], total:35, status:'recebido', createdAt: new Date(Date.now() - 24*60000).toISOString() },
+      { id:'P847288', unit:'Évora', mode:'levantamento', time:'20:00', name:'Rui Tavares', phone:'+351931112233', items:[{id:'combo20',name:'Combo Descoberta',qty:1,price:24},{id:'gyoza',name:'Gyoza de Frango',qty:2,price:6.5}], total:37, status:'preparo', createdAt: new Date(Date.now() - 32*60000).toISOString() },
+      { id:'P847287', unit:'Évora', mode:'entrega', time:'19:45', name:'Inês Costa', phone:'+351919876543', addr:'Rua da Misericórdia 22, Évora', items:[{id:'shakehara',name:'Shake Hara',qty:1,price:15.5},{id:'uramaki-sal',name:'Uramaki Salmão',qty:2,price:14}], total:43.5, status:'preparo', createdAt: new Date(Date.now() - 38*60000).toISOString() },
+      { id:'P847286', unit:'Estremoz', mode:'entrega', time:'20:15', name:'Carlos Brito', phone:'+351913344556', addr:'Av. 9 de Abril 33, Estremoz', items:[{id:'noodles',name:'Noodles Frutos do Mar',qty:2,price:17}], total:34, status:'pronto', createdAt: new Date(Date.now() - 52*60000).toISOString() },
+      { id:'P847285', unit:'Évora', mode:'levantamento', time:'19:30', name:'Ana Ferreira', phone:'+351915566778', items:[{id:'teppan',name:'Teppanyaki Salmão',qty:1,price:17},{id:'sake-q',name:'Sake Quente',qty:1,price:6.5}], total:23.5, status:'entregue', createdAt: new Date(Date.now() - 78*60000).toISOString() },
+    ];
+    const existing = JSON.parse(localStorage.getItem('sushiart_orders') || '[]');
+    localStorage.setItem('sushiart_orders', JSON.stringify([...existing, ...mockOrders]));
+
+    // Reservas mock
+    const mockRes = [
+      { id:'R204812', unit:'Évora', date:'2026-05-28', time:'20:00', people:'4 pessoas', name:'Maria Costa', phone:'+351916677889', email:'maria@email.pt', notes:'Aniversário', status:'confirmed', createdAt: new Date(Date.now() - 2*3600000).toISOString() },
+      { id:'R204811', unit:'Estremoz', date:'2026-05-27', time:'21:00', people:'2 pessoas', name:'Pedro Alves', phone:'+351918899000', email:'', notes:'', status:'confirmed', createdAt: new Date(Date.now() - 5*3600000).toISOString() },
+      { id:'R204810', unit:'Évora', date:'2026-05-30', time:'19:30', people:'6 pessoas', name:'Luísa Garcia', phone:'+351917722334', email:'luisa@email.pt', notes:'Mesa junto à janela, se possível', status:'pending', createdAt: new Date(Date.now() - 1*3600000).toISOString() },
+      { id:'R204809', unit:'Évora', date:'2026-06-01', time:'20:30', people:'3 pessoas', name:'André Santos', phone:'+351914455667', email:'', notes:'', status:'pending', createdAt: new Date(Date.now() - 30*60000).toISOString() },
+    ];
+    const existingRes = JSON.parse(localStorage.getItem('sushiart_reservations') || '[]');
+    localStorage.setItem('sushiart_reservations', JSON.stringify([...existingRes, ...mockRes]));
+
+    // CRM mock
+    const mockClients = [
+      { id:1, name:'Margarida Lopes', phone:'+351912345678', email:'margarida@email.pt', visits:14, lastVisit:'2026-05-20', spent:580, fav:'Combo Sushi Art', segment:'VIP' },
+      { id:2, name:'João Pereira', phone:'+351936789012', email:'joao@email.pt', visits:8, lastVisit:'2026-05-22', spent:340, fav:'Tataki de Atum', segment:'Frequente' },
+      { id:3, name:'Sofia Mendes', phone:'+351914567890', email:'sofia@email.pt', visits:5, lastVisit:'2026-05-19', spent:215, fav:'Ceviche do Chef', segment:'Frequente' },
+      { id:4, name:'Maria Costa', phone:'+351916677889', email:'maria@email.pt', visits:22, lastVisit:'2026-05-15', spent:980, fav:'Sashimi Tostado', segment:'VIP' },
+      { id:5, name:'Pedro Alves', phone:'+351918899000', email:'pedro@email.pt', visits:3, lastVisit:'2026-04-30', spent:120, fav:'Uramaki Sushi Art', segment:'Novo' },
+      { id:6, name:'Luísa Garcia', phone:'+351917722334', email:'luisa@email.pt', visits:11, lastVisit:'2026-05-10', spent:475, fav:'Combo 40', segment:'Frequente' },
+      { id:7, name:'Rui Tavares', phone:'+351931112233', email:'rui@email.pt', visits:6, lastVisit:'2026-05-23', spent:260, fav:'Gyoza', segment:'Frequente' },
+      { id:8, name:'Ana Ferreira', phone:'+351915566778', email:'ana@email.pt', visits:2, lastVisit:'2026-05-21', spent:60, fav:'Teppanyaki', segment:'Novo' },
+    ];
+    localStorage.setItem('sushiart_clients', JSON.stringify(mockClients));
+
+    // Fornecedores mock
+    const mockSuppliers = [
+      { id:1, name:'Atum & Mar Atlântico', cat:'Peixe Fresco', contact:'Sr. Manuel · +351 282 445 612', email:'manuel@atumemar.pt', status:'active', lastOrder:'2026-05-25', monthly:3200 },
+      { id:2, name:'Salmão do Norte Lda.', cat:'Salmão Norueguês', contact:'Carla Vieira · +351 219 887 633', email:'carla@salmaonorte.pt', status:'active', lastOrder:'2026-05-26', monthly:2850 },
+      { id:3, name:'Arrozes Hokkaido Premium', cat:'Arroz Japonês · Vinagres', contact:'Hiro Tanaka · +351 217 446 521', email:'hiro@hokkaido.pt', status:'active', lastOrder:'2026-05-22', monthly:780 },
+      { id:4, name:'Hortifresco Alentejo', cat:'Legumes & Frutas', contact:'José Pereira · +351 268 998 442', email:'jose@hortifresco.pt', status:'active', lastOrder:'2026-05-26', monthly:1100 },
+      { id:5, name:'Sake Imports Iberia', cat:'Bebidas Japonesas', contact:'Andrea Lopes · +351 218 776 433', email:'andrea@sakeimports.pt', status:'active', lastOrder:'2026-05-18', monthly:620 },
+      { id:6, name:'Olive & Wine Alentejo', cat:'Vinhos da Casa', contact:'João Reis · +351 266 778 449', email:'joao@oliveandwine.pt', status:'pending', lastOrder:'2026-05-10', monthly:480 },
+    ];
+    localStorage.setItem('sushiart_suppliers', JSON.stringify(mockSuppliers));
+
+    localStorage.setItem('sushiart_seeded', '1');
+  }
+}
+
+/* ===================== STAFF TABS RENDER ===================== */
+function loadStaffTab(tab) {
+  const c = document.getElementById('staffContent');
+  if (tab === 'dashboard') renderDashboard(c);
+  else if (tab === 'orders') renderOrders(c);
+  else if (tab === 'reservations') renderReservations(c);
+  else if (tab === 'menu') renderMenuAdmin(c);
+  else if (tab === 'crm') renderCRM(c);
+  else if (tab === 'suppliers') renderSuppliers(c);
+  else if (tab === 'reports') renderReports(c);
+}
+
+function renderDashboard(c) {
+  const orders = JSON.parse(localStorage.getItem('sushiart_orders') || '[]');
+  const reservations = JSON.parse(localStorage.getItem('sushiart_reservations') || '[]');
+  const clients = JSON.parse(localStorage.getItem('sushiart_clients') || '[]');
+
+  const today = orders.filter(o => new Date(o.createdAt).toDateString() === new Date().toDateString());
+  const todayRev = today.reduce((s, o) => s + o.total, 0);
+  const avgTicket = today.length ? todayRev / today.length : 0;
+  const pendingOrders = orders.filter(o => o.status === 'recebido' || o.status === 'preparo').length;
+
+  // Top produtos
+  const prodCount = {};
+  orders.forEach(o => o.items.forEach(i => { prodCount[i.name] = (prodCount[i.name] || 0) + i.qty; }));
+  const topProds = Object.entries(prodCount).sort((a, b) => b[1] - a[1]).slice(0, 6);
+
+  c.innerHTML = `
+    <div class="breadcrumb">Painel · Dashboard</div>
+    <h2>Olá, Chef Charão</h2>
+    <p style="color: var(--mute); margin-bottom: 30px;">Aqui está o pulso do Sushi Art hoje — ${new Date().toLocaleDateString('pt-PT', { weekday:'long', day:'numeric', month:'long' })}.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">Faturamento Hoje</div>
+        <div class="value">€${todayRev.toFixed(2).replace('.', ',')}</div>
+        <div class="delta">+12,4% vs ontem</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="label">Pedidos Hoje</div>
+        <div class="value">${today.length || 7}</div>
+        <div class="delta">+3 vs ontem</div>
+      </div>
+      <div class="stat-card green">
+        <div class="label">Ticket Médio</div>
+        <div class="value">€${avgTicket.toFixed(2).replace('.', ',')}</div>
+        <div class="delta">+€2,80 vs média semanal</div>
+      </div>
+      <div class="stat-card dark">
+        <div class="label">Pedidos em Aberto</div>
+        <div class="value">${pendingOrders}</div>
+        <div class="delta down">${pendingOrders} a processar</div>
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-bottom:30px;">
+      <div class="stat-card">
+        <div class="label">Tempo Médio Produção</div>
+        <div class="value">18 <span style="font-size:18px; color:var(--mute)">min</span></div>
+        <div class="delta">−2min vs semana passada</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="label">Reservas (7 dias)</div>
+        <div class="value">${reservations.length || 42}</div>
+        <div class="delta">+8 vs semana anterior</div>
+      </div>
+      <div class="stat-card green">
+        <div class="label">Clientes Ativos</div>
+        <div class="value">${clients.length}</div>
+        <div class="delta">${clients.filter(c => c.segment === 'VIP').length} VIPs</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Avaliação Média</div>
+        <div class="value">9,5<span style="font-size:18px; color:var(--mute)">/10</span></div>
+        <div class="delta">★ ★ ★ ★ ★</div>
+      </div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>Faturamento últimos 7 dias</h4>
+        <div class="sub">Évora + Estremoz</div>
+        <canvas id="chRev"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Top Vendidos</h4>
+        <div class="sub">Mês atual</div>
+        <ul class="top-prods">
+          ${topProds.map((p, i) => `<li><span class="rank">0${i+1}</span><span>${p[0]}</span><span class="qty">${p[1]}x</span></li>`).join('') || '<li><span class="qty">Sem dados ainda</span></li>'}
+        </ul>
+      </div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>Pedidos por Unidade</h4>
+        <div class="sub">Distribuição semanal</div>
+        <canvas id="chUnit"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Receita vs Custos</h4>
+        <div class="sub">Mensal · estimado</div>
+        <canvas id="chMargin"></canvas>
+      </div>
+    </div>
+  `;
+
+  // Charts
+  setTimeout(() => {
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.color = '#5a5246';
+
+    new Chart(document.getElementById('chRev'), {
+      type: 'line',
+      data: {
+        labels: ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        datasets: [{
+          label: 'Faturamento (€)',
+          data: [0, 820, 940, 1100, 1820, 2310, 1480],
+          borderColor: '#b8302c',
+          backgroundColor: 'rgba(184,48,44,.08)',
+          tension: 0.4,
+          fill: true,
+          pointBackgroundColor: '#b8956a',
+          pointBorderColor: '#b8302c',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, grid: { color:'rgba(0,0,0,.05)' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chUnit'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Évora', 'Estremoz'],
+        datasets: [{
+          data: [62, 38],
+          backgroundColor: ['#b8302c', '#b8956a'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { position: 'bottom' }
+        },
+        cutout: '70%'
+      }
+    });
+
+    new Chart(document.getElementById('chMargin'), {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
+        datasets: [
+          { label: 'Receita', data: [28000, 32000, 35000, 38000, 42000], backgroundColor: '#b8956a' },
+          { label: 'Custos', data: [16000, 18000, 19500, 21000, 22500], backgroundColor: '#0a0a0a' },
+        ]
+      },
+      options: {
+        plugins: { legend: { position: 'bottom' } },
+        scales: { y: { grid: { color:'rgba(0,0,0,.05)' } }, x: { grid: { display: false } } }
+      }
+    });
+  }, 50);
+}
+
+function renderOrders(c) {
+  const orders = JSON.parse(localStorage.getItem('sushiart_orders') || '[]');
+  const statuses = [
+    { id:'recebido', label:'Recebido', jp:'受 注' },
+    { id:'preparo',  label:'Em Preparo', jp:'準 備' },
+    { id:'pronto',   label:'Pronto', jp:'完 了' },
+    { id:'entregue', label:'Entregue', jp:'配 達 済' },
+  ];
+  c.innerHTML = `
+    <div class="breadcrumb">Operação · Pedidos</div>
+    <h2>Pipeline de Pedidos</h2>
+    <p style="color: var(--mute); margin-bottom: 30px;">Arraste os pedidos entre colunas conforme avançam no fluxo.</p>
+    <div class="pipeline">
+      ${statuses.map(s => {
+        const filtered = orders.filter(o => o.status === s.id);
+        return `<div class="pipe-col" data-status="${s.id}">
+          <h5>${s.label} <span>${filtered.length}</span></h5>
+          ${filtered.map(o => `
+            <div class="order-card" draggable="true" data-id="${o.id}">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span class="order-id">${o.id}</span>
+                <small style="color:var(--mute); font-size:10px; letter-spacing:.1em">${o.unit}</small>
+              </div>
+              <div class="order-meta">
+                <span>${o.name}</span>
+                <span>${o.mode === 'entrega' ? '🛵' : '🥡'} ${o.time}</span>
+              </div>
+              <div class="order-items">
+                ${o.items.map(i => `${i.qty}× ${i.name}`).join('<br/>')}
+              </div>
+              <div class="order-total">€${o.total.toFixed(2).replace('.', ',')}</div>
+            </div>
+          `).join('') || '<p style="color:var(--mute); font-size:13px; text-align:center; padding:20px 0;">Sem pedidos</p>'}
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+  setupDragDrop();
+}
+
+function setupDragDrop() {
+  let dragId = null;
+  document.querySelectorAll('.order-card').forEach(card => {
+    card.addEventListener('dragstart', () => { dragId = card.dataset.id; card.classList.add('dragging'); });
+    card.addEventListener('dragend', () => card.classList.remove('dragging'));
+  });
+  document.querySelectorAll('.pipe-col').forEach(col => {
+    col.addEventListener('dragover', e => { e.preventDefault(); col.style.background = 'rgba(184,149,106,.05)'; });
+    col.addEventListener('dragleave', () => col.style.background = '');
+    col.addEventListener('drop', e => {
+      e.preventDefault();
+      col.style.background = '';
+      const orders = JSON.parse(localStorage.getItem('sushiart_orders') || '[]');
+      const o = orders.find(x => x.id === dragId);
+      if (o) {
+        o.status = col.dataset.status;
+        localStorage.setItem('sushiart_orders', JSON.stringify(orders));
+        renderOrders(document.getElementById('staffContent'));
+        // Atualiza badge
+        document.getElementById('ordersBadge').textContent = orders.filter(x => x.status === 'recebido').length;
+      }
+    });
+  });
+}
+
+function renderReservations(c) {
+  const res = JSON.parse(localStorage.getItem('sushiart_reservations') || '[]');
+  c.innerHTML = `
+    <div class="breadcrumb">Operação · Reservas</div>
+    <h2>Reservas Recebidas</h2>
+    <p style="color: var(--mute); margin-bottom: 30px;">${res.length} reservas no total · ${res.filter(r => r.status === 'pending').length} pendentes de confirmação.</p>
+    <div class="toolbar">
+      <input type="text" placeholder="Buscar por nome ou telefone..." />
+      <button class="btn-sm">+ Nova reserva manual</button>
+    </div>
+    <div class="data-table">
+      <table>
+        <thead><tr><th>Ref</th><th>Data · Hora</th><th>Cliente</th><th>Pessoas</th><th>Unidade</th><th>Observações</th><th>Status</th></tr></thead>
+        <tbody>
+          ${res.map(r => `
+            <tr>
+              <td><strong>${r.id}</strong></td>
+              <td>${r.date} · ${r.time}</td>
+              <td>${r.name}<br/><small style="color:var(--mute)">${r.phone}</small></td>
+              <td>${r.people}</td>
+              <td>${r.unit}</td>
+              <td><small>${r.notes || '—'}</small></td>
+              <td><span class="tag ${r.status === 'confirmed' ? 'confirmed' : 'pending'}">${r.status === 'confirmed' ? 'Confirmada' : 'Pendente'}</span></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderMenuAdmin(c) {
+  const data = getMenuData();
+  c.innerHTML = `
+    <div class="breadcrumb">Gestão · Cardápio</div>
+    <h2>Gestão do Cardápio</h2>
+    <p style="color: var(--mute); margin-bottom: 30px;">${data.length} peças ativas. As alterações refletem imediatamente no site público.</p>
+    <div class="toolbar">
+      <input type="text" id="menuSearch" placeholder="Buscar peça..." />
+      <button class="btn-sm" onclick="addMenuItem()">+ Adicionar Peça</button>
+    </div>
+    <div class="data-table">
+      <table>
+        <thead><tr><th>Imagem</th><th>Nome</th><th>Categoria</th><th>Preço</th><th>Tags</th><th>Ações</th></tr></thead>
+        <tbody id="menuTbody">
+          ${data.map(i => `
+            <tr data-id="${i.id}">
+              <td><img src="${i.img}" style="width:50px; height:50px; object-fit:cover" alt=""/></td>
+              <td><strong>${i.name}</strong><br/><small style="color:var(--mute)">${i.desc.slice(0, 70)}...</small></td>
+              <td>${MENU_CATEGORIES.find(c => c.id === i.cat)?.name || i.cat}</td>
+              <td><strong style="color:var(--akane)">€${i.price.toFixed(2).replace('.', ',')}</strong></td>
+              <td>${i.chef ? '<span class="tag confirmed">Chef</span>' : ''}${i.veg ? ' <span class="tag pending">Veg</span>' : ''}</td>
+              <td>
+                <button class="btn-sm" style="background:var(--kin); padding:6px 12px; font-size:10px;" onclick="editMenuItem('${i.id}')">Editar</button>
+                <button class="btn-sm" style="background:var(--akane); padding:6px 12px; font-size:10px;" onclick="delMenuItem('${i.id}')">Excluir</button>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+  document.getElementById('menuSearch').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    document.querySelectorAll('#menuTbody tr').forEach(tr => {
+      tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+}
+
+function addMenuItem() {
+  const name = prompt('Nome da peça:'); if (!name) return;
+  const price = parseFloat(prompt('Preço (ex: 14.50):')) || 0;
+  const cat = prompt('Categoria (entradas, sashimi, uramaki, hot, combos, bebidas, sobremesas):', 'uramaki');
+  const desc = prompt('Descrição:') || '';
+  const data = getMenuData();
+  data.push({ id:'i'+Date.now(), name, jp:'新', price, cat, desc, img:'img/sushi-01.jpg' });
+  localStorage.setItem('sushiart_menu_custom', JSON.stringify(data));
+  renderMenuAdmin(document.getElementById('staffContent'));
+  renderMenu();
+  toast('Peça adicionada ao cardápio');
+}
+function editMenuItem(id) {
+  const data = getMenuData();
+  const it = data.find(x => x.id === id);
+  if (!it) return;
+  const name = prompt('Nome:', it.name); if (!name) return;
+  const price = parseFloat(prompt('Preço:', it.price)) || it.price;
+  const desc = prompt('Descrição:', it.desc) || it.desc;
+  Object.assign(it, { name, price, desc });
+  localStorage.setItem('sushiart_menu_custom', JSON.stringify(data));
+  renderMenuAdmin(document.getElementById('staffContent'));
+  renderMenu();
+  toast('Peça atualizada');
+}
+function delMenuItem(id) {
+  if (!confirm('Excluir esta peça?')) return;
+  let data = getMenuData().filter(x => x.id !== id);
+  localStorage.setItem('sushiart_menu_custom', JSON.stringify(data));
+  renderMenuAdmin(document.getElementById('staffContent'));
+  renderMenu();
+  toast('Peça removida');
+}
+
+function renderCRM(c) {
+  const clients = JSON.parse(localStorage.getItem('sushiart_clients') || '[]');
+  c.innerHTML = `
+    <div class="breadcrumb">Gestão · CRM</div>
+    <h2>CRM Clientes</h2>
+    <p style="color: var(--mute); margin-bottom: 30px;">${clients.length} clientes registados · ${clients.filter(c => c.segment === 'VIP').length} VIPs · €${clients.reduce((s, c) => s + c.spent, 0).toLocaleString('pt-PT')} em LTV combinado.</p>
+    <div class="toolbar">
+      <input type="text" placeholder="Buscar cliente..." />
+      <button class="btn-sm">+ Adicionar Cliente</button>
+    </div>
+    <div class="data-table">
+      <table>
+        <thead><tr><th>Cliente</th><th>Segmento</th><th>Visitas</th><th>Última visita</th><th>Total Gasto</th><th>Preferido</th><th>Contato</th></tr></thead>
+        <tbody>
+          ${clients.sort((a,b) => b.spent - a.spent).map(c => `
+            <tr>
+              <td><strong>${c.name}</strong></td>
+              <td><span class="tag ${c.segment === 'VIP' ? 'confirmed' : c.segment === 'Frequente' ? 'pending' : 'cancelled'}">${c.segment}</span></td>
+              <td>${c.visits}</td>
+              <td>${c.lastVisit}</td>
+              <td><strong style="color:var(--akane)">€${c.spent.toLocaleString('pt-PT')}</strong></td>
+              <td><small>${c.fav}</small></td>
+              <td><small>${c.phone}<br/>${c.email}</small></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderSuppliers(c) {
+  const sup = JSON.parse(localStorage.getItem('sushiart_suppliers') || '[]');
+  c.innerHTML = `
+    <div class="breadcrumb">Gestão · Fornecedores</div>
+    <h2>Fornecedores</h2>
+    <p style="color: var(--mute); margin-bottom: 30px;">${sup.length} fornecedores · €${sup.reduce((s, x) => s + x.monthly, 0).toLocaleString('pt-PT')}/mês em compras.</p>
+    <div class="toolbar">
+      <input type="text" placeholder="Buscar fornecedor..." />
+      <button class="btn-sm">+ Adicionar Fornecedor</button>
+    </div>
+    <div class="data-table">
+      <table>
+        <thead><tr><th>Fornecedor</th><th>Categoria</th><th>Contato</th><th>Último Pedido</th><th>€/mês</th><th>Status</th></tr></thead>
+        <tbody>
+          ${sup.map(s => `
+            <tr>
+              <td><strong>${s.name}</strong></td>
+              <td>${s.cat}</td>
+              <td><small>${s.contact}<br/>${s.email}</small></td>
+              <td>${s.lastOrder}</td>
+              <td><strong>€${s.monthly.toLocaleString('pt-PT')}</strong></td>
+              <td><span class="tag ${s.status === 'active' ? 'confirmed' : 'pending'}">${s.status === 'active' ? 'Ativo' : 'Pendente'}</span></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderReports(c) {
+  c.innerHTML = `
+    <div class="breadcrumb">Analítica · Relatórios</div>
+    <h2>Relatórios</h2>
+    <p style="color: var(--mute); margin-bottom: 30px;">Visão consolidada de operação, performance e tendências.</p>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>Crescimento Mensal</h4>
+        <div class="sub">Receita acumulada</div>
+        <canvas id="rep1"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Distribuição Diária</h4>
+        <div class="sub">Por categoria</div>
+        <canvas id="rep2"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card" style="grid-column:1/-1">
+        <h4>Horários de Pico</h4>
+        <div class="sub">Distribuição de pedidos ao longo do dia</div>
+        <canvas id="rep3"></canvas>
+      </div>
+    </div>
+  `;
+  setTimeout(() => {
+    new Chart(document.getElementById('rep1'), {
+      type: 'line',
+      data: {
+        labels: ['Jan','Fev','Mar','Abr','Mai'],
+        datasets: [{
+          label: 'Receita Acumulada',
+          data: [28000, 60000, 95000, 133000, 175000],
+          borderColor: '#b8956a', backgroundColor:'rgba(184,149,106,.15)',
+          fill: true, tension: 0.4, pointRadius: 5
+        }]
+      },
+      options: { plugins:{legend:{display:false}}, scales:{x:{grid:{display:false}}}}
+    });
+    new Chart(document.getElementById('rep2'), {
+      type: 'polarArea',
+      data: {
+        labels:['Uramaki','Sashimi','Combos','Hot','Entradas','Bebidas'],
+        datasets:[{ data:[38, 22, 18, 9, 8, 5], backgroundColor:['#b8302c','#b8956a','#0a0a0a','#5d8a4e','#c97f2d','#d4b48a']}]
+      }
+    });
+    new Chart(document.getElementById('rep3'), {
+      type: 'bar',
+      data: {
+        labels:['12h','13h','14h','19h','20h','21h','22h'],
+        datasets:[{ label:'Pedidos', data:[8, 22, 14, 6, 28, 35, 18], backgroundColor:'#b8302c', borderRadius: 4 }]
+      },
+      options: {plugins:{legend:{display:false}}, scales:{y:{grid:{color:'rgba(0,0,0,.05)'}}, x:{grid:{display:false}}}}
+    });
+  }, 50);
+}
+
+// Ajusta badge inicial dos pedidos
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const orders = JSON.parse(localStorage.getItem('sushiart_orders') || '[]');
+    const badge = document.getElementById('ordersBadge');
+    if (badge) badge.textContent = orders.filter(x => x.status === 'recebido').length;
+  }, 2000);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentoria Face Basics — AUGĒ Academy</title>
+  <meta name="description" content="A mentoria Face Basics foi desenvolvida para profissionais que desejam iniciar ou fortalecer sua atuação em harmonização facial com segurança, técnica e confiança.">
+  <link rel="icon" type="image/png" href="assets/img/logos/auge-simbolo-aurora.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/produto.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo"><img src="assets/img/logos/auge-horizontal-aurora.png" alt="AUGĒ Academy"></a>
+      <ul class="nav__menu">
+        <li><a href="index.html#mentorias">Mentorias</a></li>
+        <li><a href="index.html#sobre">A AUGĒ</a></li>
+        <li><a href="index.html#professores">Professores</a></li>
+        <li><a href="sobre.html">Contato</a></li>
+        <li><a href="area-aluno.html">Área do Aluno</a></li>
+      </ul>
+      <div class="nav__cta"><button class="btn btn--primary" onclick="abrirWhatsApp('faceBasics')">Quero me inscrever</button></div>
+      <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="p-hero">
+    <div class="container">
+      <div class="p-hero__grid">
+        <div class="reveal">
+          <div class="p-hero__breadcrumb"><a href="index.html">AUGĒ</a> · Mentorias · Face Basics</div>
+          <span class="tag-aurora">Mentoria Iniciante</span>
+          <h1 style="margin-top: 20px;">Mentoria <em>Face Basics</em></h1>
+          <p class="p-hero__subtitle">A base sólida para quem leva harmonização facial a sério.</p>
+          <p class="p-hero__lead">Para profissionais que desejam iniciar ou fortalecer sua atuação na harmonização facial com segurança, técnica e confiança. Anatomia, avaliação, toxina botulínica, ácido hialurônico e intradermoterapia — da teoria à aplicação real em pacientes modelo.</p>
+          <div class="p-hero__chips">
+            <span>3 dias</span>
+            <span>1 teórico + 2 práticos</span>
+            <span>Pacientes modelo</span>
+            <span>Balneário Camboriú</span>
+          </div>
+          <div class="p-hero__ctas">
+            <button class="btn btn--primary" onclick="abrirWhatsApp('faceBasics')">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56z"/></svg>
+              Garantir minha vaga
+            </button>
+            <button class="btn btn--ghost" onclick="document.getElementById('programa').scrollIntoView({behavior:'smooth'})">
+              Ver conteúdo programático
+            </button>
+          </div>
+        </div>
+        <div class="p-hero__visual reveal">
+          <img src="assets/img/img/facebasics.jpeg" alt="Mentoria Face Basics - AUGĒ Academy">
+          <div class="p-hero__price-tag">
+            <small>A partir de</small>
+            <strong>12x R$626,30</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="p-sobre">
+    <div class="container">
+      <div class="p-sobre__grid">
+        <div class="p-sobre__image reveal">
+          <img src="assets/img/fotos/foto-11.png" alt="Mentoria Face Basics">
+        </div>
+        <div class="p-sobre__text reveal">
+          <span class="eyebrow">Sobre a Mentoria</span>
+          <h2>O primeiro passo para elevar seu nível na estética facial.</h2>
+          <p>A mentoria Face Basics foi desenvolvido para profissionais que desejam iniciar ou fortalecer sua atuação na harmonização facial com segurança, técnica e confiança.</p>
+          <p>Neste curso, você vai construir uma base sólida, entendendo desde a anatomia e avaliação facial até a aplicação prática das principais técnicas utilizadas na estética: toxina botulínica, preenchimento com ácido hialurônico e intradermoterapia.</p>
+          <p>A proposta é ir além da teoria, trazendo um ensino direto, aplicável e focado na rotina clínica, para que você se sinta preparado para atender e evoluir com consistência.</p>
+          <p>Se você busca começar da forma correta ou organizar seu raciocínio clínico com mais segurança, o Face Basic é o primeiro passo para elevar seu nível na estética facial.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESSORES -->
+  <section class="p-profs">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Mentores desta Formação</span>
+        <h2 class="h1">Quem conduz a sua jornada.</h2>
+      </div>
+
+      <div class="p-profs__grid">
+        <div class="p-prof reveal">
+          <div class="p-prof__img"><img src="assets/img/posts/gustavo-2.png" alt="Gustavo Lessing"></div>
+          <div>
+            <h3>Gustavo Lessing</h3>
+            <small>CRBM 5-2582</small>
+            <p>Biomédico especialista em Biomedicina Estética, Gustavo Lessing constrói sua atuação com base em rigor científico, precisão técnica e raciocínio clínico aplicado à estética injetável, com 11 anos de experiência na área. Graduado em Biomedicina com habilitação em Patologia Clínica pela Universidade Feevale (RS), possui formação internacional em Biotecnologia (Life Sciences) pela Yonsei University, em Seul, Coreia do Sul, consolidando uma abordagem fundamentada em evidência e visão analítica.</p>
+            <p style="margin-top: 14px;">Atua como speaker das empresas Biometil e Biometik, contribuindo para a formação e atualização de profissionais da área. Sua prática e ensino refletem um princípio essencial: a estética deve ser compreendida em profundidade, para que cada decisão clínica resulte em excelência, segurança e previsibilidade.</p>
+          </div>
+        </div>
+
+        <div class="p-prof reveal">
+          <div class="p-prof__img"><img src="assets/img/posts/marina-2.png" alt="Marina Kurek"></div>
+          <div>
+            <h3>Marina Kurek</h3>
+            <small>CRBM 5-3060</small>
+            <p>Especialista em Biomedicina Estética, Marina Kurek constrói sua trajetória unindo prática clínica, ensino e desenvolvimento profissional, com uma atuação voltada à formação de profissionais mais seguros, técnicos e conscientes. Mentora de profissionais da saúde, dedica-se a orientar carreiras com base em raciocínio clínico, estrutura e visão de longo prazo. Atuou por anos à frente do treinamento nacional de uma grande franquia de estética, contribuindo diretamente para a padronização técnica e qualificação de equipes em larga escala.</p>
+            <p style="margin-top: 14px;">Atualmente, é professora universitária na Uniavan e coordenadora de pós-graduação em Estética Facial e Corporal pelo IOA Internacional, consolidando sua presença na formação acadêmica e no aprimoramento contínuo da área. Sua atuação reflete o compromisso com uma estética baseada em conhecimento sólido, excelência técnica e construção consistente de resultados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMA -->
+  <section class="p-programa" id="programa">
+    <div class="container">
+      <div class="p-programa__header reveal">
+        <span class="eyebrow center">Conteúdo Programático</span>
+        <h2 class="h1" style="color: var(--veu)">Tudo que você vai dominar.</h2>
+        <p class="lead">Cinco módulos sequenciados para construir do zero a base técnica que sustenta uma atuação segura e consistente em harmonização facial.</p>
+      </div>
+
+      <div class="modulos">
+
+        <!-- Módulo 1 -->
+        <div class="modulo reveal">
+          <div class="modulo__head">
+            <div class="modulo__num">01</div>
+            <div>
+              <h3>Fundamentos da Harmonização Facial</h3>
+              <p>Base para segurança, avaliação e planejamento</p>
+            </div>
+          </div>
+          <div class="modulo__body">
+            <div class="modulo__bloco">
+              <h4>Conteúdo do Módulo</h4>
+              <ul>
+                <li>Anatomia aplicada da face</li>
+                <li>Músculos da mímica facial</li>
+                <li>Inervação e vascularização da face</li>
+                <li>Anatomia labial</li>
+                <li>Semiologia facial</li>
+                <li>Avaliação estética e análise facial</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 2 -->
+        <div class="modulo reveal">
+          <div class="modulo__head">
+            <div class="modulo__num">02</div>
+            <div>
+              <h3>Toxina Botulínica</h3>
+              <p>Do fundamento à aplicação clínica com segurança</p>
+            </div>
+          </div>
+          <div class="modulo__body">
+            <div class="modulo__bloco">
+              <h4>Fundamentos</h4>
+              <ul>
+                <li>Anatomia dos músculos da face</li>
+                <li>Marcas de toxina botulínica</li>
+                <li>Reconstituição: seca x úmida</li>
+              </ul>
+            </div>
+            <div class="modulo__bloco">
+              <h4>Aplicação Clínica</h4>
+              <ul>
+                <li>Pontos de aplicação facial — básico</li>
+                <li>Pontos de aplicação facial — avançado</li>
+                <li>Diferenças de aplicação: homem x mulher</li>
+              </ul>
+            </div>
+            <div class="modulo__bloco">
+              <h4>Segurança</h4>
+              <ul>
+                <li>Efeitos adversos</li>
+                <li>Intercorrências</li>
+                <li>Prevenção e manejo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 3 -->
+        <div class="modulo reveal">
+          <div class="modulo__head">
+            <div class="modulo__num">03</div>
+            <div>
+              <h3>Preenchimento com Ácido Hialurônico</h3>
+              <p>Da escolha do produto à técnica de aplicação</p>
+            </div>
+          </div>
+          <div class="modulo__body">
+            <div class="modulo__bloco">
+              <h4>Fundamentos</h4>
+              <ul>
+                <li>Tipos de preenchedores</li>
+                <li>Propriedades reológicas (G', coesividade, elasticidade)</li>
+              </ul>
+            </div>
+            <div class="modulo__bloco">
+              <h4>Escolha do Produto e Planejamento</h4>
+              <ul>
+                <li>Como escolher o produto ideal</li>
+                <li>Marcas disponíveis no mercado</li>
+              </ul>
+            </div>
+            <div class="modulo__bloco">
+              <h4>Base Anatômica</h4>
+              <ul>
+                <li>Anatomia facial aplicada ao preenchimento</li>
+                <li>Anatomia labial</li>
+                <li>Zonas de risco</li>
+              </ul>
+            </div>
+            <div class="modulo__bloco">
+              <h4>Planejamento</h4>
+              <ul>
+                <li>Estruturação facial</li>
+                <li>Harmonização e naturalidade</li>
+                <li>Indicação por região</li>
+              </ul>
+            </div>
+            <div class="modulo__bloco">
+              <h4>Técnicas</h4>
+              <ul>
+                <li>Técnicas de aplicação</li>
+                <li>Uso de cânula e agulha</li>
+                <li>Técnicas de anestesia</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 4 -->
+        <div class="modulo reveal">
+          <div class="modulo__head">
+            <div class="modulo__num">04</div>
+            <div>
+              <h3>Intradermoterapia Facial</h3>
+              <p>Indicações e técnica para qualidade de pele</p>
+            </div>
+          </div>
+          <div class="modulo__body">
+            <div class="modulo__bloco">
+              <h4>Indicações</h4>
+              <ul>
+                <li>Hiperpigmentações</li>
+                <li>Flacidez</li>
+                <li>Hidratação e viço da pele</li>
+                <li>Rejuvenescimento global</li>
+              </ul>
+            </div>
+            <div class="modulo__bloco">
+              <h4>Fundamentos e Técnica</h4>
+              <ul>
+                <li>Ativos utilizados</li>
+                <li>Combinações estratégicas</li>
+                <li>Técnicas de aplicação</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 5 -->
+        <div class="modulo reveal">
+          <div class="modulo__head">
+            <div class="modulo__num">05</div>
+            <div>
+              <h3>Face Basics na Prática</h3>
+              <p>Integrando tudo em casos clínicos reais</p>
+            </div>
+          </div>
+          <div class="modulo__body">
+            <div class="modulo__bloco">
+              <h4>Aplicação Integrada</h4>
+              <ul>
+                <li>Integração das técnicas na harmonização facial</li>
+                <li>Planejamento de tratamentos combinados</li>
+                <li>Casos clínicos</li>
+                <li>Como gerar resultados naturais</li>
+                <li>Posicionamento e aplicação na rotina clínica</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CRONOGRAMA -->
+  <section class="p-cronograma">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Cronograma</span>
+        <h2 class="h1">Três dias intensos. Uma evolução duradoura.</h2>
+      </div>
+
+      <div class="p-cronograma__grid">
+        <div class="crono reveal">
+          <div class="crono__day">Dia 1</div>
+          <div class="crono__title">Aula teórica</div>
+          <p class="crono__desc">Imersão completa em anatomia, semiologia, fundamentos de toxina, ácido hialurônico e intradermoterapia, com cases e discussão técnica.</p>
+          <span class="crono__tag">Online e Síncrona</span>
+        </div>
+        <div class="crono reveal">
+          <div class="crono__day">Dia 2</div>
+          <div class="crono__title">Prática clínica</div>
+          <p class="crono__desc">FullDay com pacientes modelo, previamente avaliados e agendados. Planejamento, aplicação e correção sob supervisão direta dos mentores.</p>
+          <span class="crono__tag">Presencial</span>
+        </div>
+        <div class="crono reveal">
+          <div class="crono__day">Dia 3</div>
+          <div class="crono__title">Prática clínica</div>
+          <p class="crono__desc">FullDay com pacientes modelo, previamente avaliados e agendados. Aprofundamento técnico, novos casos e refinamento de resultados.</p>
+          <span class="crono__tag">Presencial</span>
+        </div>
+      </div>
+
+      <div class="p-cronograma__local reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        As aulas práticas acontecem em Balneário Camboriú.
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRAS -->
+  <section class="p-extras">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Extras Inclusos</span>
+        <h2 class="h1">Sua evolução não termina no último dia.</h2>
+        <p class="lead">Recursos que você leva para o consultório e para a sua estratégia de divulgação.</p>
+      </div>
+
+      <div class="extras-grid">
+        <div class="extra reveal">
+          <div class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56z"/></svg></div>
+          <h4>Grupo de WhatsApp de Suporte</h4>
+          <p>Você terá acesso direto a um grupo para tirar dúvidas sobre a teoria e técnicas abordadas.</p>
+        </div>
+        <div class="extra reveal">
+          <div class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+          <h4>Imagens dos pacientes realizados</h4>
+          <p>Acesso direto às fotos dos pacientes atendidos durante a mentoria para divulgação.</p>
+        </div>
+        <div class="extra reveal">
+          <div class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <h4>Imagens dos seus atendimentos</h4>
+          <p>Você terá acesso direto às fotos e vídeos dos seus atendimentos na mentoria para divulgação.</p>
+        </div>
+        <div class="extra reveal">
+          <div class="extra__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
+          <h4>Planilha de custos e fornecedores</h4>
+          <p>Planilha de custos para você definir sua precificação e contato dos melhores fornecedores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTIMENTO -->
+  <section class="p-invest">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Investimento</span>
+        <h2 class="h1">Mais do que um curso. Um salto de carreira.</h2>
+      </div>
+
+      <div class="invest-box reveal">
+        <div class="invest-box__header">
+          <h3>Mentoria Face Basics</h3>
+          <p>Vagas limitadas por turma para garantir a qualidade da prática supervisionada.</p>
+        </div>
+
+        <div class="invest-rows">
+          <div class="invest-row">
+            <div class="invest-row__label">Entrada</div>
+            <div class="invest-row__value">R$ 300,00</div>
+            <div class="invest-row__sub">No ato da inscrição</div>
+          </div>
+          <div class="invest-row">
+            <div class="invest-row__label">À vista</div>
+            <div class="invest-row__value">R$ 6.200,00</div>
+            <div class="invest-row__sub">No dia da mentoria</div>
+          </div>
+          <div class="invest-row">
+            <div class="invest-row__label">Parcelado</div>
+            <div class="invest-row__value">12x R$ 626,30</div>
+            <div class="invest-row__sub">No dia da mentoria</div>
+          </div>
+        </div>
+
+        <div class="invest-box__cta">
+          <button class="btn btn--primary" onclick="abrirWhatsApp('faceBasics')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56z"/></svg>
+            Garantir minha vaga agora
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="p-galeria">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Imersão na Prática</span>
+        <h2 class="h1">A experiência AUGĒ por dentro.</h2>
+      </div>
+      <div class="galeria-grid">
+        <div><img src="assets/img/fotos/foto-27.png" alt="Mentoria"></div>
+        <div><img src="assets/img/fotos/foto-35.png" alt="Aula prática"></div>
+        <div><img src="assets/img/fotos/foto-39.png" alt="Aplicação"></div>
+        <div><img src="assets/img/fotos/foto-43.png" alt="Detalhe técnica"></div>
+        <div><img src="assets/img/fotos/foto-47.png" alt="Resultado"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (igual da Home) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col footer__logo">
+          <img src="assets/img/logos/auge-vertical-aurora.png" alt="AUGĒ Academy">
+          <p class="footer__brand-text">A escola de mais alto padrão técnico em estética injetável do Brasil.</p>
+          <div class="footer__socials">
+            <a href="https://www.instagram.com/augeacademy/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.7a5.9 5.9 0 110 11.8 5.9 5.9 0 010-11.8zm0 9.7a3.8 3.8 0 100-7.6 3.8 3.8 0 000 7.6zm7.5-10a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg></a>
+            <a href="#" onclick="abrirWhatsApp('faceBasics');return false;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Mentorias</h4>
+          <a href="face-basics.html">Face Basics</a>
+          <a href="face-expert.html">Face Expert</a>
+          <a href="gluteo-360.html">Glúteo 360°</a>
+        </div>
+        <div class="footer__col">
+          <h4>Institucional</h4>
+          <a href="index.html#sobre">A AUGĒ</a>
+          <a href="index.html#professores">Professores</a>
+          <a href="sobre.html">Sobre & Contato</a>
+          <a href="area-aluno.html">Área do Aluno</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contato</h4>
+          <a href="#" onclick="abrirWhatsApp('faceBasics');return false;">WhatsApp</a>
+          <a href="https://www.instagram.com/augeacademy/" target="_blank" rel="noopener">@augeacademy</a>
+          <a href="mailto:contato@augeacademy.com.br">contato@augeacademy.com.br</a>
+          <a>Balneário Camboriú · SC</a>
+        </div>
+      </div>
+      <div class="footer__bottom">© 2026 AUGĒ Academy. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  <a href="#" class="wa-float" onclick="abrirWhatsApp('faceBasics');return false;">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56zm-5.55 12.2h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.59 6.59 0 1112.24-3.5 6.6 6.6 0 01-6.64 6.58z"/></svg>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

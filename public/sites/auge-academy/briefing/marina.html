@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing AUGĒ Academy — Marina Kurek</title>
+<link rel="icon" type="image/png" href="../assets/img/logos/auge-simbolo-aurora.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noite:#050032; --aurora:#EBBE78; --violeta:#5F3CBE; --bronze:#C38C3C;
+  --veu:#F5F0DC; --pergaminho:#F2F2F2; --branco:#FFFFFF;
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Sora', system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{font-family:var(--sans); background:var(--veu); color:var(--noite); font-size:15px; line-height:1.6; min-height:100vh;}
+.hero{background:var(--noite); color:var(--veu); padding:80px 24px; position:relative; overflow:hidden;}
+.hero::before{content:''; position:absolute; right:-180px; top:-100px; width:600px; height:600px; background:radial-gradient(circle, rgba(95,60,190,0.35), transparent 60%); border-radius:50%;}
+.hero::after{content:''; position:absolute; left:-120px; bottom:-80px; width:380px; height:380px; background:radial-gradient(circle, rgba(235,190,120,0.25), transparent 60%); border-radius:50%;}
+.hero__inner{max-width:880px; margin:0 auto; position:relative; z-index:2;}
+.hero__top{display:flex; justify-content:space-between; align-items:center; margin-bottom:60px;}
+.hero__logo img{height:50px;}
+.hero__doctype{font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--aurora);}
+.eyebrow{font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--aurora); font-weight:600; display:inline-block; padding-left:42px; position:relative; margin-bottom:18px;}
+.eyebrow::before{content:''; position:absolute; left:0; top:50%; width:30px; height:1px; background:var(--aurora);}
+.hero h1{font-family:var(--serif); font-size:clamp(40px,5.5vw,68px); font-weight:400; line-height:1.05; color:var(--veu); margin:0 0 24px; letter-spacing:0.5px;}
+.hero h1 em{font-style:italic; color:var(--aurora);}
+.hero__line{width:80px; height:2px; background:var(--aurora); margin:28px 0 24px;}
+.hero p{font-size:16px; line-height:1.75; color:rgba(245,240,220,0.85); max-width:560px; margin:0 0 16px;}
+.hero__to{margin-top:40px; padding-top:30px; border-top:1px solid rgba(235,190,120,0.25); display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;}
+.hero__to-name{font-family:var(--serif); font-style:italic; font-size:22px; color:var(--aurora);}
+.hero__to-name small{display:block; font-family:var(--sans); font-style:normal; font-size:10px; letter-spacing:3px; color:rgba(245,240,220,0.5); text-transform:uppercase; margin-bottom:6px;}
+.hero__date{font-size:11px; letter-spacing:2px; color:rgba(245,240,220,0.5); text-transform:uppercase;}
+.form-wrapper{max-width:880px; margin:0 auto; padding:60px 24px 100px;}
+.section-header{margin-bottom:36px; padding-top:30px;}
+.section-header .eyebrow{color:var(--bronze);}
+.section-header h2{font-family:var(--serif); font-size:clamp(28px,3.8vw,40px); font-weight:500; color:var(--noite); margin:0 0 12px; line-height:1.1;}
+.section-header h2 em{font-style:italic; color:var(--bronze);}
+.section-header p{font-size:14px; color:rgba(5,0,50,0.65); max-width:600px; line-height:1.65;}
+.bloco{background:#fff; border-radius:12px; padding:28px 30px; margin-bottom:18px; border-left:3px solid var(--aurora); box-shadow:0 4px 20px rgba(5,0,50,0.04); transition:box-shadow 0.3s ease;}
+.bloco:focus-within{box-shadow:0 8px 30px rgba(5,0,50,0.08);}
+.bloco--dark{background:var(--noite); color:var(--veu); border-left-color:var(--aurora);}
+.bloco--dark .bloco__q{color:var(--veu);}
+.bloco--dark .bloco__why{color:rgba(245,240,220,0.65);}
+.bloco--dark textarea{background:rgba(245,240,220,0.06); color:var(--veu); border-color:rgba(235,190,120,0.25);}
+.bloco--dark textarea::placeholder{color:rgba(245,240,220,0.35);}
+.bloco--dark textarea:focus{border-color:var(--aurora); background:rgba(245,240,220,0.1);}
+.bloco__num{font-family:var(--serif); font-size:13px; color:var(--bronze); font-weight:600; letter-spacing:2px; margin-bottom:6px;}
+.bloco--dark .bloco__num{color:var(--aurora);}
+.bloco__q{font-family:var(--serif); font-size:21px; color:var(--noite); font-weight:500; line-height:1.3; margin-bottom:8px; display:block;}
+.bloco__why{font-size:12px; color:rgba(5,0,50,0.55); font-style:italic; margin-bottom:16px;}
+textarea{width:100%; min-height:90px; padding:14px 16px; border-radius:8px; border:1.5px solid rgba(5,0,50,0.12); background:var(--veu); font-family:var(--sans); font-size:14px; line-height:1.6; color:var(--noite); resize:vertical; transition:all 0.25s ease;}
+textarea:focus{outline:none; border-color:var(--aurora); background:#fff; box-shadow:0 0 0 4px rgba(235,190,120,0.15);}
+textarea::placeholder{color:rgba(5,0,50,0.3); font-style:italic;}
+input[type="text"], input[type="email"]{width:100%; padding:14px 16px; border-radius:8px; border:1.5px solid rgba(5,0,50,0.12); background:var(--veu); font-family:var(--sans); font-size:14px; color:var(--noite); transition:all 0.25s ease;}
+input[type="text"]:focus, input[type="email"]:focus{outline:none; border-color:var(--aurora); background:#fff; box-shadow:0 0 0 4px rgba(235,190,120,0.15);}
+.checkbox-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;}
+.checkbox-label{display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--veu); border:1.5px solid transparent; border-radius:8px; font-size:13px; cursor:pointer; transition:all 0.25s ease;}
+.checkbox-label:hover{border-color:var(--aurora);}
+.checkbox-label input{display:none;}
+.checkbox-label .cb-visual{width:18px; height:18px; border:1.5px solid var(--bronze); border-radius:4px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#fff; transition:all 0.2s ease;}
+.checkbox-label input:checked + .cb-visual{background:var(--noite); border-color:var(--noite);}
+.checkbox-label input:checked + .cb-visual::after{content:''; width:5px; height:9px; border:solid var(--aurora); border-width:0 2px 2px 0; transform:rotate(45deg) translate(-1px,-1px);}
+.checkbox-label input:checked ~ .cb-text{font-weight:500; color:var(--noite);}
+@media(max-width:600px){.checkbox-grid{grid-template-columns:1fr;}}
+.cat-title{font-family:var(--serif); font-size:22px; font-weight:500; color:var(--violeta); margin:40px 0 20px; padding-bottom:10px; border-bottom:1px solid rgba(95,60,190,0.2); display:flex; align-items:center; gap:12px;}
+.cat-title__icon{width:34px; height:34px; background:var(--violeta); color:var(--aurora); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:15px; font-weight:600;}
+.progress-bar{position:fixed; top:0; left:0; right:0; height:4px; background:rgba(5,0,50,0.05); z-index:1000;}
+.progress-bar__fill{height:100%; width:0; background:linear-gradient(90deg,var(--aurora),var(--bronze)); transition:width 0.3s ease;}
+.identify-box{background:#fff; border-radius:14px; padding:32px; margin-bottom:30px; border:2px dashed var(--aurora);}
+.identify-box h3{font-family:var(--serif); font-size:22px; margin:0 0 6px; color:var(--noite);}
+.identify-box p{font-size:13px; color:rgba(5,0,50,0.65); margin:0 0 20px;}
+.identify-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.identify-grid > div label{display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--bronze); font-weight:600; margin-bottom:8px;}
+@media(max-width:600px){.identify-grid{grid-template-columns:1fr;}}
+.submit-section{margin-top:60px; text-align:center; padding:50px 30px; background:linear-gradient(135deg, var(--noite) 0%, #1A0B5C 100%); border-radius:18px; color:var(--veu); position:relative; overflow:hidden;}
+.submit-section::before{content:''; position:absolute; top:-100px; right:-100px; width:320px; height:320px; background:radial-gradient(circle, rgba(235,190,120,0.2), transparent 70%); border-radius:50%;}
+.submit-section h3{font-family:var(--serif); font-size:32px; color:var(--veu); margin:0 0 12px; font-weight:500; position:relative;}
+.submit-section h3 em{font-style:italic; color:var(--aurora);}
+.submit-section p{color:rgba(245,240,220,0.75); max-width:480px; margin:0 auto 30px; font-size:14px; position:relative;}
+.btn-submit{display:inline-flex; align-items:center; gap:12px; padding:18px 42px; background:var(--aurora); color:var(--noite); border:none; border-radius:999px; font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:all 0.3s ease; position:relative; box-shadow:0 12px 32px rgba(235,190,120,0.3);}
+.btn-submit:hover{background:var(--bronze); color:#fff; transform:translateY(-2px); box-shadow:0 18px 40px rgba(195,140,60,0.4);}
+.btn-submit svg{width:18px; height:18px;}
+.submit-section small{display:block; margin-top:18px; font-size:11px; letter-spacing:2px; color:rgba(245,240,220,0.4); text-transform:uppercase; position:relative;}
+.honeypot{display:none !important;}
+.footer{text-align:center; padding:40px 24px; background:var(--noite); color:rgba(245,240,220,0.4); font-size:11px; letter-spacing:2px; text-transform:uppercase;}
+.footer__quote{font-family:var(--serif); font-style:italic; font-size:14px; color:var(--aurora); letter-spacing:1px; text-transform:none; margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-bar__fill" id="progress"></div></div>
+
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__top">
+      <div class="hero__logo">
+        <img src="auge-horizontal-aurora.png" alt="AUGĒ Academy">
+      </div>
+      <div class="hero__doctype">Briefing Estratégico · Site</div>
+    </div>
+    <span class="eyebrow">Documento Confidencial · AUGĒ Academy</span>
+    <h1>A elegância de quem <em>domina o detalhe.</em></h1>
+    <div class="hero__line"></div>
+    <p>Este briefing foi pensado para capturar a sua visão sobre a AUGĒ, sua trajetória como mentora e como você enxerga a evolução da Academy. Suas respostas vão alimentar o tom editorial, a hierarquia das informações e a estratégia de conversão do site.</p>
+    <p style="color:rgba(235,190,120,0.85); font-size:14px;">Responda no seu tempo — você pode salvar as respostas a qualquer momento. Não há campos obrigatórios além da identificação inicial.</p>
+    <div class="hero__to">
+      <div class="hero__to-name">
+        <small>Direcionado a</small>
+        Marina Kurek
+      </div>
+      <div class="hero__date">Maio · 2026 · Versão 2.0</div>
+    </div>
+  </div>
+</section>
+
+<div class="form-wrapper">
+  <form name="briefing-marina" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="obrigado.html" id="briefing-form">
+    <input type="hidden" name="form-name" value="briefing-marina">
+    <p class="honeypot"><label>Não preencha: <input name="bot-field"></label></p>
+
+    <div class="identify-box">
+      <h3>Antes de começar</h3>
+      <p>Confirme seus dados para que possamos identificar este briefing quando você enviar.</p>
+      <div class="identify-grid">
+        <div>
+          <label>Seu nome</label>
+          <input type="text" name="nome" value="Marina Kurek" required>
+        </div>
+        <div>
+          <label>E-mail</label>
+          <input type="email" name="email" placeholder="seu@email.com" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAP 01 -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 01</span>
+      <h2>Quem é a <em>Marina Kurek</em> por trás do CRBM 5-3060?</h2>
+      <p>Antes de falarmos da AUGĒ, queremos entender você. Sua história e seus diferenciais pessoais alimentam a narrativa de autoridade do site.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">01</div>
+      <label class="bloco__q" for="q01">Como você descreveria sua trajetória em uma frase de impacto?</label>
+      <div class="bloco__why">Essa frase pode virar headline ou abertura da bio expandida no site.</div>
+      <textarea id="q01" name="01_trajetoria_frase" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">02</div>
+      <label class="bloco__q" for="q02">O que despertou seu interesse pela biomedicina estética?</label>
+      <div class="bloco__why">A história de origem cria conexão emocional e diferenciação no mercado.</div>
+      <textarea id="q02" name="02_origem_interesse" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">03</div>
+      <label class="bloco__q" for="q03">Sua passagem como treinadora nacional de uma grande franquia de estética — qual foi a maior lição dessa fase?</label>
+      <div class="bloco__why">Esse capítulo da sua carreira é prova de credibilidade rara — queremos contá-lo bem.</div>
+      <textarea id="q03" name="03_treinadora_franquia" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">04</div>
+      <label class="bloco__q" for="q04">Você atende em consultório próprio? Onde e desde quando?</label>
+      <div class="bloco__why">Vamos linkar a sua atuação clínica à autoridade da Academy.</div>
+      <textarea id="q04" name="04_consultorio" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">05</div>
+      <label class="bloco__q" for="q05">Sobre seu trabalho como professora na Uniavan e coordenadora no IOA Internacional: como essas atuações se relacionam com a AUGĒ?</label>
+      <div class="bloco__why">Importante alinhar comunicação para não gerar confusão de marca.</div>
+      <textarea id="q05" name="05_outras_atuacoes" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">06</div>
+      <label class="bloco__q" for="q06">Quais conquistas/títulos/eventos você considera importantes destacar?</label>
+      <div class="bloco__why">Palestras, certificações além das já mencionadas, publicações, etc.</div>
+      <textarea id="q06" name="06_conquistas" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- CAP 02 -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 02</span>
+      <h2>A história e o futuro <em>da AUGĒ Academy.</em></h2>
+      <p>Queremos contar a AUGĒ no site com a mesma seriedade técnica que vocês entregam nas mentorias.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">07</div>
+      <label class="bloco__q" for="q07">Como surgiu a parceria com o Gustavo (e demais sócios) para criar a AUGĒ?</label>
+      <div class="bloco__why">Essa origem é matéria-prima para a seção "Nossa história" no site.</div>
+      <textarea id="q07" name="07_origem_parceria" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">08</div>
+      <label class="bloco__q" for="q08">Na sua visão, qual é o maior problema das formações em estética injetável no Brasil hoje?</label>
+      <div class="bloco__why">Essa visão diferenciada vira pilar de posicionamento e copy.</div>
+      <textarea id="q08" name="08_problema_mercado" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">09</div>
+      <label class="bloco__q" for="q09">Como você descreveria o "diferencial AUGĒ" em três palavras?</label>
+      <div class="bloco__why">Pode virar slogan, tagline ou eixo principal de comunicação.</div>
+      <textarea id="q09" name="09_diferencial_3_palavras" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco bloco--dark">
+      <div class="bloco__num">10</div>
+      <label class="bloco__q" for="q10">O Manual de Marca menciona "3 profissionais especialistas" como fundadores. Quem é a terceira pessoa?</label>
+      <div class="bloco__why">Importante para alinhar a comunicação institucional. Hoje só temos info sua e do Gustavo.</div>
+      <textarea id="q10" name="10_terceiro_fundador" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">11</div>
+      <label class="bloco__q" for="q11">Quem é a aluna ideal da AUGĒ? (descreva como uma persona real)</label>
+      <div class="bloco__why">Idade, formação, momento de carreira, dores, sonhos. Toda copy parte dessa pessoa.</div>
+      <textarea id="q11" name="11_persona_ideal" placeholder="Sua resposta..." style="min-height:120px;"></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">12</div>
+      <label class="bloco__q" for="q12">Quais os planos da AUGĒ para os próximos 12-24 meses na sua visão?</label>
+      <div class="bloco__why">Saber se a Academy escalará para EAD, mais mentorias ou eventos influencia a arquitetura do site.</div>
+      <textarea id="q12" name="12_planos_futuros" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- CAP 03 -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 03</span>
+      <h2>As <em>3 mentorias</em> em profundidade.</h2>
+      <p>O site terá uma página dedicada por mentoria. Sua perspectiva sobre o que vende cada uma delas é única.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">13</div>
+      <label class="bloco__q" for="q13">Qual mentoria você considera o "produto âncora" da AUGĒ?</label>
+      <div class="bloco__why">Definir a mentoria principal influencia a hierarquia visual do site e da campanha de tráfego pago.</div>
+      <textarea id="q13" name="13_produto_ancora" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">14</div>
+      <label class="bloco__q" for="q14">Em qual mentoria você atua mais diretamente como instrutora principal?</label>
+      <div class="bloco__why">Pode haver páginas onde sua presença visual deve ser maior que a do Gustavo, e vice-versa.</div>
+      <textarea id="q14" name="14_mentoria_principal" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">15</div>
+      <label class="bloco__q" for="q15">Você tem números de impacto que podemos divulgar?</label>
+      <div class="bloco__why">Total de alunas formadas, % satisfação, alunas que viraram referência, etc. Prova social vende.</div>
+      <textarea id="q15" name="15_numeros_impacto" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">16</div>
+      <label class="bloco__q" for="q16">Temos depoimentos de alunas para usar? (vídeo ou texto)</label>
+      <div class="bloco__why">Ideal: 3-6 depoimentos com nome, cidade, foto e idealmente em vídeo curto.</div>
+      <textarea id="q16" name="16_depoimentos" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">17</div>
+      <label class="bloco__q" for="q17">Vocês têm material de antes/depois (com autorização) das aulas práticas?</label>
+      <div class="bloco__why">É a prova visual mais poderosa em estética. Vale uma galeria dedicada no site.</div>
+      <textarea id="q17" name="17_antes_depois" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco bloco--dark">
+      <div class="bloco__num">18</div>
+      <label class="bloco__q" for="q18">Existe alguma mentoria nova em desenvolvimento que devemos planejar a estrutura?</label>
+      <div class="bloco__why">Se há lançamento próximo, o site já pode nascer com a estrutura pronta.</div>
+      <textarea id="q18" name="18_nova_mentoria" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- CAP 04 -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 04</span>
+      <h2>A <em>Área do Aluno</em> e como a AUGĒ se comunica.</h2>
+      <p>A primeira versão do site tem login com placeholder. Sua visão de como a comunidade AUGĒ evolui influencia o que faremos depois.</p>
+    </div>
+
+    <div class="cat-title"><span class="cat-title__icon">A</span> Comunidade & Aluno</div>
+
+    <div class="bloco">
+      <div class="bloco__num">19</div>
+      <label class="bloco__q" for="q19">Você acredita em comunidade ativa de ex-alunas? (grupos, encontros, mentorias contínuas)</label>
+      <div class="bloco__why">Se sim, podemos planejar áreas privadas, fóruns, lives mensais — diferencial enorme no mercado.</div>
+      <textarea id="q19" name="19_comunidade" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">20</div>
+      <div class="bloco__q">Que materiais devem estar na área do aluno na primeira fase?</div>
+      <div class="bloco__why">Selecione todos os que fazem sentido começar oferecendo:</div>
+      <div class="checkbox-grid">
+        <label class="checkbox-label"><input type="checkbox" name="20_materiais[]" value="Gravações das aulas teóricas"><span class="cb-visual"></span><span class="cb-text">Gravações das aulas teóricas</span></label>
+        <label class="checkbox-label"><input type="checkbox" name="20_materiais[]" value="PDFs e apostilas"><span class="cb-visual"></span><span class="cb-text">PDFs e apostilas</span></label>
+        <label class="checkbox-label"><input type="checkbox" name="20_materiais[]" value="Fotos dos atendimentos da aluna"><span class="cb-visual"></span><span class="cb-text">Fotos dos atendimentos da aluna</span></label>
+        <label class="checkbox-label"><input type="checkbox" name="20_materiais[]" value="Planilha de custos"><span class="cb-visual"></span><span class="cb-text">Planilha de custos</span></label>
+        <label class="checkbox-label"><input type="checkbox" name="20_materiais[]" value="Templates clínicos"><span class="cb-visual"></span><span class="cb-text">Templates clínicos</span></label>
+        <label class="checkbox-label"><input type="checkbox" name="20_materiais[]" value="Lives mensais com mentoras"><span class="cb-visual"></span><span class="cb-text">Lives mensais com mentoras</span></label>
+        <label class="checkbox-label"><input type="checkbox" name="20_materiais[]" value="Comunidade/fórum exclusivo"><span class="cb-visual"></span><span class="cb-text">Comunidade/fórum exclusivo</span></label>
+        <label class="checkbox-label"><input type="checkbox" name="20_materiais[]" value="Certificado digital"><span class="cb-visual"></span><span class="cb-text">Certificado digital</span></label>
+      </div>
+    </div>
+
+    <div class="cat-title"><span class="cat-title__icon">B</span> Conteúdo & Comunicação</div>
+
+    <div class="bloco">
+      <div class="bloco__num">21</div>
+      <label class="bloco__q" for="q21">A AUGĒ deve ter um blog/área de conteúdo técnico?</label>
+      <div class="bloco__why">Forte para SEO e posicionamento. Tedesco e Facial Academy fazem.</div>
+      <textarea id="q21" name="21_blog" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">22</div>
+      <label class="bloco__q" for="q22">Você gostaria de oferecer um material gratuito (e-book, masterclass) para capturar leads?</label>
+      <div class="bloco__why">Estratégia que multiplica conversão em ticket alto.</div>
+      <textarea id="q22" name="22_lead_magnet" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">23</div>
+      <label class="bloco__q" for="q23">Como você quer que a AUGĒ se posicione na comunicação? (formal, próxima, técnica, sofisticada, didática)</label>
+      <div class="bloco__why">A copy se ajusta a esse tom — escolha 2 ou 3 adjetivos.</div>
+      <textarea id="q23" name="23_tom_voz" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- CAP 05 -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 05</span>
+      <h2>Decisões operacionais <em>e expectativas.</em></h2>
+      <p>Definições práticas que precisamos alinhar antes do site sair do ar.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">24</div>
+      <label class="bloco__q" for="q24">Qual seu WhatsApp comercial atual? Deve aparecer no site ou prefere um número centralizado da Academy?</label>
+      <div class="bloco__why">Definir como os leads chegam até você — direto ou via filtro da equipe.</div>
+      <textarea id="q24" name="24_whatsapp" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">25</div>
+      <label class="bloco__q" for="q25">Você quer que cada mentoria tenha um link de contato direto para você ou tudo passa por um canal único?</label>
+      <div class="bloco__why">Mentorias mais femininas tendem a converter melhor com mentora respondendo. Pode ser estratégico segmentar.</div>
+      <textarea id="q25" name="25_contato_segmentado" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">26</div>
+      <label class="bloco__q" for="q26">A AUGĒ pretende rodar campanhas pagas (Google/Meta Ads)?</label>
+      <div class="bloco__why">Muda a estratégia de landing pages, tracking e conversão.</div>
+      <textarea id="q26" name="26_ads" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco bloco--dark">
+      <div class="bloco__num">27</div>
+      <label class="bloco__q" for="q27">Qual é o resultado de sucesso para o site nos primeiros 90 dias?</label>
+      <div class="bloco__why">Métrica concreta: leads/mês, inscrições, visitantes. Sem objetivo claro não há como otimizar.</div>
+      <textarea id="q27" name="27_meta_90_dias" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">28</div>
+      <label class="bloco__q" for="q28">Existe alguma comunicação que você JAMAIS quer ver no site da AUGĒ?</label>
+      <div class="bloco__why">Imagens, linguagem, abordagens proibidas. Pode ser estética agressiva, "antes e depois" extremos, etc.</div>
+      <textarea id="q28" name="28_proibicoes" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- CAP 06 -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 06</span>
+      <h2>Referências, inspirações <em>e o que sobrou.</em></h2>
+      <p>Suas referências dizem muito sobre onde você quer chegar — e o espaço livre serve para o que não couber em pergunta nenhuma.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">29</div>
+      <label class="bloco__q" for="q29">Que marcas (não só do mercado de estética) você admira pelo nível de comunicação?</label>
+      <div class="bloco__why">Pode ser moda, perfumaria de luxo, hotelaria, arquitetura. Referência expandida ajuda a encontrar tom único.</div>
+      <textarea id="q29" name="29_marcas_admira" placeholder="Pode listar até 5..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">30</div>
+      <label class="bloco__q" for="q30">Sobre as referências enviadas (Facial Academy, Instituto Andrea Tedesco, Ana Laura Fontana, Valéria Dalcoll): o que mais te atraiu em cada uma?</label>
+      <div class="bloco__why">Saber o que cada uma representa para você direciona escolhas de design e copy.</div>
+      <textarea id="q30" name="30_referencias_dadas" placeholder="Sua resposta..." style="min-height:120px;"></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">31</div>
+      <label class="bloco__q" for="q31">Existe alguma profissional referência (Brasil ou fora) que inspira sua atuação como mentora?</label>
+      <div class="bloco__why">Ajuda a entender qual posicionamento aspiracional comunicar.</div>
+      <textarea id="q31" name="31_referencia_mentora" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco bloco--dark">
+      <div class="bloco__num">32</div>
+      <label class="bloco__q" for="q32">Use este espaço para qualquer ideia, observação ou pedido que ficou de fora.</label>
+      <div class="bloco__why">Esse é o seu espaço.</div>
+      <textarea id="q32" name="32_espaco_livre" placeholder="Espaço livre — sem limite..." style="min-height:160px;"></textarea>
+    </div>
+
+    <div class="submit-section">
+      <h3>Pronto para <em>enviar?</em></h3>
+      <p>Ao enviar, suas respostas serão registradas diretamente com a equipe AUGĒ. Você receberá uma confirmação de recebimento por e-mail.</p>
+      <button type="submit" class="btn-submit">
+        Enviar briefing
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+      <small>Suas respostas são confidenciais</small>
+    </div>
+
+  </form>
+</div>
+
+<footer class="footer">
+  <div class="footer__quote">"O brilho que nasce antes do amanhecer."</div>
+  AUGĒ Academy · 2026
+</footer>
+
+<script>
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progress.style.width = scrolled + '%';
+});
+const form = document.getElementById('briefing-form');
+const STORAGE_KEY = 'briefing-marina-draft';
+try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  Object.entries(saved).forEach(([name, value]) => {
+    const field = form.elements[name];
+    if (!field) return;
+    if (field.type === 'checkbox' || (field.length && field[0] && field[0].type === 'checkbox')) {
+      const values = Array.isArray(value) ? value : [value];
+      const cbs = form.querySelectorAll(`input[name="${name}"]`);
+      cbs.forEach(cb => { if (values.includes(cb.value)) cb.checked = true; });
+    } else {
+      field.value = value;
+    }
+  });
+} catch(e) {}
+form.addEventListener('input', () => {
+  const data = {};
+  const fd = new FormData(form);
+  for (const [key, val] of fd.entries()) {
+    if (key.endsWith('[]')) {
+      data[key] = data[key] || [];
+      data[key].push(val);
+    } else {
+      data[key] = val;
+    }
+  }
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+});
+form.addEventListener('submit', () => {
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+});
+</script>
+
+</body>
+</html>

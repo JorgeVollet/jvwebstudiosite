@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do Aluno — AUGĒ Academy</title>
+  <link rel="icon" type="image/png" href="assets/img/logos/auge-simbolo-aurora.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(135deg, rgba(5,0,50,0.92), rgba(95,60,190,0.78)),
+        url('assets/img/posts/fundo-hd-2.png') center/cover no-repeat;
+      padding: 40px 20px;
+      color: var(--veu);
+    }
+
+    .login-shell {
+      width: 100%;
+      max-width: 1080px;
+      background: rgba(245, 240, 220, 0.04);
+      border: 1px solid rgba(235, 190, 120, 0.25);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-strong);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+    }
+
+    .login-side {
+      padding: 60px 50px;
+      background:
+        linear-gradient(180deg, rgba(5,0,50,0.65), rgba(5,0,50,0.85)),
+        url('assets/img/posts/padrao.png') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 540px;
+    }
+    .login-side__logo img { height: 60px; }
+    .login-side__title h2 {
+      color: var(--veu);
+      font-size: clamp(28px, 3.4vw, 40px);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .login-side__title h2 em { font-style: italic; color: var(--aurora); }
+    .login-side__title p {
+      color: rgba(245, 240, 220, 0.75);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .login-side__features {
+      display: grid;
+      gap: 14px;
+    }
+    .login-side__feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: rgba(245, 240, 220, 0.85);
+      letter-spacing: 0.3px;
+    }
+    .login-side__feature svg {
+      width: 18px; height: 18px;
+      color: var(--aurora);
+      flex-shrink: 0;
+    }
+
+    .login-form {
+      padding: 60px 50px;
+      background: var(--veu);
+      color: var(--texto);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .login-form h3 {
+      color: var(--noite);
+      margin-bottom: 8px;
+    }
+    .login-form > p {
+      color: var(--texto-suave);
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(5, 0, 50, 0.15);
+      background: var(--branco);
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--noite);
+      transition: all var(--t-base);
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--aurora);
+      box-shadow: 0 0 0 3px rgba(235, 190, 120, 0.2);
+    }
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0 28px;
+      font-size: 13px;
+    }
+    .form-options label { color: var(--texto-suave); cursor: pointer; }
+    .form-options a { color: var(--violeta); font-weight: 500; }
+    .form-options a:hover { color: var(--bronze); }
+
+    .login-form .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .login-divider {
+      text-align: center;
+      margin: 24px 0;
+      color: var(--texto-suave);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .login-divider::before,
+    .login-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: calc(50% - 30px);
+      height: 1px;
+      background: rgba(5, 0, 50, 0.1);
+    }
+    .login-divider::before { left: 0; }
+    .login-divider::after { right: 0; }
+
+    .help-text {
+      text-align: center;
+      font-size: 13px;
+      color: var(--texto-suave);
+      margin-top: 24px;
+    }
+    .help-text a { color: var(--bronze); font-weight: 600; }
+
+    .back-home {
+      position: absolute;
+      top: 24px; left: 24px;
+      color: var(--veu);
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+      padding: 10px 16px;
+      border: 1px solid rgba(235, 190, 120, 0.4);
+      border-radius: 999px;
+      transition: all var(--t-base);
+    }
+    .back-home:hover {
+      background: var(--aurora);
+      color: var(--noite);
+      border-color: var(--aurora);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: var(--noite);
+      color: var(--aurora);
+      padding: 16px 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--aurora);
+      box-shadow: var(--shadow-strong);
+      opacity: 0;
+      transition: all var(--t-base);
+      z-index: 1000;
+      font-size: 14px;
+      max-width: 90%;
+      text-align: center;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 880px) {
+      .login-shell { grid-template-columns: 1fr; }
+      .login-side, .login-form { padding: 40px 30px; }
+      .login-side { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-home">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Voltar ao site
+  </a>
+
+  <div class="login-shell">
+    <!-- Lado decorativo -->
+    <div class="login-side">
+      <div class="login-side__logo">
+        <img src="assets/img/logos/auge-horizontal-aurora.png" alt="AUGĒ Academy">
+      </div>
+
+      <div class="login-side__title">
+        <span class="tag-aurora">Área Exclusiva</span>
+        <h2 style="margin-top: 18px;">Bem-vindo de volta, <em>aluno AUGĒ.</em></h2>
+        <p>Aqui você acessa materiais complementares, gravações, planilhas, fotos dos atendimentos e novidades exclusivas da Academy.</p>
+      </div>
+
+      <div class="login-side__features">
+        <div class="login-side__feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Material complementar das mentorias
+        </div>
+        <div class="login-side__feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Gravações e bastidores das aulas
+        </div>
+        <div class="login-side__feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Planilha de custos e fornecedores
+        </div>
+        <div class="login-side__feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Fotos dos seus atendimentos
+        </div>
+        <div class="login-side__feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Conteúdos extras lançados periodicamente
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulário -->
+    <div class="login-form">
+      <h3 class="h2">Acesse sua conta</h3>
+      <p>Use o e-mail cadastrado no momento da inscrição para entrar.</p>
+
+      <form id="login-form" onsubmit="return fakeLogin(event)">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" placeholder="Sua senha de acesso" required>
+        </div>
+
+        <div class="form-options">
+          <label><input type="checkbox" style="margin-right:6px"> Lembrar de mim</label>
+          <a href="#" onclick="abrirWhatsApp('duvida');return false;">Esqueci a senha</a>
+        </div>
+
+        <button type="submit" class="btn btn--dark">
+          Entrar na minha conta
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <div class="login-divider">ou</div>
+
+      <button class="btn btn--whatsapp" style="width:100%;justify-content:center;" onclick="abrirWhatsApp('duvida')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56z"/></svg>
+        Preciso de ajuda — WhatsApp
+      </button>
+
+      <p class="help-text">
+        Ainda não é aluno?<br>
+        <a href="index.html#mentorias">Conheça nossas mentorias →</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    Plataforma do aluno em construção. Em breve liberaremos seus materiais aqui!
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    function fakeLogin(e) {
+      e.preventDefault();
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 4500);
+      return false;
+    }
+  </script>
+</body>
+</html>
