@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
@@ -9,6 +9,17 @@ import UnicornBackground from "@/components/backgrounds/UnicornBackground";
 export default function PortfolioGallery() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  // No mobile (iOS sobretudo), vários iframes ao vivo + WebGL estouram a memória
+  // e crasham a aba. Detectamos mobile p/ trocar previews por imagem leve e
+  // desligar o fundo WebGL aqui — o site ao vivo continua abrindo ao clicar.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current!;
@@ -41,8 +52,11 @@ export default function PortfolioGallery() {
   return (
     <section ref={sectionRef} id="portfolio" className="section-dark horizontal-section border-t border-white/10 bg-dark">
       <div className="h-sticky">
-        {/* Background animado (UnicornStudio) atrás dos cards */}
-        <UnicornBackground projectId="N9XzvQXu7fA5SY2ewADJ" dim={0.25} className="!z-0" />
+        {/* Background animado (UnicornStudio) atrás dos cards — só no desktop
+            (no mobile pesa demais e crasha o Safari/iOS) */}
+        {!isMobile && (
+          <UnicornBackground projectId="N9XzvQXu7fA5SY2ewADJ" dim={0.25} className="!z-0" />
+        )}
 
         <div className="absolute left-6 top-6 z-20 md:left-10">
           <div className="section-label">[ PORTFÓLIO · PROJETOS & CASES ]</div>
@@ -65,8 +79,9 @@ export default function PortfolioGallery() {
                 data-cursor
                 className="portfolio-card group block h-[64vh] w-full overflow-hidden rounded-2xl"
               >
-                {/* Preview: print (galeria) ou site ao vivo (iframe) */}
-                <div className="relative h-3/5 overflow-hidden bg-surface">
+                {/* Preview: print (galeria), ou site ao vivo (iframe no desktop),
+                    ou placeholder leve (mobile — evita crash por excesso de iframes) */}
+                <div className="relative h-3/5 overflow-hidden bg-surface2">
                   {p.shots && p.shots.length > 0 ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -74,6 +89,16 @@ export default function PortfolioGallery() {
                       alt={p.client}
                       className="absolute inset-0 h-full w-full object-cover object-top"
                     />
+                  ) : isMobile ? (
+                    // mobile: placeholder estilizado em vez do iframe ao vivo
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#161208] to-[#0a0a0a]">
+                      <span className="font-display text-4xl font-bold text-gold-metal opacity-80">
+                        {p.client}
+                      </span>
+                      <span className="mt-2 tech-mono text-[10px] uppercase tracking-widest text-gold-100/70">
+                        toque para ver ao vivo
+                      </span>
+                    </div>
                   ) : (
                     <div className="portfolio-card__preview">
                       <iframe
