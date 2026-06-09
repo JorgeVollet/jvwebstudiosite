@@ -30,6 +30,8 @@ export default function LeadForm({ origem = "popup", cupom, compact, onSuccess }
       });
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || "Erro ao enviar.");
+      // marca que este visitante já enviou um lead → o popup não aparece mais
+      try { localStorage.setItem("jv_lead_enviado", "1"); } catch {}
       setDone(true); onSuccess?.();
     } catch (err: any) {
       setError(err.message);

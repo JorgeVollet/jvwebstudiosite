@@ -10,16 +10,24 @@ export default function WelcomePopup() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const seen = localStorage.getItem("jv_popup_seen");
-    if (!seen) {
-      const t = setTimeout(() => setOpen(true), 3500);
+    // Só esconde de quem JÁ enviou o formulário. Quem não preencheu, vê sempre.
+    const jaEnviou = localStorage.getItem("jv_lead_enviado");
+    if (!jaEnviou) {
+      const t = setTimeout(() => setOpen(true), 1000);
       return () => clearTimeout(t);
     }
   }, []);
 
+  // Fechar (X / clicar fora) NÃO marca nada → o popup volta na próxima visita
+  // até a pessoa preencher o formulário.
   function close() {
     setOpen(false);
-    try { localStorage.setItem("jv_popup_seen", "1"); } catch {}
+  }
+
+  // Enviou o formulário com sucesso → fecha (a flag jv_lead_enviado é gravada
+  // pelo LeadForm, então não aparece mais).
+  function handleSuccess() {
+    setTimeout(() => setOpen(false), 2500); // deixa ver a confirmação antes de fechar
   }
 
   if (!open) return null;
@@ -47,7 +55,7 @@ export default function WelcomePopup() {
           <p className="mb-5 text-sm text-neutral-300">
             Cadastre-se em 30 segundos e receba seu cupom na hora. Sem compromisso.
           </p>
-          <LeadForm origem="popup" cupom={COUPON} />
+          <LeadForm origem="popup" cupom={COUPON} onSuccess={handleSuccess} />
         </div>
       </div>
     </div>
