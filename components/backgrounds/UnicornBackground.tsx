@@ -41,21 +41,17 @@ export default function UnicornBackground({
     }
   }, []);
 
-  // Pausa a renderização do canvas quando o fundo sai da tela (economia de GPU
-  // sem alterar o visual: ao voltar à viewport, volta a renderizar).
+  // Economia de GPU quando o fundo sai da tela, sem invalidar o canvas WebGL
+  // (usamos content-visibility, que pula a renderização da subárvore sem
+  // "desligar" o canvas — evita os warnings de texImage2D do unicornStudio).
   useEffect(() => {
     const wrap = wrapRef.current;
-    const host = ref.current;
-    if (!wrap || !host || typeof IntersectionObserver === "undefined") return;
+    if (!wrap || typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(
       ([entry]) => {
-        const visible = entry.isIntersecting;
-        host.querySelectorAll("canvas").forEach((c) => {
-          (c as HTMLCanvasElement).style.visibility = visible ? "visible" : "hidden";
-        });
-        host.style.visibility = visible ? "visible" : "hidden";
+        wrap.style.contentVisibility = entry.isIntersecting ? "visible" : "hidden";
       },
-      { rootMargin: "200px" }
+      { rootMargin: "300px" }
     );
     io.observe(wrap);
     return () => io.disconnect();

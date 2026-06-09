@@ -504,15 +504,47 @@ body {
 /* Mobile: empilha vertical, todos legíveis com o print visível */
 @media (max-width: 768px) {
   .archive-strip { flex-direction: column; height: auto; min-height: 0; gap: 16px; }
-  .archive-panel { height: 240px; flex: none; }
+  /* card mais alto: imagem em cima + faixa de texto embaixo (sem sobreposição) */
+  .archive-panel { height: 300px; flex: none; display: block; }
   .archive-panel.is-active { flex-grow: 0; }
-  .archive-panel__content { opacity: 1; transform: none; }
-  .archive-panel__img { opacity: 1; transform: none; filter: brightness(0.85); background-position: center; }
-  .archive-panel__bg { opacity: 1; transform: none; }
+
+  /* imagem ocupa só a parte de cima (~58%) */
+  .archive-panel__img,
+  .archive-panel__bg {
+    opacity: 1; transform: none;
+    bottom: auto; height: 58%;
+    filter: brightness(0.92); background-position: center;
+  }
+  /* overlay só sobre a faixa da imagem, suave */
+  .archive-panel__overlay {
+    bottom: auto; height: 58%;
+    background: linear-gradient(180deg, rgba(5,5,5,0.15), rgba(5,5,5,0.35));
+  }
+
+  /* faixa sólida embaixo com o conteúdo, legível */
+  .archive-panel__content {
+    position: absolute; left: 0; right: 0; bottom: 0; top: 58%;
+    opacity: 1; transform: none;
+    padding: 14px 18px;
+    background: #16181d;
+    border-top: 1px solid rgba(201,162,75,0.25);
+    display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden;
+  }
+  .archive-panel__content h3 { font-size: 20px; margin-top: 0; }
+  .archive-panel__content p {
+    margin-top: 4px; font-size: 12.5px; color: #c9cad0;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  /* tag fica no topo da imagem; número idem */
   .archive-panel__tag,
   .archive-panel__expand { opacity: 1; }
+  .archive-panel__expand { bottom: auto; top: calc(58% - 34px); }
   .archive-panel__mark { opacity: 0; }
   .archive-seg__icon { opacity: 1; }
+  /* ícone do segmento e tagline dentro da faixa de texto no mobile */
+  .archive-panel--segment .tech-tag { opacity: 1; }
   .archive-live__stage { padding: 10px 10px 0; }
 }
 
