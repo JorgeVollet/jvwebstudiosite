@@ -21,6 +21,7 @@ export default function UnicornBackground({
   invert?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!window.UnicornStudio) {
@@ -40,8 +41,31 @@ export default function UnicornBackground({
     }
   }, []);
 
+  // Pausa a renderização do canvas quando o fundo sai da tela (economia de GPU
+  // sem alterar o visual: ao voltar à viewport, volta a renderizar).
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const host = ref.current;
+    if (!wrap || !host || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+        host.querySelectorAll("canvas").forEach((c) => {
+          (c as HTMLCanvasElement).style.visibility = visible ? "visible" : "hidden";
+        });
+        host.style.visibility = visible ? "visible" : "hidden";
+      },
+      { rootMargin: "200px" }
+    );
+    io.observe(wrap);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden bg-black ${className}`}>
+    <div
+      ref={wrapRef}
+      className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden bg-black ${className}`}
+    >
       <div
         ref={ref}
         data-us-project={projectId}

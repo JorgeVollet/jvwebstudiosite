@@ -44,23 +44,23 @@ export default async function AdminDashboard() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-10 md:px-10">
-      <header className="flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-6">
+      <header className="flex flex-wrap items-center justify-between gap-4 border-b border-black/10 pb-6">
         <div className="flex items-center gap-3">
           <span
-            className="inline-flex h-10 w-10 rounded bg-cover bg-center"
-            style={{ backgroundImage: "url(https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/e15be5f6-8a25-4422-b25c-35027ab8918d_320w.jpg)" }}
+            className="inline-flex h-10 w-10 rounded bg-contain bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/jv-mark.svg)" }}
             aria-hidden="true"
           />
           <div>
-            <h1 className="font-display text-xl font-bold">Painel Admin</h1>
-            <p className="text-xs text-neutral-500">JV WEB STUDIO · Gestão de Leads & SEO</p>
+            <h1 className="font-display text-xl font-bold text-neutral-900">Painel Admin</h1>
+            <p className="text-xs text-neutral-600">JV WEB STUDIO · Gestão de Leads &amp; SEO</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <Link href="/admin/seo" className="btn-outline-gold px-5 py-2.5 text-xs uppercase tracking-widest">
             Gestão SEO
           </Link>
-          <Link href="/" className="text-xs text-neutral-400 hover:text-gold-100">Ver site</Link>
+          <Link href="/" className="text-xs text-neutral-700 hover:text-gold-600">Ver site</Link>
           <LogoutButton />
         </div>
       </header>
@@ -76,7 +76,7 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="mt-10">
-        <h2 className="mb-4 font-display text-lg font-bold">Leads recebidos</h2>
+        <h2 className="mb-4 font-display text-lg font-bold text-neutral-900">Leads recebidos</h2>
         <LeadsTable initial={list} />
       </div>
     </div>

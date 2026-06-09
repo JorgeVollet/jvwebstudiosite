@@ -33,8 +33,8 @@ export default function AdminLogin() {
       <div className="w-full max-w-sm rounded-2xl border border-gold/30 bg-surface p-8 gold-glow">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
           <span
-            className="inline-flex h-12 w-12 rounded bg-cover bg-center"
-            style={{ backgroundImage: "url(https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/e15be5f6-8a25-4422-b25c-35027ab8918d_320w.jpg)" }}
+            className="inline-flex h-12 w-12 rounded bg-contain bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/jv-mark.svg)" }}
             aria-hidden="true"
           />
           <div>

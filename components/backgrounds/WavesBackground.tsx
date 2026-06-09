@@ -103,6 +103,8 @@ export default function WavesBackground({
       });
       ctx.stroke();
     }
+    let visible = true; // só roda o loop quando a seção está na tela
+
     function tick(t: number) {
       mouse.sx += (mouse.x-mouse.sx)*0.1; mouse.sy += (mouse.y-mouse.sy)*0.1;
       const dx = mouse.x-mouse.lx, dy = mouse.y-mouse.ly; const d = Math.hypot(dx,dy);
@@ -111,6 +113,7 @@ export default function WavesBackground({
       movePoints(t); drawLines(); frameId = requestAnimationFrame(tick);
     }
     function updateMouse(x: number, y: number) {
+      if (!visible) return; // ignora cálculo de mouse quando fora da tela
       const r = canvas.getBoundingClientRect();
       mouse.x = x - r.left; mouse.y = y - r.top;
       if (!mouse.set) { mouse.sx = mouse.x; mouse.sy = mouse.y; mouse.lx = mouse.x; mouse.ly = mouse.y; mouse.set = true; }
@@ -121,11 +124,33 @@ export default function WavesBackground({
 
     setSize(); setLines();
     window.addEventListener("resize", onResize);
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("touchmove", onTouch, { passive: true });
+
+    // pausa/retoma o loop conforme a seção entra/sai da viewport
+    let io: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          const nowVisible = entry.isIntersecting;
+          if (nowVisible && !visible) {
+            visible = true;
+            cancelAnimationFrame(frameId);
+            frameId = requestAnimationFrame(tick);
+          } else if (!nowVisible && visible) {
+            visible = false;
+            cancelAnimationFrame(frameId);
+          }
+        },
+        { rootMargin: "150px" }
+      );
+      io.observe(canvas);
+    }
+
     frameId = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(frameId);
+      io?.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("touchmove", onTouch);

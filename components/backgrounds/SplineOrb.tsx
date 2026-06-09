@@ -1,10 +1,31 @@
 "use client";
 
-/** Orb reativo (Spline) como background. Forçado escuro pelo overlay preto. */
+import { useEffect, useRef } from "react";
+
+/** Orb reativo (Spline) como background. Forçado escuro pelo overlay preto.
+ *  Pausa a composição do iframe quando sai da tela (economia de GPU). */
 export default function SplineOrb({ className = "" }: { className?: string }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const frame = frameRef.current;
+    if (!wrap || !frame || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        frame.style.visibility = entry.isIntersecting ? "visible" : "hidden";
+      },
+      { rootMargin: "200px" }
+    );
+    io.observe(wrap);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className={`absolute inset-0 -z-10 overflow-hidden bg-black ${className}`}>
+    <div ref={wrapRef} className={`absolute inset-0 -z-10 overflow-hidden bg-black ${className}`}>
       <iframe
+        ref={frameRef}
         src="https://my.spline.design/reactiveorb-s0GzgSco0uSVSXvwMHuJvPQs"
         frameBorder="0"
         width="100%"
