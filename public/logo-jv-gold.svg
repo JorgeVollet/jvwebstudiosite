@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400" role="img" aria-label="JV WEB STUDIO">
+  <defs>
+    <linearGradient id="goldMetal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F4D88A"/>
+      <stop offset="35%" stop-color="#E5C76B"/>
+      <stop offset="65%" stop-color="#C9A24B"/>
+      <stop offset="100%" stop-color="#8C6D2F"/>
+    </linearGradient>
+    <linearGradient id="goldText" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F4D88A"/>
+      <stop offset="50%" stop-color="#E5C76B"/>
+      <stop offset="100%" stop-color="#C9A24B"/>
+    </linearGradient>
+    <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Selo arredondado dourado -->
+  <rect x="92" y="100" width="236" height="236" rx="14" fill="#000" opacity="0.55"/>
+  <rect x="100" y="90" width="220" height="220" rx="10" fill="#0a0a0a"/>
+  <rect x="100" y="90" width="220" height="220" rx="10" fill="none" stroke="url(#goldMetal)" stroke-width="2.5"/>
+  <line x1="120" y1="104" x2="300" y2="104" stroke="#F4D88A" stroke-width="1.4" opacity="0.5"/>
+  <g transform="translate(210,200)" filter="url(#goldGlow)">
+    <g fill="url(#goldMetal)">
+      <path d="M-70,-55 L-20,-55 L-20,30 Q-20,55 -45,55 Q-72,55 -78,38 L-58,30 Q-55,42 -45,42 Q-32,42 -32,30 L-32,-38 L-70,-38 Z"/>
+      <path d="M-5,-55 L17,-55 L36,30 L55,-55 L75,-55 L48,55 L24,55 Z"/>
+    </g>
+  </g>
+  <rect x="160" y="290" width="100" height="3" rx="1.5" fill="#C9A24B" opacity="0.85"/>
+  <!-- Wordmark -->
+  <g transform="translate(380,212)" font-family="'Space Grotesk', Helvetica, Arial, sans-serif">
+    <text x="0" y="0" font-size="62" font-weight="800" letter-spacing="-1" fill="url(#goldText)">JV WEB STUDIO</text>
+    <text x="3" y="34" font-size="15" font-weight="500" letter-spacing="6" fill="#888">SITES · SISTEMAS WEB · AUTOMAÇÕES N8N</text>
+  </g>
+</svg>

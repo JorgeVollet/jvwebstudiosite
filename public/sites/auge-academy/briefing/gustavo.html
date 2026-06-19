@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing AUGĒ Academy — Gustavo Lessing</title>
+<link rel="icon" type="image/png" href="../assets/img/logos/auge-simbolo-aurora.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noite:#050032; --aurora:#EBBE78; --violeta:#5F3CBE; --bronze:#C38C3C;
+  --veu:#F5F0DC; --pergaminho:#F2F2F2; --branco:#FFFFFF;
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Sora', system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--sans);
+  background:var(--veu);
+  color:var(--noite);
+  font-size:15px;
+  line-height:1.6;
+  min-height:100vh;
+}
+
+/* HERO / CAPA */
+.hero{
+  background:var(--noite);
+  color:var(--veu);
+  padding:80px 24px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  right:-180px; top:-100px;
+  width:600px; height:600px;
+  background:radial-gradient(circle, rgba(95,60,190,0.35), transparent 60%);
+  border-radius:50%;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  left:-120px; bottom:-80px;
+  width:380px; height:380px;
+  background:radial-gradient(circle, rgba(235,190,120,0.25), transparent 60%);
+  border-radius:50%;
+}
+.hero__inner{
+  max-width:880px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+.hero__top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:60px;
+}
+.hero__logo img{height:50px;}
+.hero__doctype{
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--aurora);
+}
+.eyebrow{
+  font-size:11px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--aurora);
+  font-weight:600;
+  display:inline-block;
+  padding-left:42px;
+  position:relative;
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:'';
+  position:absolute;
+  left:0; top:50%;
+  width:30px; height:1px;
+  background:var(--aurora);
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(40px,5.5vw,68px);
+  font-weight:400;
+  line-height:1.05;
+  color:var(--veu);
+  margin:0 0 24px;
+  letter-spacing:0.5px;
+}
+.hero h1 em{font-style:italic; color:var(--aurora);}
+.hero__line{
+  width:80px; height:2px;
+  background:var(--aurora);
+  margin:28px 0 24px;
+}
+.hero p{
+  font-size:16px;
+  line-height:1.75;
+  color:rgba(245,240,220,0.85);
+  max-width:560px;
+  margin:0 0 16px;
+}
+.hero__to{
+  margin-top:40px;
+  padding-top:30px;
+  border-top:1px solid rgba(235,190,120,0.25);
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.hero__to-name{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:22px;
+  color:var(--aurora);
+}
+.hero__to-name small{
+  display:block;
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:10px;
+  letter-spacing:3px;
+  color:rgba(245,240,220,0.5);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.hero__date{
+  font-size:11px;
+  letter-spacing:2px;
+  color:rgba(245,240,220,0.5);
+  text-transform:uppercase;
+}
+
+/* MAIN */
+.form-wrapper{
+  max-width:880px;
+  margin:0 auto;
+  padding:60px 24px 100px;
+}
+
+.section-header{
+  margin-bottom:36px;
+  padding-top:30px;
+}
+.section-header .eyebrow{color:var(--bronze);}
+.section-header h2{
+  font-family:var(--serif);
+  font-size:clamp(28px,3.8vw,40px);
+  font-weight:500;
+  color:var(--noite);
+  margin:0 0 12px;
+  line-height:1.1;
+}
+.section-header h2 em{font-style:italic; color:var(--bronze);}
+.section-header p{
+  font-size:14px;
+  color:rgba(5,0,50,0.65);
+  max-width:600px;
+  line-height:1.65;
+}
+
+.bloco{
+  background:#fff;
+  border-radius:12px;
+  padding:28px 30px;
+  margin-bottom:18px;
+  border-left:3px solid var(--aurora);
+  box-shadow:0 4px 20px rgba(5,0,50,0.04);
+  transition:box-shadow 0.3s ease;
+}
+.bloco:focus-within{
+  box-shadow:0 8px 30px rgba(5,0,50,0.08);
+}
+.bloco--dark{
+  background:var(--noite);
+  color:var(--veu);
+  border-left-color:var(--aurora);
+}
+.bloco--dark .bloco__q{color:var(--veu);}
+.bloco--dark .bloco__why{color:rgba(245,240,220,0.65);}
+.bloco--dark textarea{
+  background:rgba(245,240,220,0.06);
+  color:var(--veu);
+  border-color:rgba(235,190,120,0.25);
+}
+.bloco--dark textarea::placeholder{color:rgba(245,240,220,0.35);}
+.bloco--dark textarea:focus{
+  border-color:var(--aurora);
+  background:rgba(245,240,220,0.1);
+}
+.bloco__num{
+  font-family:var(--serif);
+  font-size:13px;
+  color:var(--bronze);
+  font-weight:600;
+  letter-spacing:2px;
+  margin-bottom:6px;
+}
+.bloco--dark .bloco__num{color:var(--aurora);}
+.bloco__q{
+  font-family:var(--serif);
+  font-size:21px;
+  color:var(--noite);
+  font-weight:500;
+  line-height:1.3;
+  margin-bottom:8px;
+  display:block;
+}
+.bloco__why{
+  font-size:12px;
+  color:rgba(5,0,50,0.55);
+  font-style:italic;
+  margin-bottom:16px;
+}
+textarea{
+  width:100%;
+  min-height:90px;
+  padding:14px 16px;
+  border-radius:8px;
+  border:1.5px solid rgba(5,0,50,0.12);
+  background:var(--veu);
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.6;
+  color:var(--noite);
+  resize:vertical;
+  transition:all 0.25s ease;
+}
+textarea:focus{
+  outline:none;
+  border-color:var(--aurora);
+  background:#fff;
+  box-shadow:0 0 0 4px rgba(235,190,120,0.15);
+}
+textarea::placeholder{color:rgba(5,0,50,0.3); font-style:italic;}
+input[type="text"], input[type="email"]{
+  width:100%;
+  padding:14px 16px;
+  border-radius:8px;
+  border:1.5px solid rgba(5,0,50,0.12);
+  background:var(--veu);
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--noite);
+  transition:all 0.25s ease;
+}
+input[type="text"]:focus, input[type="email"]:focus{
+  outline:none;
+  border-color:var(--aurora);
+  background:#fff;
+  box-shadow:0 0 0 4px rgba(235,190,120,0.15);
+}
+
+/* Checkbox grid */
+.checkbox-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px;
+}
+.checkbox-label{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 16px;
+  background:var(--veu);
+  border:1.5px solid transparent;
+  border-radius:8px;
+  font-size:13px;
+  cursor:pointer;
+  transition:all 0.25s ease;
+}
+.checkbox-label:hover{border-color:var(--aurora);}
+.checkbox-label input{display:none;}
+.checkbox-label .cb-visual{
+  width:18px; height:18px;
+  border:1.5px solid var(--bronze);
+  border-radius:4px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  transition:all 0.2s ease;
+}
+.checkbox-label input:checked + .cb-visual{
+  background:var(--noite);
+  border-color:var(--noite);
+}
+.checkbox-label input:checked + .cb-visual::after{
+  content:'';
+  width:5px; height:9px;
+  border:solid var(--aurora);
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg) translate(-1px,-1px);
+}
+.checkbox-label input:checked ~ .cb-text{
+  font-weight:500;
+  color:var(--noite);
+}
+@media(max-width:600px){
+  .checkbox-grid{grid-template-columns:1fr;}
+}
+
+/* Categoria */
+.cat-title{
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:500;
+  color:var(--violeta);
+  margin:40px 0 20px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(95,60,190,0.2);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.cat-title__icon{
+  width:34px; height:34px;
+  background:var(--violeta);
+  color:var(--aurora);
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--serif);
+  font-size:15px;
+  font-weight:600;
+}
+
+/* Progress sticky */
+.progress-bar{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:4px;
+  background:rgba(5,0,50,0.05);
+  z-index:1000;
+}
+.progress-bar__fill{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--aurora),var(--bronze));
+  transition:width 0.3s ease;
+}
+
+/* Identificação inicial */
+.identify-box{
+  background:#fff;
+  border-radius:14px;
+  padding:32px;
+  margin-bottom:30px;
+  border:2px dashed var(--aurora);
+}
+.identify-box h3{
+  font-family:var(--serif);
+  font-size:22px;
+  margin:0 0 6px;
+  color:var(--noite);
+}
+.identify-box p{
+  font-size:13px;
+  color:rgba(5,0,50,0.65);
+  margin:0 0 20px;
+}
+.identify-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.identify-grid > div label{
+  display:block;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--bronze);
+  font-weight:600;
+  margin-bottom:8px;
+}
+@media(max-width:600px){.identify-grid{grid-template-columns:1fr;}}
+
+/* Botão final */
+.submit-section{
+  margin-top:60px;
+  text-align:center;
+  padding:50px 30px;
+  background:linear-gradient(135deg, var(--noite) 0%, #1A0B5C 100%);
+  border-radius:18px;
+  color:var(--veu);
+  position:relative;
+  overflow:hidden;
+}
+.submit-section::before{
+  content:'';
+  position:absolute;
+  top:-100px; right:-100px;
+  width:320px; height:320px;
+  background:radial-gradient(circle, rgba(235,190,120,0.2), transparent 70%);
+  border-radius:50%;
+}
+.submit-section h3{
+  font-family:var(--serif);
+  font-size:32px;
+  color:var(--veu);
+  margin:0 0 12px;
+  font-weight:500;
+  position:relative;
+}
+.submit-section h3 em{font-style:italic; color:var(--aurora);}
+.submit-section p{
+  color:rgba(245,240,220,0.75);
+  max-width:480px;
+  margin:0 auto 30px;
+  font-size:14px;
+  position:relative;
+}
+.btn-submit{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:18px 42px;
+  background:var(--aurora);
+  color:var(--noite);
+  border:none;
+  border-radius:999px;
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:14px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  position:relative;
+  box-shadow:0 12px 32px rgba(235,190,120,0.3);
+}
+.btn-submit:hover{
+  background:var(--bronze);
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 18px 40px rgba(195,140,60,0.4);
+}
+.btn-submit svg{width:18px; height:18px;}
+.submit-section small{
+  display:block;
+  margin-top:18px;
+  font-size:11px;
+  letter-spacing:2px;
+  color:rgba(245,240,220,0.4);
+  text-transform:uppercase;
+  position:relative;
+}
+
+/* Honeypot */
+.honeypot{display:none !important;}
+
+/* Footer */
+.footer{
+  text-align:center;
+  padding:40px 24px;
+  background:var(--noite);
+  color:rgba(245,240,220,0.4);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.footer__quote{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:14px;
+  color:var(--aurora);
+  letter-spacing:1px;
+  text-transform:none;
+  margin-bottom:8px;
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-bar__fill" id="progress"></div></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__top">
+      <div class="hero__logo">
+        <img src="auge-horizontal-aurora.png" alt="AUGĒ Academy">
+      </div>
+      <div class="hero__doctype">Briefing Estratégico · Site</div>
+    </div>
+
+    <span class="eyebrow">Documento Confidencial · AUGĒ Academy</span>
+    <h1>O brilho que nasce <em>antes do amanhecer.</em></h1>
+    <div class="hero__line"></div>
+    <p>Este briefing foi desenhado para capturar os detalhes que faltam para construir um site verdadeiramente alinhado à essência da AUGĒ Academy e à sua trajetória como especialista. Suas respostas vão direcionar copy, hierarquia visual, prova social e estratégia de conversão.</p>
+    <p style="color:rgba(235,190,120,0.85); font-size:14px;">Responda no seu tempo — você pode salvar as respostas a qualquer momento. Não há campos obrigatórios além da identificação inicial.</p>
+
+    <div class="hero__to">
+      <div class="hero__to-name">
+        <small>Direcionado a</small>
+        Gustavo Lessing
+      </div>
+      <div class="hero__date">Maio · 2026 · Versão 2.0</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<div class="form-wrapper">
+
+  <form
+    name="briefing-gustavo"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    action="obrigado.html"
+    id="briefing-form"
+  >
+    <!-- Campo escondido obrigatório do Netlify -->
+    <input type="hidden" name="form-name" value="briefing-gustavo">
+    <!-- Honeypot antibot -->
+    <p class="honeypot">
+      <label>Não preencha: <input name="bot-field"></label>
+    </p>
+
+    <!-- IDENTIFICAÇÃO -->
+    <div class="identify-box">
+      <h3>Antes de começar</h3>
+      <p>Confirme seus dados para que possamos identificar este briefing quando você enviar.</p>
+      <div class="identify-grid">
+        <div>
+          <label>Seu nome</label>
+          <input type="text" name="nome" value="Gustavo Lessing" required>
+        </div>
+        <div>
+          <label>E-mail</label>
+          <input type="email" name="email" placeholder="seu@email.com" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================ CAPÍTULO 01 ============================ -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 01</span>
+      <h2>Quem é o <em>Gustavo Lessing</em> por trás do CRBM 5-2582?</h2>
+      <p>Antes de falarmos da AUGĒ, queremos entender você. Sua história e seus diferenciais pessoais alimentam a narrativa de autoridade do site.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">01</div>
+      <label class="bloco__q" for="q01">Como você descreveria sua trajetória em uma frase de impacto?</label>
+      <div class="bloco__why">Essa frase pode virar headline ou abertura da bio expandida no site.</div>
+      <textarea id="q01" name="01_trajetoria_frase" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">02</div>
+      <label class="bloco__q" for="q02">O que despertou seu interesse pela biomedicina estética?</label>
+      <div class="bloco__why">A história de origem cria conexão emocional e diferenciação.</div>
+      <textarea id="q02" name="02_origem_interesse" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">03</div>
+      <label class="bloco__q" for="q03">Por que escolheu fazer especialização em Patologia Clínica e Biotecnologia (Yonsei)?</label>
+      <div class="bloco__why">Sua formação internacional é um diferencial enorme — queremos contar essa parte com profundidade.</div>
+      <textarea id="q03" name="03_formacao_internacional" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">04</div>
+      <label class="bloco__q" for="q04">Você atende em consultório próprio? Onde e desde quando?</label>
+      <div class="bloco__why">Vamos linkar o site da Academy à sua clínica/atendimento, se fizer sentido.</div>
+      <textarea id="q04" name="04_consultorio" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">05</div>
+      <label class="bloco__q" for="q05">Quais conquistas/prêmios/títulos você considera importantes destacar?</label>
+      <div class="bloco__why">Toda credencial conta na construção de autoridade — palestras, eventos, publicações, especializações além da Yonsei.</div>
+      <textarea id="q05" name="05_conquistas" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- ============================ CAPÍTULO 02 ============================ -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 02</span>
+      <h2>A história e o futuro <em>da AUGĒ Academy.</em></h2>
+      <p>Queremos contar a AUGĒ no site com a mesma seriedade técnica que vocês entregam nas mentorias.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">06</div>
+      <label class="bloco__q" for="q06">Como surgiu a ideia de criar a AUGĒ Academy?</label>
+      <div class="bloco__why">A origem virá em destaque na seção "Quem somos" — pode ser uma narrativa potente.</div>
+      <textarea id="q06" name="06_origem_auge" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">07</div>
+      <label class="bloco__q" for="q07">O que falta no mercado de formação em estética injetável que a AUGĒ resolve?</label>
+      <div class="bloco__why">Essa é a base do nosso posicionamento competitivo.</div>
+      <textarea id="q07" name="07_diferencial_mercado" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco bloco--dark">
+      <div class="bloco__num">08</div>
+      <label class="bloco__q" for="q08">O Manual de Marca menciona "3 profissionais especialistas" como fundadores. Quem é a terceira pessoa?</label>
+      <div class="bloco__why">Importante para alinhar a comunicação institucional. Hoje só temos info de você e Marina.</div>
+      <textarea id="q08" name="08_terceiro_fundador" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">09</div>
+      <label class="bloco__q" for="q09">Quais os planos da AUGĒ para os próximos 12-24 meses?</label>
+      <div class="bloco__why">Mais mentorias? Plataforma EAD? Eventos? Isso influencia a escalabilidade do site.</div>
+      <textarea id="q09" name="09_planos_futuros" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">10</div>
+      <label class="bloco__q" for="q10">Quem é o aluno ideal da AUGĒ? (descreva como uma persona real)</label>
+      <div class="bloco__why">Idade, formação, momento de carreira, dores, sonhos. Toda copy parte dessa pessoa.</div>
+      <textarea id="q10" name="10_persona_ideal" placeholder="Sua resposta..." style="min-height:120px;"></textarea>
+    </div>
+
+    <!-- ============================ CAPÍTULO 03 ============================ -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 03</span>
+      <h2>As <em>3 mentorias</em> em profundidade.</h2>
+      <p>O site terá uma página dedicada por mentoria. Para fazer cada uma vender, precisamos de detalhes que não estão nos PDFs.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">11</div>
+      <label class="bloco__q" for="q11">Você tem números de impacto que podemos divulgar?</label>
+      <div class="bloco__why">Total de alunos formados, % satisfação, quantos viraram referência regional, etc. Prova social vende.</div>
+      <textarea id="q11" name="11_numeros_impacto" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">12</div>
+      <label class="bloco__q" for="q12">Temos depoimentos de alunos para usar? (em vídeo ou texto)</label>
+      <div class="bloco__why">Ideal: 3 a 6 depoimentos com nome, cidade e foto, idealmente em vídeo de até 60s.</div>
+      <textarea id="q12" name="12_depoimentos" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">13</div>
+      <label class="bloco__q" for="q13">Quais são as próximas datas confirmadas de turmas? (próximos 6 meses)</label>
+      <div class="bloco__why">Vamos criar um calendário ao vivo no site para gerar urgência.</div>
+      <textarea id="q13" name="13_datas_turmas" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">14</div>
+      <label class="bloco__q" for="q14">Tem fotos/vídeos das aulas anteriores que podemos usar?</label>
+      <div class="bloco__why">Bastidor da prática + alunos em ação + resultados antes/depois (com autorização) — material valioso de conversão.</div>
+      <textarea id="q14" name="14_fotos_videos" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">15</div>
+      <label class="bloco__q" for="q15">Existe alguma garantia, política de reembolso ou bônus que devemos comunicar?</label>
+      <div class="bloco__why">Reduz a percepção de risco para o aluno na hora de fechar.</div>
+      <textarea id="q15" name="15_garantia_bonus" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco bloco--dark">
+      <div class="bloco__num">16</div>
+      <label class="bloco__q" for="q16">Vocês oferecem mentorias In Company ou customizadas para clínicas?</label>
+      <div class="bloco__why">Pode virar um produto B2B com página própria — observamos isso em concorrentes premium.</div>
+      <textarea id="q16" name="16_b2b_incompany" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- ============================ CAPÍTULO 04 ============================ -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 04</span>
+      <h2>A <em>Área do Aluno</em> e o conteúdo do site.</h2>
+      <p>A primeira versão terá uma tela de login com placeholder. Para evoluir, precisamos entender sua visão e prioridades.</p>
+    </div>
+
+    <div class="cat-title"><span class="cat-title__icon">A</span> Área do Aluno</div>
+
+    <div class="bloco">
+      <div class="bloco__num">17</div>
+      <div class="bloco__q">Que materiais você quer disponibilizar inicialmente na área do aluno?</div>
+      <div class="bloco__why">Selecione todos os que fazem sentido começar a planejar:</div>
+      <div class="checkbox-grid">
+        <label class="checkbox-label">
+          <input type="checkbox" name="17_materiais[]" value="Gravações das aulas teóricas">
+          <span class="cb-visual"></span>
+          <span class="cb-text">Gravações das aulas teóricas</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="17_materiais[]" value="PDFs e apostilas">
+          <span class="cb-visual"></span>
+          <span class="cb-text">PDFs e apostilas</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="17_materiais[]" value="Fotos dos atendimentos do aluno">
+          <span class="cb-visual"></span>
+          <span class="cb-text">Fotos dos atendimentos do aluno</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="17_materiais[]" value="Planilha de custos">
+          <span class="cb-visual"></span>
+          <span class="cb-text">Planilha de custos</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="17_materiais[]" value="Templates para clínica">
+          <span class="cb-visual"></span>
+          <span class="cb-text">Templates para clínica</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="17_materiais[]" value="Lives mensais com ex-alunos">
+          <span class="cb-visual"></span>
+          <span class="cb-text">Lives mensais com ex-alunos</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="17_materiais[]" value="Comunidade/fórum interno">
+          <span class="cb-visual"></span>
+          <span class="cb-text">Comunidade/fórum interno</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="17_materiais[]" value="Certificado digital">
+          <span class="cb-visual"></span>
+          <span class="cb-text">Certificado digital</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">18</div>
+      <label class="bloco__q" for="q18">Vocês já têm preferência por plataforma de área do aluno?</label>
+      <div class="bloco__why">Opções: Hotmart, Kiwify, Memberkit, Hubla, sistema próprio. Cada uma tem prós e contras.</div>
+      <textarea id="q18" name="18_plataforma_aluno" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="cat-title"><span class="cat-title__icon">B</span> Conteúdo Editorial</div>
+
+    <div class="bloco">
+      <div class="bloco__num">19</div>
+      <label class="bloco__q" for="q19">Vocês têm interesse em um blog/centro de conteúdo? (artigos técnicos, cases, dicas)</label>
+      <div class="bloco__why">Excelente para SEO, autoridade técnica e tráfego orgânico — vimos isso forte na Facial Academy.</div>
+      <textarea id="q19" name="19_blog" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">20</div>
+      <label class="bloco__q" for="q20">Vocês querem capturar leads via material gratuito (e-book, masterclass)?</label>
+      <div class="bloco__why">Estratégia comum: oferecer "aulão gratuito" em troca do e-mail, depois nutrir até a conversão.</div>
+      <textarea id="q20" name="20_lead_magnet" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- ============================ CAPÍTULO 05 ============================ -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 05</span>
+      <h2>Técnico, hospedagem <em>e expectativas.</em></h2>
+      <p>Decisões operacionais que precisamos alinhar antes do site sair do ar.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">21</div>
+      <label class="bloco__q" for="q21">Domínio: vocês já têm um registrado? Qual?</label>
+      <div class="bloco__why">augeacademy.com.br? Outro? Precisamos do acesso para apontar.</div>
+      <textarea id="q21" name="21_dominio" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">22</div>
+      <label class="bloco__q" for="q22">Tem preferência de hospedagem?</label>
+      <div class="bloco__why">Recomendamos Vercel/Netlify (gratuito, performance excelente) ou Hostinger se já tiverem conta.</div>
+      <textarea id="q22" name="22_hospedagem" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">23</div>
+      <label class="bloco__q" for="q23">Quais WhatsApps oficiais devem aparecer no site?</label>
+      <div class="bloco__why">Um centralizado da equipe? Um para Gustavo, outro para Marina? Definir hierarquia da conversão.</div>
+      <textarea id="q23" name="23_whatsapp" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">24</div>
+      <label class="bloco__q" for="q24">E-mail oficial para contato comercial?</label>
+      <div class="bloco__why">Sugestão: contato@augeacademy.com.br + cadastro@ para inscrições.</div>
+      <textarea id="q24" name="24_email_oficial" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">25</div>
+      <label class="bloco__q" for="q25">Vocês pretendem rodar Google Ads ou Meta Ads para o site?</label>
+      <div class="bloco__why">Se sim, vamos preparar landing pages específicas, pixels e conversões. Muda a arquitetura.</div>
+      <textarea id="q25" name="25_ads" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco bloco--dark">
+      <div class="bloco__num">26</div>
+      <label class="bloco__q" for="q26">Qual é o resultado de sucesso para o site nos primeiros 90 dias?</label>
+      <div class="bloco__why">Métrica concreta: X leads/mês? Y inscrições? Z visitantes? Sem objetivo claro não conseguimos otimizar.</div>
+      <textarea id="q26" name="26_meta_90_dias" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">27</div>
+      <label class="bloco__q" for="q27">Existe alguma coisa que você JAMAIS quer ver no site da AUGĒ?</label>
+      <div class="bloco__why">Linguagem, tipo de imagem, abordagem — proibições importam tanto quanto preferências.</div>
+      <textarea id="q27" name="27_proibicoes" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <!-- ============================ CAPÍTULO 06 ============================ -->
+    <div class="section-header">
+      <span class="eyebrow">Capítulo 06</span>
+      <h2>Referências, inspirações <em>e espaço livre.</em></h2>
+      <p>Suas referências dizem muito sobre onde você quer chegar — e o espaço livre serve para o que não couber em pergunta nenhuma.</p>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">28</div>
+      <label class="bloco__q" for="q28">Existem outros sites de escolas/marcas (não só estética) que você admira pelo design e estratégia?</label>
+      <div class="bloco__why">Pode ser de moda, perfumaria de luxo, hotelaria, arquitetura, gastronomia — referência expandida ajuda a achar tom único.</div>
+      <textarea id="q28" name="28_referencias_externas" placeholder="Pode listar até 5 links..."></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">29</div>
+      <label class="bloco__q" for="q29">Sobre as referências que você passou (Facial Academy, Instituto Andrea Tedesco, Ana Laura Fontana, Valéria Dalcoll): o que mais te atraiu em cada uma?</label>
+      <div class="bloco__why">Saber se foi o design, copy, vídeo, estrutura ou o fluxo de conversão muda nossa decisão técnica.</div>
+      <textarea id="q29" name="29_referencias_dadas" placeholder="Sua resposta..." style="min-height:120px;"></textarea>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco__num">30</div>
+      <label class="bloco__q" for="q30">Existe algum concorrente direto que você gostaria que a AUGĒ "supere" em comunicação?</label>
+      <div class="bloco__why">Honestidade aqui ajuda na estratégia de posicionamento.</div>
+      <textarea id="q30" name="30_concorrente_alvo" placeholder="Sua resposta..."></textarea>
+    </div>
+
+    <div class="bloco bloco--dark">
+      <div class="bloco__num">31</div>
+      <label class="bloco__q" for="q31">Use este espaço para qualquer ideia, observação ou pedido que ficou de fora.</label>
+      <div class="bloco__why">Esse é o seu espaço.</div>
+      <textarea id="q31" name="31_espaco_livre" placeholder="Espaço livre — sem limite..." style="min-height:160px;"></textarea>
+    </div>
+
+    <!-- BOTÃO DE ENVIO -->
+    <div class="submit-section">
+      <h3>Pronto para <em>enviar?</em></h3>
+      <p>Ao enviar, suas respostas serão registradas diretamente com a equipe AUGĒ. Você receberá uma confirmação de recebimento por e-mail.</p>
+      <button type="submit" class="btn-submit">
+        Enviar briefing
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+      <small>Suas respostas são confidenciais</small>
+    </div>
+
+  </form>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__quote">"O brilho que nasce antes do amanhecer."</div>
+  AUGĒ Academy · 2026
+</footer>
+
+<script>
+// Barra de progresso baseada em scroll
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progress.style.width = scrolled + '%';
+});
+
+// Auto-save no localStorage (não perde se fechar acidentalmente)
+const form = document.getElementById('briefing-form');
+const STORAGE_KEY = 'briefing-gustavo-draft';
+
+// Carregar rascunho ao abrir
+try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  Object.entries(saved).forEach(([name, value]) => {
+    const field = form.elements[name];
+    if (!field) return;
+    if (field.type === 'checkbox' || (field.length && field[0] && field[0].type === 'checkbox')) {
+      // checkboxes array
+      const values = Array.isArray(value) ? value : [value];
+      const cbs = form.querySelectorAll(`input[name="${name}"]`);
+      cbs.forEach(cb => { if (values.includes(cb.value)) cb.checked = true; });
+    } else {
+      field.value = value;
+    }
+  });
+} catch(e) {}
+
+// Salvar ao digitar
+form.addEventListener('input', () => {
+  const data = {};
+  const fd = new FormData(form);
+  for (const [key, val] of fd.entries()) {
+    if (key.endsWith('[]')) {
+      data[key] = data[key] || [];
+      data[key].push(val);
+    } else {
+      data[key] = val;
+    }
+  }
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+});
+
+// Limpar rascunho ao enviar
+form.addEventListener('submit', () => {
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+});
+</script>
+
+</body>
+</html>

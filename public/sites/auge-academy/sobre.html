@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre & Contato — AUGĒ Academy</title>
+  <link rel="icon" type="image/png" href="assets/img/logos/auge-simbolo-aurora.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/produto.css">
+  <style>
+    .sobre-hero {
+      min-height: 60vh;
+      background:
+        linear-gradient(180deg, rgba(5,0,50,0.75) 0%, rgba(5,0,50,0.95) 100%),
+        url('assets/img/posts/Padrão2.png') center/cover no-repeat;
+      color: var(--veu);
+      display: flex;
+      align-items: center;
+      padding: 140px 0 80px;
+    }
+    .sobre-hero h1 { color: var(--veu); font-size: clamp(40px, 6vw, 72px); font-weight: 400; }
+    .sobre-hero h1 em { font-style: italic; color: var(--aurora); }
+    .sobre-hero p { color: rgba(245, 240, 220, 0.8); max-width: 720px; }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 60px;
+    }
+    .contato-card {
+      background: var(--branco);
+      border-radius: var(--radius-lg);
+      padding: 50px 40px;
+      box-shadow: var(--shadow-soft);
+    }
+    .contato-card h3 { font-size: 28px; margin-bottom: 12px; }
+    .contato-card p { font-size: 15px; color: var(--texto-suave); margin-bottom: 32px; }
+    .contato-list { display: grid; gap: 18px; }
+    .contato-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--veu);
+      border-radius: var(--radius-sm);
+      transition: all var(--t-base);
+    }
+    .contato-item:hover { transform: translateX(6px); background: var(--aurora); color: var(--noite); }
+    .contato-item__icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--noite);
+      color: var(--aurora);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contato-item:hover .contato-item__icon { background: var(--noite); color: var(--aurora); }
+    .contato-item__icon svg { width: 20px; height: 20px; }
+    .contato-item__text small {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .contato-item__text strong { font-size: 15px; color: var(--noite); }
+
+    @media (max-width: 880px) {
+      .contato-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo"><img src="assets/img/logos/auge-horizontal-aurora.png" alt="AUGĒ Academy"></a>
+      <ul class="nav__menu">
+        <li><a href="index.html#mentorias">Mentorias</a></li>
+        <li><a href="index.html#sobre">A AUGĒ</a></li>
+        <li><a href="index.html#professores">Professores</a></li>
+        <li><a href="sobre.html">Contato</a></li>
+        <li><a href="area-aluno.html">Área do Aluno</a></li>
+      </ul>
+      <div class="nav__cta"><button class="btn btn--primary" onclick="abrirWhatsApp('home')">Fale conosco</button></div>
+      <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="sobre-hero">
+    <div class="container">
+      <div class="reveal" style="max-width: 820px;">
+        <span class="tag-aurora">Sobre & Contato</span>
+        <h1 style="margin-top: 20px;">Mais do que uma escola — <em>uma elevação técnica.</em></h1>
+        <p class="p-hero__lead">A AUGĒ Academy nasceu para mudar o padrão da formação em estética injetável no Brasil. Aqui, ciência rigorosa, prática real e cultura de excelência caminham juntas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSÃO, VISÃO, VALORES -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">O que nos guia</span>
+        <h2 class="h1">Princípios inegociáveis.</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 50px auto 0; max-width: 980px;">
+        <div class="reveal" style="background: var(--noite); color: var(--veu); padding: 40px; border-radius: var(--radius-lg);">
+          <h3 style="color: var(--aurora); font-size: 24px;">Missão</h3>
+          <p style="color: rgba(245,240,220,0.85); font-size: 16px; margin: 0; line-height: 1.75;">"Capacitar profissionais da saúde com conhecimento técnico rigoroso e prática clínica real, acelerando sua evolução na estética injetável."</p>
+        </div>
+        <div class="reveal" style="background: var(--noite); color: var(--veu); padding: 40px; border-radius: var(--radius-lg);">
+          <h3 style="color: var(--aurora); font-size: 24px;">Visão</h3>
+          <p style="color: rgba(245,240,220,0.85); font-size: 16px; margin: 0; line-height: 1.75;">"Ser reconhecida como a escola de mais alto padrão técnico em estética injetável no Brasil, a escolha de quem quer dominar o mercado."</p>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin: 28px auto 0; max-width: 980px;">
+        <div class="reveal" style="background: var(--branco); padding: 26px; border-radius: var(--radius); border-left: 4px solid var(--aurora);">
+          <h4 style="font-family: var(--font-body); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--noite); margin-bottom: 8px;">Excelência</h4>
+          <p style="font-size: 13px; color: var(--texto-suave); margin: 0;">Padrão técnico inegociável.</p>
+        </div>
+        <div class="reveal" style="background: var(--branco); padding: 26px; border-radius: var(--radius); border-left: 4px solid var(--aurora);">
+          <h4 style="font-family: var(--font-body); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--noite); margin-bottom: 8px;">Evolução</h4>
+          <p style="font-size: 13px; color: var(--texto-suave); margin: 0;">Crescimento contínuo.</p>
+        </div>
+        <div class="reveal" style="background: var(--branco); padding: 26px; border-radius: var(--radius); border-left: 4px solid var(--aurora);">
+          <h4 style="font-family: var(--font-body); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--noite); margin-bottom: 8px;">Precisão</h4>
+          <p style="font-size: 13px; color: var(--texto-suave); margin: 0;">Ciência aplicada, não achismo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESSORES -->
+  <section class="p-profs">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Corpo Docente</span>
+        <h2 class="h1">Quem comanda a AUGĒ.</h2>
+      </div>
+
+      <div class="p-profs__grid">
+        <div class="p-prof reveal">
+          <div class="p-prof__img"><img src="assets/img/posts/gustavo-1.png" alt="Gustavo Lessing"></div>
+          <div>
+            <h3>Gustavo Lessing</h3>
+            <small>Fundador · CRBM 5-2582</small>
+            <p>Biomédico especialista em Biomedicina Estética, 11 anos de experiência. Graduado pela Universidade Feevale (RS), formação internacional pela Yonsei University (Coreia do Sul). Speaker das empresas Biometil e Biometik.</p>
+            <a href="https://www.instagram.com/gustavolessing/" target="_blank" rel="noopener" style="margin-top: 14px; display: inline-block; color: var(--bronze); font-weight: 600; font-size: 13px;">@gustavolessing →</a>
+          </div>
+        </div>
+
+        <div class="p-prof reveal">
+          <div class="p-prof__img"><img src="assets/img/posts/marina-1.png" alt="Marina Kurek"></div>
+          <div>
+            <h3>Marina Kurek</h3>
+            <small>Fundadora · CRBM 5-3060</small>
+            <p>Biomédica especialista em Biomedicina Estética. Professora universitária na Uniavan e coordenadora de pós-graduação em Estética Facial e Corporal pelo IOA Internacional. Mentora de profissionais da saúde.</p>
+            <a href="https://www.instagram.com/dramarinakurek/" target="_blank" rel="noopener" style="margin-top: 14px; display: inline-block; color: var(--bronze); font-weight: 600; font-size: 13px;">@dramarinakurek →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Vamos conversar</span>
+        <h2 class="h1">Fale com a AUGĒ.</h2>
+        <p class="lead">Tire suas dúvidas, peça o cronograma das próximas turmas ou agende uma conversa sobre qual mentoria faz sentido para o seu momento.</p>
+      </div>
+
+      <div class="contato-grid">
+        <div class="contato-card reveal">
+          <h3>Canais Diretos</h3>
+          <p>Resposta rápida com a equipe AUGĒ Academy.</p>
+
+          <div class="contato-list">
+            <a href="#" onclick="abrirWhatsApp('duvida');return false;" class="contato-item">
+              <div class="contato-item__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56z"/></svg>
+              </div>
+              <div class="contato-item__text">
+                <small>WhatsApp</small>
+                <strong>Falar com nossa equipe</strong>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/augeacademy/" target="_blank" rel="noopener" class="contato-item">
+              <div class="contato-item__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.7a5.9 5.9 0 110 11.8 5.9 5.9 0 010-11.8zm0 9.7a3.8 3.8 0 100-7.6 3.8 3.8 0 000 7.6zm7.5-10a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg>
+              </div>
+              <div class="contato-item__text">
+                <small>Instagram</small>
+                <strong>@augeacademy</strong>
+              </div>
+            </a>
+            <a href="mailto:contato@augeacademy.com.br" class="contato-item">
+              <div class="contato-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+              </div>
+              <div class="contato-item__text">
+                <small>E-mail</small>
+                <strong>contato@augeacademy.com.br</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="contato-card reveal">
+          <h3>Onde acontecem as mentorias</h3>
+          <p>Toda a parte presencial das nossas formações ocorre em estrutura preparada para receber alunos de todo o Brasil.</p>
+
+          <div class="contato-list">
+            <div class="contato-item">
+              <div class="contato-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contato-item__text">
+                <small>Localização</small>
+                <strong>Balneário Camboriú · SC</strong>
+              </div>
+            </div>
+            <div class="contato-item">
+              <div class="contato-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="contato-item__text">
+                <small>Atendimento comercial</small>
+                <strong>Seg a Sex · 9h às 19h</strong>
+              </div>
+            </div>
+            <a href="https://www.instagram.com/gustavolessing/" target="_blank" rel="noopener" class="contato-item">
+              <div class="contato-item__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.7a5.9 5.9 0 110 11.8 5.9 5.9 0 010-11.8zm0 9.7a3.8 3.8 0 100-7.6 3.8 3.8 0 000 7.6zm7.5-10a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg>
+              </div>
+              <div class="contato-item__text">
+                <small>Gustavo Lessing</small>
+                <strong>@gustavolessing</strong>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/dramarinakurek/" target="_blank" rel="noopener" class="contato-item">
+              <div class="contato-item__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.7a5.9 5.9 0 110 11.8 5.9 5.9 0 010-11.8zm0 9.7a3.8 3.8 0 100-7.6 3.8 3.8 0 000 7.6zm7.5-10a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg>
+              </div>
+              <div class="contato-item__text">
+                <small>Marina Kurek</small>
+                <strong>@dramarinakurek</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col footer__logo">
+          <img src="assets/img/logos/auge-vertical-aurora.png" alt="AUGĒ Academy">
+          <p class="footer__brand-text">A escola de mais alto padrão técnico em estética injetável do Brasil.</p>
+          <div class="footer__socials">
+            <a href="https://www.instagram.com/augeacademy/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.7a5.9 5.9 0 110 11.8 5.9 5.9 0 010-11.8zm0 9.7a3.8 3.8 0 100-7.6 3.8 3.8 0 000 7.6zm7.5-10a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg></a>
+            <a href="#" onclick="abrirWhatsApp('home');return false;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Mentorias</h4>
+          <a href="face-basics.html">Face Basics</a>
+          <a href="face-expert.html">Face Expert</a>
+          <a href="gluteo-360.html">Glúteo 360°</a>
+        </div>
+        <div class="footer__col">
+          <h4>Institucional</h4>
+          <a href="index.html#sobre">A AUGĒ</a>
+          <a href="index.html#professores">Professores</a>
+          <a href="sobre.html">Sobre & Contato</a>
+          <a href="area-aluno.html">Área do Aluno</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contato</h4>
+          <a href="#" onclick="abrirWhatsApp('home');return false;">WhatsApp</a>
+          <a href="https://www.instagram.com/augeacademy/" target="_blank" rel="noopener">@augeacademy</a>
+          <a href="mailto:contato@augeacademy.com.br">contato@augeacademy.com.br</a>
+          <a>Balneário Camboriú · SC</a>
+        </div>
+      </div>
+      <div class="footer__bottom">© 2026 AUGĒ Academy. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  <a href="#" class="wa-float" onclick="abrirWhatsApp('home');return false;">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56zm-5.55 12.2h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.59 6.59 0 1112.24-3.5 6.6 6.6 0 01-6.64 6.58z"/></svg>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

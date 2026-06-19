@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUGĒ Academy — Formação Premium em Estética Injetável</title>
+  <meta name="description" content="A escola de mais alto padrão técnico em estética injetável do Brasil. Mentorias presenciais em harmonização facial e corporal com Gustavo Lessing e Marina Kurek.">
+  <meta property="og:title" content="AUGĒ Academy — Formação Premium em Estética Injetável">
+  <meta property="og:description" content="O brilho que nasce antes do amanhecer. Mentorias presenciais com prática clínica real em Balneário Camboriú.">
+  <meta property="og:image" content="assets/img/posts/fundo-hd.png">
+  <link rel="icon" type="image/png" href="assets/img/logos/auge-simbolo-aurora.png">
+
+  <!-- Fontes Google: Cormorant Garamond (estilo Chiqueta) + Sora (oficial) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body>
+
+  <!-- ============== NAV ============== -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/img/logos/auge-horizontal-aurora.png" alt="AUGĒ Academy">
+      </a>
+      <ul class="nav__menu">
+        <li><a href="#mentorias">Mentorias</a></li>
+        <li><a href="#sobre">A AUGĒ</a></li>
+        <li><a href="#professores">Professores</a></li>
+        <li><a href="#diferenciais">Método</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="area-aluno.html">Área do Aluno</a></li>
+      </ul>
+      <div class="nav__cta">
+        <button class="btn btn--primary" onclick="abrirWhatsApp('home')">Fale conosco</button>
+      </div>
+      <button class="nav__burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__content reveal">
+          <span class="eyebrow">Estética Injetável · Formação Premium</span>
+          <h1>O brilho que nasce <em>antes do amanhecer.</em></h1>
+          <p>A AUGĒ Academy é a escola de mais alto padrão técnico em estética injetável do Brasil. Mentorias presenciais conduzidas por especialistas que ainda estão na sala de procedimento todo dia — unindo ciência rigorosa, prática supervisionada real e raciocínio clínico aplicado.</p>
+          <div class="hero__ctas">
+            <button class="btn btn--primary" onclick="document.getElementById('mentorias').scrollIntoView({behavior:'smooth'})">
+              Conhecer as mentorias
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <button class="btn btn--ghost" onclick="abrirWhatsApp('home')">
+              Falar pelo WhatsApp
+            </button>
+          </div>
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <strong>11+</strong>
+              <span>Anos de clínica ativa</span>
+            </div>
+            <div class="hero__stat">
+              <strong>3</strong>
+              <span>Mentorias presenciais</span>
+            </div>
+            <div class="hero__stat">
+              <strong>100%</strong>
+              <span>Prática supervisionada</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__image reveal">
+          <img src="assets/img/posts/gustavo-marina-1.png" alt="Gustavo Lessing e Marina Kurek - AUGĒ Academy">
+          <div class="hero__badge">Próximas turmas abertas</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll">SCROLL</div>
+  </section>
+
+  <!-- ============== SOBRE A AUGĒ ============== -->
+  <section class="about" id="sobre">
+    <div class="container">
+      <div class="about__grid">
+        <div class="reveal">
+          <div class="about__images">
+            <div class="about__img-card">
+              <img src="assets/img/fotos/fotogustavo.png" alt="Gustavo Lessing - Fundador AUGĒ Academy">
+              <div class="about__img-card__name">
+                <strong>Gustavo Lessing</strong>
+                <small>Fundador · CRBM 5-2582</small>
+              </div>
+            </div>
+            <div class="about__img-card">
+              <img src="assets/img/fotos/fotomarina.png" alt="Marina Kurek - Fundadora AUGĒ Academy">
+              <div class="about__img-card__name">
+                <strong>Marina Kurek</strong>
+                <small>Fundadora · CRBM 5-3060</small>
+              </div>
+            </div>
+          </div>
+          <div class="about__quote">
+            "Não somos apenas professores. Somos profissionais que ensinam o que praticam."
+          </div>
+        </div>
+        <div class="about__text reveal">
+          <span class="eyebrow">Quem Somos</span>
+          <h2 class="h1">Uma escola fundada por profissionais que ainda estão na sala de procedimento.</h2>
+          <p class="lead">A AUGĒ Academy é uma escola de formação em medicina estética injetável fundada por especialistas com anos de atuação clínica ativa. Nascemos para elevar o padrão de formação no Brasil — unindo ciência rigorosa, prática supervisionada real e um corpo docente que ainda atende pacientes todo dia.</p>
+          <p>Essa diferença define cada aula, cada protocolo e cada resultado que nossos alunos levam para seus pacientes. Aqui você não aprende uma teoria distante: você aprende com quem aplica, erra, corrige e refina técnicas no consultório todos os dias.</p>
+          <div class="about__values">
+            <div class="about__value">
+              <h4>Excelência</h4>
+              <p>Padrão técnico inegociável em cada protocolo ensinado.</p>
+            </div>
+            <div class="about__value">
+              <h4>Evolução</h4>
+              <p>Crescimento contínuo do profissional, da técnica e dos resultados.</p>
+            </div>
+            <div class="about__value">
+              <h4>Precisão</h4>
+              <p>Ciência aplicada, não achismo. Cada decisão clínica embasada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== MENTORIAS ============== -->
+  <section class="mentorias" id="mentorias">
+    <div class="container">
+      <div class="mentorias__header reveal">
+        <span class="eyebrow center">Nossas Formações</span>
+        <h2 class="h1" style="color: var(--veu)">Mentorias presenciais que transformam sua atuação.</h2>
+        <p class="lead">Três imersões desenhadas para níveis e objetivos distintos — cada uma com 1 dia teórico online e 2 dias de prática clínica supervisionada full day em Balneário Camboriú.</p>
+      </div>
+
+      <div class="mentorias__grid">
+
+        <!-- FACE BASICS -->
+        <article class="mentoria-card reveal">
+          <div class="mentoria-card__img">
+            <span class="mentoria-card__tag">Iniciante</span>
+            <img src="assets/img/img/facebasics.jpeg" alt="Face Basics - Harmonização Facial">
+          </div>
+          <div class="mentoria-card__body">
+            <h3>Face Basics</h3>
+            <p>Para profissionais que querem iniciar ou fortalecer sua atuação em harmonização facial com segurança, técnica e confiança. Toxina botulínica, ácido hialurônico e intradermoterapia desde a base.</p>
+            <div class="mentoria-card__meta">
+              <span>3 dias</span>
+              <span>Presencial em BC</span>
+              <span>Toxina + AH</span>
+            </div>
+            <a href="face-basics.html" class="mentoria-card__cta">
+              Ver mentoria completa
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- FACE EXPERT -->
+        <article class="mentoria-card reveal" style="transition-delay: 0.15s">
+          <div class="mentoria-card__img">
+            <span class="mentoria-card__tag">Avançado</span>
+            <img src="assets/img/img/faceexpert.jpeg" alt="Face Expert - Harmonização Facial Avançada">
+          </div>
+          <div class="mentoria-card__body">
+            <h3>Face Expert</h3>
+            <p>Para o profissional que quer evoluir com visão estratégica: compreender vetores de queda, dominar bioestimuladores de colágeno e refinar resultados naturais com raciocínio clínico avançado.</p>
+            <div class="mentoria-card__meta">
+              <span>3 dias</span>
+              <span>Presencial em BC</span>
+              <span>Bioestimuladores</span>
+            </div>
+            <a href="face-expert.html" class="mentoria-card__cta">
+              Ver mentoria completa
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- GLÚTEO 360° -->
+        <article class="mentoria-card reveal" style="transition-delay: 0.3s">
+          <div class="mentoria-card__img">
+            <span class="mentoria-card__tag">Corporal</span>
+            <img src="assets/img/img/gluteo.jpeg" alt="Glúteo 360 - Harmonização Corporal">
+          </div>
+          <div class="mentoria-card__body">
+            <h3>Glúteo 360°</h3>
+            <p>Imersão em harmonização corporal com o protocolo proprietário Glúteo 360°: volume, contorno, sustentação e qualidade de pele em um resultado global, natural e progressivo.</p>
+            <div class="mentoria-card__meta">
+              <span>3 dias</span>
+              <span>Presencial em BC</span>
+              <span>Protocolo 360°</span>
+            </div>
+            <a href="gluteo-360.html" class="mentoria-card__cta">
+              Ver mentoria completa
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PROFESSORES ============== -->
+  <section class="profs" id="professores">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Corpo Docente</span>
+        <h2 class="h1">Quem ensina, ainda pratica.</h2>
+        <p class="lead">Conheça os profissionais por trás da AUGĒ Academy — especialistas com formação sólida, atuação clínica ativa e dedicação à formação técnica de alto nível.</p>
+      </div>
+
+      <div class="profs__grid">
+
+        <article class="prof-card reveal">
+          <div class="prof-card__img">
+            <img src="assets/img/posts/gustavo-1.png" alt="Gustavo Lessing - Biomédico Esteticista">
+          </div>
+          <div class="prof-card__body">
+            <div>
+              <h3>Gustavo Lessing</h3>
+              <small>Biomédico Especialista · CRBM 5-2582</small>
+              <p>Biomédico especialista em Biomedicina Estética com 11 anos de experiência na área. Graduado pela Universidade Feevale (RS) com habilitação em Patologia Clínica e formação internacional em Biotecnologia (Life Sciences) pela Yonsei University, em Seul, Coreia do Sul. Speaker das empresas Biometil e Biometik.</p>
+            </div>
+            <div class="prof-card__social">
+              <a href="https://www.instagram.com/gustavolessing/" target="_blank" rel="noopener" aria-label="Instagram Gustavo">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 2.2c-3.2 0-3.5 0-4.7.1-1.1 0-1.7.2-2.1.3-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.3 2.1-.1 1.2-.1 1.5-.1 4.7s0 3.5.1 4.7c0 1.1.2 1.7.3 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.3 1.2.1 1.5.1 4.7.1s3.5 0 4.7-.1c1.1 0 1.7-.2 2.1-.3.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .3-2.1.1-1.2.1-1.5.1-4.7s0-3.5-.1-4.7c0-1.1-.2-1.7-.3-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.3-1.2-.1-1.5-.1-4.7-.1zm0 3.7a5.9 5.9 0 110 11.8 5.9 5.9 0 010-11.8zm0 9.7a3.8 3.8 0 100-7.6 3.8 3.8 0 000 7.6zm7.5-10a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="prof-card reveal">
+          <div class="prof-card__img">
+            <img src="assets/img/posts/marina-1.png" alt="Marina Kurek - Biomédica Esteticista">
+          </div>
+          <div class="prof-card__body">
+            <div>
+              <h3>Marina Kurek</h3>
+              <small>Biomédica Especialista · CRBM 5-3060</small>
+              <p>Especialista em Biomedicina Estética, mentora de profissionais da saúde com atuação em prática clínica, ensino e desenvolvimento profissional. Professora universitária na Uniavan e coordenadora de pós-graduação em Estética Facial e Corporal pelo IOA Internacional. Atuou anos à frente do treinamento nacional de grande franquia de estética.</p>
+            </div>
+            <div class="prof-card__social">
+              <a href="https://www.instagram.com/dramarinakurek/" target="_blank" rel="noopener" aria-label="Instagram Marina">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 2.2c-3.2 0-3.5 0-4.7.1-1.1 0-1.7.2-2.1.3-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.3 2.1-.1 1.2-.1 1.5-.1 4.7s0 3.5.1 4.7c0 1.1.2 1.7.3 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.3 1.2.1 1.5.1 4.7.1s3.5 0 4.7-.1c1.1 0 1.7-.2 2.1-.3.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .3-2.1.1-1.2.1-1.5.1-4.7s0-3.5-.1-4.7c0-1.1-.2-1.7-.3-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.3-1.2-.1-1.5-.1-4.7-.1zm0 3.7a5.9 5.9 0 110 11.8 5.9 5.9 0 010-11.8zm0 9.7a3.8 3.8 0 100-7.6 3.8 3.8 0 000 7.6zm7.5-10a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== DIFERENCIAIS ============== -->
+  <section class="diferenciais" id="diferenciais">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">O Método AUGĒ</span>
+        <h2 class="h1" style="color: var(--veu)">Por que escolher a AUGĒ Academy?</h2>
+        <p class="lead" style="color: var(--aurora);">Quatro pilares que tornam a formação AUGĒ uma escolha estratégica para quem leva a estética injetável a sério.</p>
+      </div>
+
+      <div class="dif-grid">
+        <div class="dif-item reveal">
+          <div class="dif-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          </div>
+          <h4>Padrão técnico inegociável</h4>
+          <p>Cada protocolo ensinado é fundamentado em evidência científica e décadas de experiência clínica somada do nosso corpo docente.</p>
+        </div>
+
+        <div class="dif-item reveal" style="transition-delay: 0.1s">
+          <div class="dif-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8 8-4-4-5 5M20 7v6M20 7h-6"/></svg>
+          </div>
+          <h4>Prática supervisionada real</h4>
+          <p>Dois dias full day com pacientes modelo previamente avaliados e agendados. Você sai aplicando, não apenas observando.</p>
+        </div>
+
+        <div class="dif-item reveal" style="transition-delay: 0.2s">
+          <div class="dif-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h4>Mentores que ainda aplicam</h4>
+          <p>Você aprende com quem está na sala de procedimento toda semana — não com professores afastados da prática real.</p>
+        </div>
+
+        <div class="dif-item reveal" style="transition-delay: 0.3s">
+          <div class="dif-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16zM3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+          </div>
+          <h4>Suporte e bastidores</h4>
+          <p>Grupo de WhatsApp para tirar dúvidas, fotos dos seus atendimentos para divulgação e planilha de custos e fornecedores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FAQ ============== -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="text-center reveal" style="max-width: 720px; margin: 0 auto;">
+        <span class="eyebrow center">Dúvidas Frequentes</span>
+        <h2 class="h1">Tudo que você precisa saber antes de se inscrever.</h2>
+      </div>
+
+      <div class="faq__list reveal">
+        <div class="faq__item">
+          <button class="faq__q">As mentorias são totalmente presenciais?</button>
+          <div class="faq__a">A AUGĒ Academy é uma escola de imersão presencial. O dia 1 é teórico online e síncrono. Os dias 2 e 3 são presenciais em Balneário Camboriú, com prática clínica full day em pacientes modelo previamente avaliados e agendados.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Para quem são indicadas as mentorias?</button>
+          <div class="faq__a">Para profissionais da saúde habilitados — biomédicos, dentistas, médicos e enfermeiros — que desejam iniciar, fortalecer ou avançar sua atuação em harmonização facial e corporal com técnica, segurança e raciocínio clínico.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Os pacientes para a prática são fornecidos pela AUGĒ?</button>
+          <div class="faq__a">Sim. Os pacientes modelo são previamente captados, avaliados e agendados pela equipe AUGĒ. Você chega, é orientado, planeja e aplica sob supervisão direta dos professores.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Recebo certificado ao final?</button>
+          <div class="faq__a">Sim, você recebe certificado de participação emitido pela AUGĒ Academy ao concluir os 3 dias de mentoria.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Como funciona o pagamento?</button>
+          <div class="faq__a">Cada mentoria tem uma entrada de R$ 300 no ato da inscrição, e o restante pode ser pago à vista (com desconto) ou parcelado em até 12x no dia da mentoria. Valores específicos estão na página de cada formação.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">A AUGĒ oferece hospedagem ou ajuda com logística?</button>
+          <div class="faq__a">A AUGĒ oferece orientação sobre hospedagens parceiras em Balneário Camboriú e dicas de logística para alunos que vêm de outras cidades. O custo de deslocamento e hospedagem é por conta do aluno.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA FINAL ============== -->
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-final__box reveal">
+        <span class="tag-aurora">Vagas Limitadas</span>
+        <h2>Eleve seu padrão técnico. Construa uma estética que dura.</h2>
+        <p>Fale com nossa equipe pelo WhatsApp e descubra qual mentoria é o próximo passo da sua carreira na estética injetável.</p>
+        <button class="btn btn--primary" onclick="abrirWhatsApp('home')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56zm-5.55 12.2h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.59 6.59 0 11 12.24-3.5 6.6 6.6 0 01-6.64 6.58zm3.62-4.93c-.2-.1-1.17-.58-1.35-.65-.18-.07-.31-.1-.45.1-.13.2-.51.65-.62.78-.12.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.12-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.45-1.08-.61-1.48-.16-.39-.33-.34-.45-.34l-.39-.01c-.13 0-.34.05-.52.25s-.69.67-.69 1.64.7 1.9.8 2.04c.1.13 1.4 2.14 3.4 3 .47.2.85.32 1.14.42.48.15.91.13 1.26.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.12-.94-.05-.08-.18-.13-.38-.23z"/></svg>
+          Falar com a equipe AUGĒ
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col footer__logo">
+          <img src="assets/img/logos/auge-vertical-aurora.png" alt="AUGĒ Academy">
+          <p class="footer__brand-text">
+            A escola de mais alto padrão técnico em estética injetável do Brasil. Formação premium, prática real, resultados duradouros.
+          </p>
+          <div class="footer__socials">
+            <a href="https://www.instagram.com/augeacademy/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 3.7a5.9 5.9 0 110 11.8 5.9 5.9 0 010-11.8zm0 9.7a3.8 3.8 0 100-7.6 3.8 3.8 0 000 7.6zm7.5-10a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg>
+            </a>
+            <a href="#" onclick="abrirWhatsApp('home');return false;" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Mentorias</h4>
+          <a href="face-basics.html">Face Basics</a>
+          <a href="face-expert.html">Face Expert</a>
+          <a href="gluteo-360.html">Glúteo 360°</a>
+        </div>
+        <div class="footer__col">
+          <h4>Institucional</h4>
+          <a href="#sobre">A AUGĒ</a>
+          <a href="#professores">Professores</a>
+          <a href="sobre.html">Sobre & Contato</a>
+          <a href="area-aluno.html">Área do Aluno</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contato</h4>
+          <a href="#" onclick="abrirWhatsApp('home');return false;">WhatsApp</a>
+          <a href="https://www.instagram.com/augeacademy/" target="_blank" rel="noopener">@augeacademy</a>
+          <a href="mailto:contato@augeacademy.com.br">contato@augeacademy.com.br</a>
+          <a>Balneário Camboriú · SC</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2026 AUGĒ Academy. Todos os direitos reservados. · O brilho que nasce antes do amanhecer.
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="#" class="wa-float" onclick="abrirWhatsApp('home');return false;" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4 7.94 7.94 0 004.1 11.93a7.84 7.84 0 001.06 3.98L4 20l4.2-1.1a7.96 7.96 0 003.85.98h.01a7.94 7.94 0 005.54-13.56zm-5.55 12.2h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.59 6.59 0 1112.24-3.5 6.6 6.6 0 01-6.64 6.58zm3.62-4.93c-.2-.1-1.17-.58-1.35-.65-.18-.07-.31-.1-.45.1-.13.2-.51.65-.62.78-.12.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.6-.53-1-1.18-1.12-1.38-.12-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.45-1.08-.61-1.48-.16-.39-.33-.34-.45-.34l-.39-.01c-.13 0-.34.05-.52.25s-.69.67-.69 1.64.7 1.9.8 2.04c.1.13 1.4 2.14 3.4 3 .47.2.85.32 1.14.42.48.15.91.13 1.26.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.12-.94-.05-.08-.18-.13-.38-.23z"/></svg>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

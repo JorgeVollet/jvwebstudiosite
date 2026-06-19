@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OldSchool Barbearia · Horizontina/RS — Agende seu corte online</title>
+<meta name="description" content="Barbearia OldSchool em Horizontina/RS. Escolha seu barbeiro, monte seu atendimento e agende online em segundos. Corte, barba, combo e mais.">
+
+<!-- Favicon (tesoura) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a25a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='6' cy='6' r='3'/%3E%3Cpath d='M8.12 8.12 12 12'/%3E%3Cpath d='M20 4 8.12 15.88'/%3E%3Ccircle cx='6' cy='18' r='3'/%3E%3Cpath d='M14.8 14.8 20 20'/%3E%3C/svg%3E">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:      '#0c0b09',
+          ink2:     '#15130e',
+          ink3:     '#1f1c15',
+          gold:     '#c9a25a',
+          goldlt:   '#e6c98a',
+          cream:    '#f1ead9',
+          vred:     '#b4452f'
+        },
+        fontFamily: {
+          display: ['Oswald', 'sans-serif'],
+          body:    ['Inter', 'sans-serif'],
+          script:  ['Pacifico', 'cursive']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html, body { background:#0c0b09; overflow-x:clip; width:100%; }
+  body { font-family:'Inter',sans-serif; color:#b6afa0; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4,.font-display { font-family:'Oswald',sans-serif; }
+  .font-700 { font-weight:700; }
+  .font-600 { font-weight:600; }
+
+  /* --- blindagem contra rolagem horizontal --- */
+  .grid > * { min-width:0; }
+  img, iframe, video { max-width:100%; }
+
+  /* grão / textura vintage */
+  body::after{
+    content:''; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::-webkit-scrollbar{ width:9px; }
+  ::-webkit-scrollbar-track{ background:#0c0b09; }
+  ::-webkit-scrollbar-thumb{ background:#322c20; border-radius:6px; }
+  ::-webkit-scrollbar-thumb:hover{ background:#4a4130; }
+
+  .glass{ background:rgba(21,19,14,.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(201,162,90,.14); }
+  .gold-glow{ box-shadow:0 0 32px -10px rgba(201,162,90,.45); }
+
+  /* poste de barbeiro */
+  .barber-pole{
+    background:repeating-linear-gradient(45deg,#b4452f 0 14px,#f1ead9 14px 28px,#1f3a5c 28px 42px,#f1ead9 42px 56px);
+  }
+  .gold-rule{ height:1px; background:linear-gradient(90deg,transparent,#c9a25a,transparent); }
+
+  input[type=radio],input[type=checkbox]{ appearance:none;-webkit-appearance:none; }
+
+  @keyframes fadeUp{ from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
+  .reveal{ animation:fadeUp .7s ease-out both; }
+
+  .step-locked{ opacity:.38; pointer-events:none; filter:saturate(.4); }
+  .step-locked .lock-msg{ display:flex; }
+
+  .img-ph{ background:linear-gradient(135deg,#1f1c15,#0c0b09); }
+  .marquee{ animation:marq 28s linear infinite; }
+  @keyframes marq{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  .no-scrollbar::-webkit-scrollbar{ display:none; }
+</style>
+</head>
+
+<body class="font-body bg-ink text-neutral-300 antialiased selection:bg-gold/30 selection:text-cream">
+
+<!-- ================= NAV ================= -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 glass border-b border-gold/10 transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-5 h-[64px] sm:h-[68px] flex items-center justify-between gap-3">
+    <a href="#inicio" class="flex items-center gap-2.5 group shrink-0">
+      <span class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center group-hover:rotate-12 transition-transform shrink-0">
+        <iconify-icon icon="lucide:scissors" class="text-gold text-lg"></iconify-icon>
+      </span>
+      <span class="leading-none">
+        <span class="block font-display font-700 text-cream text-base sm:text-lg tracking-[.14em] uppercase">OldSchool</span>
+        <span class="block text-[9px] sm:text-[10px] text-gold tracking-[.26em] uppercase">Barbearia</span>
+      </span>
+    </a>
+    <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-neutral-400">
+      <a href="#servicos"   class="hover:text-cream transition-colors">Serviços</a>
+      <a href="#galeria"    class="hover:text-cream transition-colors">Galeria</a>
+      <a href="#barbeiros"  class="hover:text-cream transition-colors">Barbeiros</a>
+      <a href="#planos"     class="hover:text-cream transition-colors">Planos</a>
+      <a href="#contato"    class="hover:text-cream transition-colors">Contato</a>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <a href="#agendar" class="flex items-center gap-2 bg-gold text-ink font-semibold text-sm px-3.5 py-2.5 rounded-sm hover:bg-goldlt transition-colors">
+        <iconify-icon icon="lucide:calendar-check"></iconify-icon>
+        <span class="hidden sm:inline">Agendar horário</span>
+        <span class="sm:hidden">Agendar</span>
+      </a>
+      <button id="nav-toggle" aria-label="Abrir menu"
+        class="lg:hidden w-11 h-11 flex items-center justify-center border border-gold/20 rounded-sm text-cream hover:border-gold/50 transition-colors shrink-0">
+        <iconify-icon id="nav-toggle-icon" icon="lucide:menu" class="text-xl"></iconify-icon>
+      </button>
+    </div>
+  </div>
+  <div id="nav-menu" class="hidden lg:hidden border-t border-gold/10 bg-ink2/95 backdrop-blur-md">
+    <div class="px-5 py-1 flex flex-col">
+      <a href="#servicos"  class="nav-link py-3.5 text-sm text-neutral-300 border-b border-gold/5 flex items-center gap-2"><iconify-icon icon="lucide:scissors" class="text-gold"></iconify-icon> Serviços</a>
+      <a href="#agendar"   class="nav-link py-3.5 text-sm text-neutral-300 border-b border-gold/5 flex items-center gap-2"><iconify-icon icon="lucide:calendar-check" class="text-gold"></iconify-icon> Agendar</a>
+      <a href="#galeria"   class="nav-link py-3.5 text-sm text-neutral-300 border-b border-gold/5 flex items-center gap-2"><iconify-icon icon="lucide:image" class="text-gold"></iconify-icon> Galeria</a>
+      <a href="#barbeiros" class="nav-link py-3.5 text-sm text-neutral-300 border-b border-gold/5 flex items-center gap-2"><iconify-icon icon="lucide:users" class="text-gold"></iconify-icon> Barbeiros</a>
+      <a href="#planos"    class="nav-link py-3.5 text-sm text-neutral-300 border-b border-gold/5 flex items-center gap-2"><iconify-icon icon="lucide:badge-percent" class="text-gold"></iconify-icon> Planos</a>
+      <a href="#loja"      class="nav-link py-3.5 text-sm text-neutral-300 border-b border-gold/5 flex items-center gap-2"><iconify-icon icon="lucide:shopping-bag" class="text-gold"></iconify-icon> Loja</a>
+      <a href="#contato"   class="nav-link py-3.5 text-sm text-neutral-300 flex items-center gap-2"><iconify-icon icon="lucide:message-circle" class="text-gold"></iconify-icon> Contato</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="inicio" class="relative min-h-[100svh] flex items-center overflow-hidden pt-[64px] sm:pt-[68px]">
+  <div class="absolute inset-0 img-ph">
+    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=2000&auto=format&fit=crop"
+         onerror="this.style.display='none'" alt=""
+         class="w-full h-full object-cover opacity-30">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(201,162,90,.12),transparent_55%)]"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 py-20 grid lg:grid-cols-12 gap-10 items-center w-full">
+    <div class="lg:col-span-7 reveal">
+      <div class="inline-flex items-center gap-2 border border-gold/30 bg-gold/5 rounded-full px-3 py-1 mb-6 max-w-full">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse shrink-0"></span>
+        <span class="text-[10px] sm:text-[11px] tracking-[.12em] sm:tracking-[.2em] uppercase text-gold">Horizontina · RS — Est. 2014</span>
+      </div>
+      <h1 class="font-display font-700 text-cream uppercase leading-[.92] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
+        Seu corte<br>feito à <span class="text-gold">moda antiga</span>
+      </h1>
+      <p class="mt-6 text-lg text-neutral-400 max-w-xl font-light leading-relaxed">
+        Navalha, toalha quente e mão firme. Escolha seu barbeiro, monte seu atendimento
+        e agende em menos de um minuto — sem ligação, sem espera.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row gap-3">
+        <a href="#agendar" class="group inline-flex items-center justify-center gap-2 bg-gold text-ink font-semibold px-7 py-4 rounded-sm hover:bg-goldlt transition-colors">
+          Agendar meu horário
+          <iconify-icon icon="lucide:chevron-right" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+        </a>
+        <a href="#servicos" class="inline-flex items-center justify-center gap-2 border border-gold/25 text-cream font-medium px-7 py-4 rounded-sm hover:border-gold/60 hover:bg-gold/5 transition-colors">
+          Ver serviços e preços
+        </a>
+      </div>
+      <div class="mt-9 flex items-center gap-5 text-sm text-neutral-500">
+        <span class="flex items-center gap-1.5"><iconify-icon icon="lucide:star" class="text-gold"></iconify-icon> 4.9 no Google</span>
+        <span class="w-px h-4 bg-gold/20"></span>
+        <span class="flex items-center gap-1.5"><iconify-icon icon="lucide:users" class="text-gold"></iconify-icon> +600 clientes/mês</span>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 reveal" style="animation-delay:.15s">
+      <div class="glass rounded-2xl p-7 gold-glow">
+        <div class="flex items-center gap-2 text-gold mb-5">
+          <iconify-icon icon="lucide:scissors"></iconify-icon>
+          <span class="text-xs tracking-[.26em] uppercase">Agendamento expresso</span>
+        </div>
+        <p class="font-display text-2xl text-cream uppercase leading-tight mb-1">Monte seu atendimento</p>
+        <p class="text-sm text-neutral-400 mb-6">Barbeiro → serviços → horário. O valor se atualiza sozinho.</p>
+        <ol class="space-y-3 mb-7">
+          <li class="flex items-center gap-3 text-sm text-neutral-300"><span class="w-7 h-7 shrink-0 rounded-full border border-gold/40 text-gold text-xs flex items-center justify-center font-display">1</span> Escolha com quem quer cortar</li>
+          <li class="flex items-center gap-3 text-sm text-neutral-300"><span class="w-7 h-7 shrink-0 rounded-full border border-gold/40 text-gold text-xs flex items-center justify-center font-display">2</span> Selecione serviços e adicionais</li>
+          <li class="flex items-center gap-3 text-sm text-neutral-300"><span class="w-7 h-7 shrink-0 rounded-full border border-gold/40 text-gold text-xs flex items-center justify-center font-display">3</span> Pegue o melhor horário e pronto</li>
+        </ol>
+        <a href="#agendar" class="block text-center bg-ink3 border border-gold/20 text-cream font-semibold py-3.5 rounded-sm hover:border-gold/60 transition-colors">
+          Começar agora
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="barber-pole h-1.5 absolute bottom-0 inset-x-0 opacity-80"></div>
+</header>
+
+<!-- ================= MÉTRICAS ================= -->
+<section class="border-y border-gold/10 bg-ink2/60">
+  <div class="max-w-7xl mx-auto px-5 grid grid-cols-2 md:grid-cols-4 divide-x divide-gold/10">
+    <div class="py-8 text-center px-3">
+      <div class="font-display text-3xl text-cream">12</div>
+      <div class="text-[11px] uppercase tracking-[.2em] text-neutral-500 mt-1">Anos de história</div>
+    </div>
+    <div class="py-8 text-center px-3">
+      <div class="font-display text-3xl text-cream">3</div>
+      <div class="text-[11px] uppercase tracking-[.2em] text-neutral-500 mt-1">Barbeiros na cadeira</div>
+    </div>
+    <div class="py-8 text-center px-3">
+      <div class="font-display text-3xl text-cream">4.9<span class="text-gold text-xl">★</span></div>
+      <div class="text-[11px] uppercase tracking-[.2em] text-neutral-500 mt-1">Avaliação Google</div>
+    </div>
+    <div class="py-8 text-center px-3">
+      <div class="font-display text-3xl text-cream">+600</div>
+      <div class="text-[11px] uppercase tracking-[.2em] text-neutral-500 mt-1">Clientes por mês</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVIÇOS ================= -->
+<section id="servicos" class="max-w-7xl mx-auto px-5 py-16 sm:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-14">
+    <span class="text-xs tracking-[.3em] uppercase text-gold">O que fazemos</span>
+    <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3">Serviços & preços</h2>
+    <div class="gold-rule w-24 mx-auto mt-5"></div>
+    <p class="mt-5 text-neutral-400">Trabalho de barbeiro de verdade. Preços de referência — o valor final muda conforme o profissional escolhido no agendamento.</p>
+  </div>
+  <div id="servicos-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+</section>
+
+<!-- ================= CONFIGURADOR / AGENDAR ================= -->
+<section id="agendar" class="relative py-16 sm:py-24 bg-ink2/40 border-y border-gold/10">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_10%,rgba(201,162,90,.08),transparent_50%)] pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-5">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-xs tracking-[.3em] uppercase text-gold">Agendamento online</span>
+      <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3">Monte seu atendimento</h2>
+      <div class="gold-rule w-24 mx-auto mt-5"></div>
+      <p class="mt-5 text-neutral-400">Cada escolha atualiza o valor na hora. Sem surpresa no caixa.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+
+      <!-- COLUNA RESUMO (sticky) -->
+      <aside class="lg:col-span-4 order-2 lg:order-1 lg:sticky lg:top-24">
+        <div class="glass rounded-2xl overflow-hidden">
+          <div class="barber-pole h-1.5"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between border-b border-gold/10 pb-4 mb-4">
+              <span class="text-xs uppercase tracking-[.24em] text-neutral-400">Seu agendamento</span>
+              <iconify-icon icon="lucide:receipt-text" class="text-gold"></iconify-icon>
+            </div>
+
+            <div id="resumo-barbeiro" class="hidden items-center gap-3 mb-4 pb-4 border-b border-gold/10">
+              <span id="resumo-barbeiro-av" class="w-11 h-11 rounded-full bg-ink3 border border-gold/30 flex items-center justify-center font-display text-gold text-lg"></span>
+              <div>
+                <div id="resumo-barbeiro-nome" class="text-cream font-medium text-sm"></div>
+                <div id="resumo-barbeiro-esp" class="text-[11px] text-neutral-500"></div>
+              </div>
+            </div>
+
+            <div id="resumo-itens" class="space-y-2.5 text-sm min-h-[40px]">
+              <p class="text-neutral-600 italic">Comece escolhendo um barbeiro…</p>
+            </div>
+
+            <div id="resumo-datahora" class="hidden mt-4 pt-4 border-t border-gold/10 text-sm"></div>
+
+            <div class="mt-5 pt-4 border-t border-gold/20 flex items-end justify-between">
+              <div>
+                <div class="text-[11px] uppercase tracking-[.2em] text-neutral-500">Total estimado</div>
+                <div id="resumo-total" class="font-display text-4xl text-cream leading-none mt-1">R$ 0</div>
+              </div>
+              <div id="resumo-duracao" class="text-right text-[11px] text-neutral-500 hidden">
+                <iconify-icon icon="lucide:clock"></iconify-icon> <span></span>
+              </div>
+            </div>
+
+            <button id="btn-confirmar" disabled
+              class="mt-5 w-full bg-gold text-ink font-semibold py-3.5 rounded-sm hover:bg-goldlt transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+              <iconify-icon icon="lucide:check-circle"></iconify-icon> Confirmar agendamento
+            </button>
+            <p id="confirmar-erro" class="hidden mt-2 text-xs text-vred text-center"></p>
+            <p class="mt-3 text-[11px] text-neutral-600 text-center leading-relaxed">
+              Você não paga nada agora. O barbeiro recebe a solicitação e confirma com você.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- COLUNA PASSOS -->
+      <div class="lg:col-span-8 order-1 lg:order-2 space-y-7">
+
+        <!-- PASSO 1 -->
+        <div class="glass rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-9 h-9 rounded-full bg-gold text-ink font-display font-700 flex items-center justify-center">1</span>
+            <h3 class="font-display text-2xl text-cream uppercase">Escolha seu barbeiro</h3>
+          </div>
+          <div id="barbeiros-grid" class="grid sm:grid-cols-3 gap-4"></div>
+        </div>
+
+        <!-- PASSO 2 -->
+        <div id="passo-2" class="glass rounded-2xl p-6 sm:p-8 step-locked relative transition-all duration-500">
+          <div class="lock-msg hidden absolute inset-0 z-10 items-center justify-center text-xs uppercase tracking-[.2em] text-neutral-500">
+            <span class="flex items-center gap-2"><iconify-icon icon="lucide:lock"></iconify-icon> Escolha um barbeiro primeiro</span>
+          </div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-9 h-9 rounded-full border border-gold/40 text-gold font-display font-700 flex items-center justify-center">2</span>
+            <h3 class="font-display text-2xl text-cream uppercase">Selecione os serviços</h3>
+          </div>
+          <div id="servicos-lista" class="space-y-3"></div>
+        </div>
+
+        <!-- PASSO 3 -->
+        <div id="passo-3" class="glass rounded-2xl p-6 sm:p-8 step-locked relative transition-all duration-500">
+          <div class="lock-msg hidden absolute inset-0 z-10 items-center justify-center text-xs uppercase tracking-[.2em] text-neutral-500">
+            <span class="flex items-center gap-2"><iconify-icon icon="lucide:lock"></iconify-icon> Escolha um barbeiro primeiro</span>
+          </div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-9 h-9 rounded-full border border-gold/40 text-gold font-display font-700 flex items-center justify-center">3</span>
+            <h3 class="font-display text-2xl text-cream uppercase">Toques finais</h3>
+          </div>
+          <p class="text-sm text-neutral-500 mb-6 ml-12">Adicionais opcionais para caprichar no resultado.</p>
+          <div id="addons-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+        </div>
+
+        <!-- PASSO 4 -->
+        <div id="passo-4" class="glass rounded-2xl p-6 sm:p-8 step-locked relative transition-all duration-500">
+          <div class="lock-msg hidden absolute inset-0 z-10 items-center justify-center text-xs uppercase tracking-[.2em] text-neutral-500">
+            <span class="flex items-center gap-2"><iconify-icon icon="lucide:lock"></iconify-icon> Selecione ao menos um serviço</span>
+          </div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-9 h-9 rounded-full border border-gold/40 text-gold font-display font-700 flex items-center justify-center">4</span>
+            <h3 class="font-display text-2xl text-cream uppercase">Data & horário</h3>
+          </div>
+          <p class="text-[11px] uppercase tracking-[.2em] text-neutral-500 mb-3">Escolha o dia</p>
+          <div id="datas-lista" class="flex gap-2.5 overflow-x-auto pb-2 no-scrollbar"></div>
+          <p class="text-[11px] uppercase tracking-[.2em] text-neutral-500 mt-6 mb-3">Horários disponíveis</p>
+          <div id="horarios-grid" class="grid grid-cols-3 sm:grid-cols-5 gap-2.5">
+            <p class="col-span-full text-sm text-neutral-600 italic">Selecione um dia para ver os horários.</p>
+          </div>
+        </div>
+
+        <!-- PASSO 5 -->
+        <div id="passo-5" class="glass rounded-2xl p-6 sm:p-8 step-locked relative transition-all duration-500">
+          <div class="lock-msg hidden absolute inset-0 z-10 items-center justify-center text-xs uppercase tracking-[.2em] text-neutral-500">
+            <span class="flex items-center gap-2"><iconify-icon icon="lucide:lock"></iconify-icon> Escolha data e horário</span>
+          </div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-9 h-9 rounded-full border border-gold/40 text-gold font-display font-700 flex items-center justify-center">5</span>
+            <h3 class="font-display text-2xl text-cream uppercase">Seus dados</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="text-[11px] uppercase tracking-[.2em] text-neutral-500">Nome completo</label>
+              <input id="in-nome" type="text" placeholder="Ex.: João da Silva"
+                class="mt-2 w-full bg-ink border border-gold/15 rounded-sm px-4 py-3 text-cream placeholder-neutral-600 focus:outline-none focus:border-gold/60 transition-colors">
+            </div>
+            <div>
+              <label class="text-[11px] uppercase tracking-[.2em] text-neutral-500">WhatsApp / Telefone</label>
+              <input id="in-tel" type="tel" placeholder="(55) 9 9999-9999"
+                class="mt-2 w-full bg-ink border border-gold/15 rounded-sm px-4 py-3 text-cream placeholder-neutral-600 focus:outline-none focus:border-gold/60 transition-colors">
+            </div>
+          </div>
+          <div class="mt-5">
+            <label class="text-[11px] uppercase tracking-[.2em] text-neutral-500">Observação <span class="text-neutral-700">(opcional)</span></label>
+            <textarea id="in-obs" rows="2" placeholder="Algo que o barbeiro precise saber?"
+              class="mt-2 w-full bg-ink border border-gold/15 rounded-sm px-4 py-3 text-cream placeholder-neutral-600 focus:outline-none focus:border-gold/60 transition-colors resize-none"></textarea>
+          </div>
+          <p class="mt-4 text-xs text-neutral-500 flex items-start gap-2">
+            <iconify-icon icon="lucide:info" class="text-gold mt-0.5"></iconify-icon>
+            Ao confirmar, geramos um comprovante em PDF e abrimos o WhatsApp da barbearia com o resumo pronto para enviar.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALERIA ================= -->
+<section id="galeria" class="max-w-7xl mx-auto px-5 py-16 sm:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-14">
+    <span class="text-xs tracking-[.3em] uppercase text-gold">Portfólio</span>
+    <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3">Trabalhos na régua</h2>
+    <div class="gold-rule w-24 mx-auto mt-5"></div>
+    <p class="mt-5 text-neutral-400">Resultados reais saem da cadeira todos os dias. Aqui vão alguns.</p>
+  </div>
+  <div id="galeria-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+  <p class="text-center text-xs text-neutral-600 mt-5">As imagens são ilustrativas e serão substituídas pelas fotos reais da barbearia.</p>
+</section>
+
+<!-- ================= SOBRE / BARBEIROS ================= -->
+<section id="barbeiros" class="bg-ink2/40 border-y border-gold/10 py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+      <div class="relative">
+        <div class="img-ph rounded-2xl overflow-hidden aspect-[4/3] border border-gold/15">
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1400&auto=format&fit=crop"
+               onerror="this.style.display='none'" alt="Ambiente da barbearia"
+               class="w-full h-full object-cover">
+        </div>
+        <div class="absolute -bottom-5 -right-3 sm:-right-5 glass rounded-xl px-5 py-4 text-center">
+          <div class="font-display text-3xl text-gold">Est.<br>2014</div>
+        </div>
+      </div>
+      <div>
+        <span class="text-xs tracking-[.3em] uppercase text-gold">A barbearia</span>
+        <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3 leading-tight">Tradição que<br>não sai de moda</h2>
+        <div class="gold-rule w-24 mt-5"></div>
+        <p class="mt-6 text-neutral-400 leading-relaxed">
+          A OldSchool nasceu em 2014 com uma ideia simples: resgatar o ritual da barbearia clássica —
+          a toalha quente, a navalha bem amolada, a conversa boa — sem abrir mão do acabamento moderno
+          que o cliente de hoje espera.
+        </p>
+        <p class="mt-4 text-neutral-400 leading-relaxed">
+          Mais de uma década depois, são três barbeiros, milhares de cortes e um lugar onde o horizontinense
+          se sente em casa. Aqui ninguém é só mais um na fila.
+        </p>
+        <div class="mt-7 grid grid-cols-3 gap-4">
+          <div class="text-center border border-gold/15 rounded-lg py-4">
+            <iconify-icon icon="mdi:content-cut" class="text-gold text-2xl"></iconify-icon>
+            <div class="text-[11px] uppercase tracking-wider text-neutral-500 mt-2">Acabamento na navalha</div>
+          </div>
+          <div class="text-center border border-gold/15 rounded-lg py-4">
+            <iconify-icon icon="mdi:fire" class="text-gold text-2xl"></iconify-icon>
+            <div class="text-[11px] uppercase tracking-wider text-neutral-500 mt-2">Toalha quente</div>
+          </div>
+          <div class="text-center border border-gold/15 rounded-lg py-4">
+            <iconify-icon icon="mdi:glass-cocktail" class="text-gold text-2xl"></iconify-icon>
+            <div class="text-[11px] uppercase tracking-wider text-neutral-500 mt-2">Cortesia da casa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mb-10">
+      <span class="text-xs tracking-[.3em] uppercase text-gold">Quem corta seu cabelo</span>
+      <h3 class="font-display font-700 text-3xl sm:text-4xl text-cream uppercase mt-2">Nossos barbeiros</h3>
+    </div>
+    <div id="barbeiros-sobre" class="grid sm:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- ================= DEPOIMENTOS ================= -->
+<section class="max-w-7xl mx-auto px-5 py-16 sm:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-14">
+    <span class="text-xs tracking-[.3em] uppercase text-gold">Quem senta na cadeira, volta</span>
+    <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3">O que dizem</h2>
+    <div class="gold-rule w-24 mx-auto mt-5"></div>
+  </div>
+  <div id="depoimentos-grid" class="grid md:grid-cols-3 gap-5"></div>
+</section>
+
+<!-- ================= PLANOS ================= -->
+<section id="planos" class="bg-ink2/40 border-y border-gold/10 py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-xs tracking-[.3em] uppercase text-gold">Fidelidade</span>
+      <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3">Planos mensais</h2>
+      <div class="gold-rule w-24 mx-auto mt-5"></div>
+      <p class="mt-5 text-neutral-400">Para quem gosta de estar sempre na régua e ainda economizar.</p>
+    </div>
+    <div id="planos-grid" class="grid md:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- ================= LOJA ================= -->
+<section id="loja" class="max-w-7xl mx-auto px-5 py-16 sm:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-14">
+    <span class="text-xs tracking-[.3em] uppercase text-gold">Leve a barbearia pra casa</span>
+    <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3">Nossa loja</h2>
+    <div class="gold-rule w-24 mx-auto mt-5"></div>
+    <p class="mt-5 text-neutral-400">Produtos que usamos na cadeira, à venda no balcão.</p>
+  </div>
+  <div id="loja-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-5"></div>
+</section>
+
+<!-- ================= LOCALIZAÇÃO ================= -->
+<section id="local" class="bg-ink2/40 border-y border-gold/10">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2">
+    <div class="p-10 sm:p-14 flex flex-col justify-center">
+      <span class="text-xs tracking-[.3em] uppercase text-gold">Onde nos encontrar</span>
+      <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3">Passa lá</h2>
+      <div class="gold-rule w-24 mt-5"></div>
+      <ul class="mt-8 space-y-5">
+        <li class="flex gap-4">
+          <iconify-icon icon="lucide:map-pin" class="text-gold text-xl mt-0.5"></iconify-icon>
+          <div><div class="text-cream font-medium">Endereço</div>
+          <div class="text-sm text-neutral-400">Rua Osvaldo Aranha, 432 — Centro<br>Horizontina · RS</div></div>
+        </li>
+        <li class="flex gap-4">
+          <iconify-icon icon="lucide:clock" class="text-gold text-xl mt-0.5"></iconify-icon>
+          <div><div class="text-cream font-medium">Horário de funcionamento</div>
+          <div class="text-sm text-neutral-400">Terça a Sexta: 9h às 19h<br>Sábado: 8h às 18h<br>Domingo e Segunda: fechado</div></div>
+        </li>
+        <li class="flex gap-4">
+          <iconify-icon icon="lucide:phone" class="text-gold text-xl mt-0.5"></iconify-icon>
+          <div><div class="text-cream font-medium">Contato</div>
+          <div class="text-sm text-neutral-400">WhatsApp (55) 9 9999-9999</div></div>
+        </li>
+      </ul>
+    </div>
+    <div class="img-ph min-h-[340px] lg:min-h-full">
+      <iframe class="w-full h-full min-h-[340px] grayscale contrast-125 opacity-80"
+        style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Horizontina,RS,Brasil&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTATO ================= -->
+<section id="contato" class="max-w-7xl mx-auto px-5 py-16 sm:py-24">
+  <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div>
+      <span class="text-xs tracking-[.3em] uppercase text-gold">Fala com a gente</span>
+      <h2 class="font-display font-700 text-4xl sm:text-5xl text-cream uppercase mt-3">Tá com pressa?<br>Chama no zap</h2>
+      <div class="gold-rule w-24 mt-5"></div>
+      <p class="mt-6 text-neutral-400">Prefere agendar pelo WhatsApp ou tirar uma dúvida? É só clicar — a gente responde rapidinho.</p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a id="contato-zap" href="#" target="_blank" class="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3.5 rounded-sm hover:bg-goldlt transition-colors">
+          <iconify-icon icon="mdi:whatsapp" class="text-xl"></iconify-icon> Chamar no WhatsApp
+        </a>
+        <a href="#" class="inline-flex items-center gap-2 border border-gold/25 text-cream px-6 py-3.5 rounded-sm hover:border-gold/60 transition-colors">
+          <iconify-icon icon="mdi:instagram" class="text-xl text-gold"></iconify-icon> @oldschool.barbearia
+        </a>
+      </div>
+    </div>
+    <div class="glass rounded-2xl p-7">
+      <h3 class="font-display text-2xl text-cream uppercase mb-1">Mande uma mensagem</h3>
+      <p class="text-sm text-neutral-500 mb-6">Preenche aí que abrimos o WhatsApp com o texto pronto.</p>
+      <div class="space-y-4">
+        <input id="ct-nome" type="text" placeholder="Seu nome"
+          class="w-full bg-ink border border-gold/15 rounded-sm px-4 py-3 text-cream placeholder-neutral-600 focus:outline-none focus:border-gold/60">
+        <input id="ct-tel" type="tel" placeholder="Seu WhatsApp"
+          class="w-full bg-ink border border-gold/15 rounded-sm px-4 py-3 text-cream placeholder-neutral-600 focus:outline-none focus:border-gold/60">
+        <textarea id="ct-msg" rows="3" placeholder="Como podemos ajudar?"
+          class="w-full bg-ink border border-gold/15 rounded-sm px-4 py-3 text-cream placeholder-neutral-600 focus:outline-none focus:border-gold/60 resize-none"></textarea>
+        <button id="ct-enviar" class="w-full bg-gold text-ink font-semibold py-3.5 rounded-sm hover:bg-goldlt transition-colors">
+          Enviar pelo WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-ink border-t border-gold/15 pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center">
+            <iconify-icon icon="lucide:scissors" class="text-gold"></iconify-icon>
+          </span>
+          <span class="font-display font-700 text-cream text-lg tracking-[.18em] uppercase">OldSchool</span>
+        </div>
+        <p class="text-sm text-neutral-500 leading-relaxed">Barbearia clássica em Horizontina/RS. Feito à moda antiga desde 2014.</p>
+      </div>
+      <div>
+        <h4 class="font-display text-cream uppercase text-sm tracking-wider mb-4">Navegação</h4>
+        <ul class="space-y-2 text-sm text-neutral-500">
+          <li><a href="#servicos" class="hover:text-gold transition-colors">Serviços</a></li>
+          <li><a href="#agendar" class="hover:text-gold transition-colors">Agendar</a></li>
+          <li><a href="#galeria" class="hover:text-gold transition-colors">Galeria</a></li>
+          <li><a href="#planos" class="hover:text-gold transition-colors">Planos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-display text-cream uppercase text-sm tracking-wider mb-4">Contato</h4>
+        <ul class="space-y-2 text-sm text-neutral-500">
+          <li>Rua Osvaldo Aranha, 432</li>
+          <li>Centro · Horizontina/RS</li>
+          <li>(55) 9 9999-9999</li>
+          <li>Ter–Sex 9h–19h · Sáb 8h–18h</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-display text-cream uppercase text-sm tracking-wider mb-4">Acesso</h4>
+        <a href="admin.html" class="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-gold transition-colors">
+          <iconify-icon icon="lucide:lock"></iconify-icon> Área do barbeiro
+        </a>
+        <p class="text-xs text-neutral-700 mt-3">Painel de gestão de agendamentos.</p>
+      </div>
+    </div>
+    <div class="barber-pole h-1 rounded-full mb-6 opacity-70"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-600">
+      <span>© 2026 OldSchool Barbearia — Protótipo demonstrativo.</span>
+      <span>Site desenvolvido por Jorge Henrique.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTÃO FLUTUANTE MOBILE -->
+<a href="#agendar" class="lg:hidden fixed bottom-5 right-5 z-40 bg-gold text-ink font-semibold px-5 py-3.5 rounded-full shadow-lg gold-glow flex items-center gap-2">
+  <iconify-icon icon="lucide:calendar-check"></iconify-icon> Agendar
+</a>
+
+<!-- ================= MODAL SUCESSO ================= -->
+<div id="modal" class="hidden fixed inset-0 z-[70] items-center justify-center p-4 sm:p-5 bg-ink/85 backdrop-blur-sm overflow-y-auto">
+  <div class="glass rounded-2xl max-w-md w-full overflow-hidden reveal my-auto">
+    <div class="barber-pole h-1.5"></div>
+    <div class="p-7 text-center">
+      <div class="w-16 h-16 mx-auto rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center mb-5">
+        <iconify-icon icon="lucide:check" class="text-gold text-3xl"></iconify-icon>
+      </div>
+      <h3 class="font-display text-2xl text-cream uppercase">Solicitação enviada!</h3>
+      <p class="text-sm text-neutral-400 mt-2">Seu comprovante em PDF foi gerado. Agora é só enviar o resumo no WhatsApp da barbearia para o barbeiro confirmar.</p>
+      <div id="modal-resumo" class="text-left text-sm bg-ink/60 border border-gold/15 rounded-lg p-4 my-5 space-y-1"></div>
+      <a id="modal-zap" href="#" target="_blank"
+        class="w-full bg-gold text-ink font-semibold py-3.5 rounded-sm hover:bg-goldlt transition-colors flex items-center justify-center gap-2">
+        <iconify-icon icon="mdi:whatsapp" class="text-xl"></iconify-icon> Enviar no WhatsApp
+      </a>
+      <button id="modal-pdf" class="w-full mt-2.5 border border-gold/25 text-cream py-3 rounded-sm hover:border-gold/60 transition-colors flex items-center justify-center gap-2">
+        <iconify-icon icon="lucide:download"></iconify-icon> Baixar PDF novamente
+      </button>
+      <button id="modal-fechar" class="w-full mt-2.5 text-sm text-neutral-500 hover:text-cream transition-colors py-2">
+        Fazer outro agendamento
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/dados.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
