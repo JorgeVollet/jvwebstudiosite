@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="JV WEB STUDIO">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F4D88A"/>
+      <stop offset="45%" stop-color="#E5C76B"/>
+      <stop offset="100%" stop-color="#C9A24B"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- fundo preto arredondado -->
+  <rect x="26" y="26" width="460" height="460" rx="96" fill="#0a0a0a"/>
+
+  <!-- moldura dourada interna -->
+  <rect x="92" y="92" width="328" height="328" rx="60" fill="none" stroke="url(#gold)" stroke-width="8" opacity="0.9"/>
+
+  <!-- letras JV -->
+  <g transform="translate(256,262) scale(2.05)" fill="url(#gold)" filter="url(#glow)">
+    <path d="M-70,-55 L-20,-55 L-20,30 Q-20,55 -45,55 Q-72,55 -78,38 L-58,30 Q-55,42 -45,42 Q-32,42 -32,30 L-32,-38 L-70,-38 Z"/>
+    <path d="M-5,-55 L17,-55 L36,30 L55,-55 L75,-55 L48,55 L24,55 Z"/>
+  </g>
+</svg>
