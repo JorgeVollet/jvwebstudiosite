@@ -892,3 +892,37 @@ body {
   .text-gold-shine, .marquee { animation: none; }
   .constel-center, .constel-float { animation: none; }
 }
+
+/* === Textura: grid dourado para seções claras (.bg-grid) === */
+.bg-grid { position: relative; }
+.bg-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,162,75,0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,162,75,0.16) 1px, transparent 1px);
+  background-size: 40px 40px;
+  /* esmaece o grid nas bordas (cima/baixo) p/ não cortar seco */
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent);
+}
+/* o conteúdo da seção fica acima do grid */
+.bg-grid > * { position: relative; z-index: 1; }
+
+/* === Textura: pontos dourados (.bg-dots) — alternativa ao grid === */
+.bg-dots { position: relative; }
+.bg-dots::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(201,162,75,0.22) 1.4px, transparent 1.6px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(130% 100% at 50% 0%, #000 62%, transparent);
+  mask-image: radial-gradient(130% 100% at 50% 0%, #000 62%, transparent);
+}
+.bg-dots > * { position: relative; z-index: 1; }
