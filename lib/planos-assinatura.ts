@@ -37,8 +37,8 @@ export const PLANOS_ASSINATURA: PlanoAssinatura[] = [
     ],
     cta: "Quero o Essencial",
     waMsg: "Olá! Quero o plano ESSENCIAL (R$97/mês) da JV WEB STUDIO. Pode me ajudar?",
-    checkoutMensal: "https://kiwify.app/lXGrCx1",
-    checkoutAnual: "https://kiwify.app/oy5FUrl",
+    checkoutMensal: "https://pay.kiwify.com.br/XJNjv2H",
+    checkoutAnual: "https://pay.kiwify.com.br/H9DCnMV",
   },
   {
     id: "profissional",
@@ -59,8 +59,8 @@ export const PLANOS_ASSINATURA: PlanoAssinatura[] = [
     ],
     cta: "Quero o Profissional",
     waMsg: "Olá! Quero o plano PROFISSIONAL (R$119/mês) da JV WEB STUDIO. Pode me ajudar?",
-    checkoutMensal: "https://kiwify.app/7TDn0kU",
-    checkoutAnual: "https://kiwify.app/X3d8aTA",
+    checkoutMensal: "https://pay.kiwify.com.br/d6pXuIS",
+    checkoutAnual: "https://pay.kiwify.com.br/KFAREMl",
   },
   {
     id: "completo",
@@ -80,8 +80,8 @@ export const PLANOS_ASSINATURA: PlanoAssinatura[] = [
     ],
     cta: "Quero o Completo",
     waMsg: "Olá! Quero o plano COMPLETO (R$149/mês) da JV WEB STUDIO. Pode me ajudar?",
-    checkoutMensal: "https://kiwify.app/L6fZ6D2",
-    checkoutAnual: "https://kiwify.app/VEpTENR",
+    checkoutMensal: "https://pay.kiwify.com.br/hb4309l",
+    checkoutAnual: "https://pay.kiwify.com.br/zvaM49R",
   },
 ];
 
