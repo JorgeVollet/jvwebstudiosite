@@ -93,11 +93,6 @@ export default function BriefingCompleto() {
       const negocioNome = String(fd.get("negocio") || "");
       setResumo({ nome, plano, negocio: negocioNome });
       setDone(true);
-      // Abre o WhatsApp do estúdio já com a mensagem pronta (cliente -> Jorge).
-      if (SITE.whatsapp) {
-        const msg = `Olá! Sou ${nome}. Acabei de contratar o plano ${plano || "de assinatura"} da JV WEB STUDIO e enviei o briefing do meu site${negocioNome ? ` (${negocioNome})` : ""}. Quero começar! ✦`;
-        window.open(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
-      }
     } catch (err: any) {
       setError(err.message);
     } finally { setLoading(false); }
@@ -112,12 +107,12 @@ export default function BriefingCompleto() {
         <h3 className="font-display text-2xl font-bold text-white">Briefing enviado! ✦</h3>
         <p className="max-w-md text-neutral-300">
           Recebi tudo que preciso pra começar. Seu site fica pronto em até{" "}
-          <strong className="text-gold-metal">48 horas úteis</strong>. Abri o meu
-          WhatsApp pra você me mandar um oi — se não abrir sozinho, toque no botão abaixo. ✦
+          <strong className="text-gold-metal">48 horas úteis</strong>. Se quiser adiantar,
+          abra o meu WhatsApp no botão abaixo e me manda um oi. ✦
         </p>
         {SITE.whatsapp && (
           <a href={wa} target="_blank" rel="noopener" className="btn-gold mt-2 px-7 py-3 text-sm uppercase tracking-widest">
-            Falar comigo no WhatsApp
+            Abrir o meu WhatsApp
           </a>
         )}
       </div>

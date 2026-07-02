@@ -4,6 +4,8 @@ import Reveal from "@/components/Reveal";
 import { SITE } from "@/lib/site";
 import { Camera, Check, Sparkles, ArrowRight } from "lucide-react";
 import PersistPlano from "@/components/PersistPlano";
+import AcessoRestrito from "@/components/AcessoRestrito";
+import { ACESSO } from "@/lib/acesso";
 
 export const metadata: Metadata = {
   title: "Pacote de Fotos Profissionais com IA — JV WEB STUDIO",
@@ -27,8 +29,11 @@ export default function UpsellFotosPage({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
+  if (searchParams.k !== ACESSO) return <AcessoRestrito />;
   const plano = typeof searchParams.plano === "string" ? searchParams.plano : "";
-  const briefingHref = plano ? `/briefing?plano=${encodeURIComponent(plano)}` : "/briefing";
+  const briefingHref = plano
+    ? `/briefing?plano=${encodeURIComponent(plano)}&k=${ACESSO}`
+    : `/briefing?k=${ACESSO}`;
   const wa = SITE.whatsapp
     ? `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Quero adicionar o pacote de 5 Fotos Profissionais com IA (R$47).")}`
     : "#";

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Logo from "@/components/Logo";
 import Reveal from "@/components/Reveal";
 import BriefingCompleto from "@/components/BriefingCompleto";
+import AcessoRestrito from "@/components/AcessoRestrito";
+import { ACESSO } from "@/lib/acesso";
 import { CheckCircle2, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -10,7 +12,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function BriefingPage() {
+export default function BriefingPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  if (searchParams.k !== ACESSO) return <AcessoRestrito />;
   return (
     <>
       {/* Topo mínimo — só o logo */}

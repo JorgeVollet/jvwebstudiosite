@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Logo from "@/components/Logo";
 import Reveal from "@/components/Reveal";
 import { SITE } from "@/lib/site";
+import AcessoRestrito from "@/components/AcessoRestrito";
+import { ACESSO } from "@/lib/acesso";
 import { CheckCircle2, Camera, Images, Send, MessageCircle, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -28,7 +30,12 @@ const PASSOS = [
   },
 ];
 
-export default function ObrigadoFotosPage() {
+export default function ObrigadoFotosPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  if (searchParams.k !== ACESSO) return <AcessoRestrito />;
   const wa = SITE.whatsapp
     ? `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Comprei o Pacote de 5 Fotos com IA! Vou te enviar minhas 3 fotos (1 corpo inteiro + 2 selfies) e as 5 referências.")}`
     : "#";
@@ -97,7 +104,7 @@ export default function ObrigadoFotosPage() {
                 seu site pra eu começar a montar tudo.
               </p>
               <a
-                href="/briefing"
+                href={`/briefing?k=${ACESSO}`}
                 className="btn-outline-gold mt-4 inline-flex items-center gap-2 px-7 py-3 text-sm uppercase tracking-widest"
               >
                 Preencher o briefing do meu site <ArrowRight className="h-4 w-4" />
