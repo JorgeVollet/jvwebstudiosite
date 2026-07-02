@@ -4,6 +4,7 @@ import {
   Loader2, CheckCircle2, ArrowRight, ArrowLeft,
   Globe, Palette, Rocket, MessageSquare,
 } from "lucide-react";
+import { submitLead } from "@/lib/submitLead";
 
 /* ------------------------------------------------------------------ *
  * Quiz / briefing interativo multi-etapas
@@ -68,25 +69,16 @@ export default function Briefing() {
       `Descrição: ${descricao || "—"}`,
     ].join(" | ");
 
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome, telefone, email, empresa: nicho, busca, origem: "briefing",
-        }),
-      });
-      const data = await res.json();
-      if (!data.ok) throw new Error(data.error || "Erro ao enviar.");
-      try { localStorage.setItem("jv_lead_enviado", "1"); } catch {}
-      setDone(true);
-    } catch (err: any) {
-      setError(err.message);
-    } finally { setLoading(false); }
+    const { ok, error: errMsg } = await submitLead({
+      nome, telefone, email, empresa: nicho, busca, origem: "briefing",
+    });
+    setLoading(false);
+    if (!ok) { setError(errMsg || "Erro ao enviar."); return; }
+    try { localStorage.setItem("jv_lead_enviado", "1"); } catch {}
+    setDone(true);
   }
 
   if (done) {
-    const wa = telefone.replace(/\D/g, "");
     return (
       <div className="flex flex-col items-center gap-4 py-10 text-center">
         <CheckCircle2 className="h-16 w-16 text-gold-100" />

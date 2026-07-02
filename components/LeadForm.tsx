@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Loader2, CheckCircle2 } from "lucide-react";
+import { submitLead } from "@/lib/submitLead";
 
 export type LeadFormProps = {
   origem?: string;
@@ -18,24 +19,16 @@ export default function LeadForm({ origem = "popup", cupom, compact, onSuccess }
     e.preventDefault();
     setLoading(true); setError("");
     const fd = new FormData(e.currentTarget);
-    const payload = {
+    const { ok, error: errMsg } = await submitLead({
       nome: fd.get("nome"), telefone: fd.get("telefone"), email: fd.get("email"),
       empresa: fd.get("empresa"), busca: fd.get("busca"), instagram: fd.get("instagram"),
       origem, cupom,
-    };
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (!data.ok) throw new Error(data.error || "Erro ao enviar.");
-      // marca que este visitante já enviou um lead → o popup não aparece mais
-      try { localStorage.setItem("jv_lead_enviado", "1"); } catch {}
-      setDone(true); onSuccess?.();
-    } catch (err: any) {
-      setError(err.message);
-    } finally { setLoading(false); }
+    });
+    setLoading(false);
+    if (!ok) { setError(errMsg || "Erro ao enviar."); return; }
+    // marca que este visitante já enviou um lead → o popup não aparece mais
+    try { localStorage.setItem("jv_lead_enviado", "1"); } catch {}
+    setDone(true); onSuccess?.();
   }
 
   if (done) {

@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { Check, Crown, X, ArrowRight, Loader2 } from "lucide-react";
 import { PLANOS_ASSINATURA, type PlanoAssinatura } from "@/lib/planos-assinatura";
 import { SITE } from "@/lib/site";
+import { submitLead } from "@/lib/submitLead";
 
 /* Cards dos 3 planos com toggle Mensal / Anual.
    Ao clicar, abre um modal (via portal no body, com blur no site atrás) que
@@ -61,18 +62,13 @@ export default function PlanosAssinatura() {
     const preco = anual ? modal.precoAnual : modal.precoMensal;
     const destino = ctaLink(modal);
 
-    try {
-      await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome, email, telefone,
-          empresa: null,
-          busca: `INTENÇÃO DE COMPRA · Plano ${modal.nome} (${periodo}) · R$${preco} · seguiu para o checkout`,
-          origem: "planos-checkout",
-        }),
-      });
-    } catch { /* segue pro checkout mesmo se o registro falhar */ }
+    // registra a intenção (não bloqueia a venda se falhar)
+    await submitLead({
+      nome, email, telefone,
+      empresa: null,
+      busca: `INTENÇÃO DE COMPRA · Plano ${modal.nome} (${periodo}) · R$${preco} · seguiu para o checkout`,
+      origem: "planos-checkout",
+    });
 
     try { localStorage.setItem("jv_plano", modal.id); } catch {}
 

@@ -6,11 +6,9 @@
  */
 export default function Logo({
   href = "#top",
-  showWordmark = true,
   className = "",
 }: {
   href?: string;
-  showWordmark?: boolean;
   className?: string;
 }) {
   return (

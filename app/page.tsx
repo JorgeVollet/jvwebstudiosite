@@ -10,7 +10,7 @@ import Services from "@/components/sections/Services";
 import Differentials from "@/components/sections/Differentials";
 import HorizontalProcess from "@/components/sections/HorizontalProcess";
 import Marquee from "@/components/sections/Marquee";
-// import Transformacao from "@/components/sections/Transformacao"; // engavetado — reativar depois
+// import Transformacao from "@/components/_engavetado/Transformacao"; // engavetado — reativar depois
 import PortfolioPreview from "@/components/sections/PortfolioPreview";
 import ArchivesGallery from "@/components/sections/ArchivesGallery";
 import Coverage from "@/components/sections/Coverage";

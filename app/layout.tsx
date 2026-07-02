@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Space_Mono, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
-// import CustomCursor from "@/components/CustomCursor"; // desativado p/ testar performance
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -94,7 +93,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* <CustomCursor /> desativado p/ testar performance */}
         {children}
       </body>
     </html>

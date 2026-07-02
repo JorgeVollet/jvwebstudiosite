@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import BeforeAfter from "@/components/BeforeAfter";
+import BeforeAfter from "./BeforeAfter";
 
 export default function Transformacao() {
   return (

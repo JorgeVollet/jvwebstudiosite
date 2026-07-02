@@ -1,6 +1,6 @@
 "use client";
 import UnicornBackground from "@/components/backgrounds/UnicornBackground";
-import { HERO, SITE, STATS } from "@/lib/site";
+import { HERO, STATS } from "@/lib/site";
 import { ArrowDown } from "lucide-react";
 
 export default function Hero() {

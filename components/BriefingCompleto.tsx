@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Loader2, CheckCircle2, Send, Check, Lock } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { PLANOS_ASSINATURA } from "@/lib/planos-assinatura";
+import { submitLead } from "@/lib/submitLead";
 
 /* Paletas / estilos prontos pra quem fica perdido na hora de escolher cor.
    O cliente clica no card; a paleta escolhida vai junto no briefing. */
@@ -75,27 +76,19 @@ export default function BriefingCompleto() {
       `Observações: ${fd.get("obs") || "—"}`,
     ].join(" | ");
 
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome, telefone, email,
-          empresa: fd.get("negocio") || null,
-          instagram: fd.get("instagram") || null,
-          busca,
-          origem: "assinatura-briefing",
-        }),
-      });
-      const data = await res.json();
-      if (!data.ok) throw new Error(data.error || "Erro ao enviar.");
-      const plano = planoLock || String(fd.get("plano") || "");
-      const negocioNome = String(fd.get("negocio") || "");
-      setResumo({ nome, plano, negocio: negocioNome });
-      setDone(true);
-    } catch (err: any) {
-      setError(err.message);
-    } finally { setLoading(false); }
+    const { ok, error: errMsg } = await submitLead({
+      nome, telefone, email,
+      empresa: fd.get("negocio") || null,
+      instagram: fd.get("instagram") || null,
+      busca,
+      origem: "assinatura-briefing",
+    });
+    setLoading(false);
+    if (!ok) { setError(errMsg || "Erro ao enviar."); return; }
+    const plano = planoLock || String(fd.get("plano") || "");
+    const negocioNome = String(fd.get("negocio") || "");
+    setResumo({ nome, plano, negocio: negocioNome });
+    setDone(true);
   }
 
   if (done) {
