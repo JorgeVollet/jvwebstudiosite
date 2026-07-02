@@ -1,23 +1,159 @@
 "use client";
-import { useState } from "react";
-import { Check, Crown } from "lucide-react";
-import { PLANOS_ASSINATURA } from "@/lib/planos-assinatura";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { Check, Crown, X, ArrowRight, Loader2 } from "lucide-react";
+import { PLANOS_ASSINATURA, type PlanoAssinatura } from "@/lib/planos-assinatura";
 import { SITE } from "@/lib/site";
 
 /* Cards dos 3 planos com toggle Mensal / Anual.
-   Botão usa o link de checkout (Kiwify/MP) do período escolhido se houver;
-   senão cai no WhatsApp (fallback) — assim nunca fica quebrado. */
+   Ao clicar, abre um modal (via portal no body, com blur no site atrás) que
+   captura Nome/E-mail/Telefone (vira lead no /api/leads) e SÓ DEPOIS redireciona
+   pro checkout — assim conseguimos ir atrás de quem não concluir a compra. */
 export default function PlanosAssinatura() {
   const [anual, setAnual] = useState(false);
+  const [modal, setModal] = useState<PlanoAssinatura | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [erro, setErro] = useState("");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const waBase = SITE.whatsapp ? `https://wa.me/${SITE.whatsapp}` : "#";
   const waLink = (msg: string) =>
     SITE.whatsapp ? `${waBase}?text=${encodeURIComponent(msg)}` : "#contato";
 
-  function ctaLink(p: (typeof PLANOS_ASSINATURA)[number]) {
+  function ctaLink(p: PlanoAssinatura) {
     const checkout = anual ? p.checkoutAnual : p.checkoutMensal;
     return checkout && checkout.trim() ? checkout : waLink(p.waMsg);
   }
+
+  // ESC fecha o modal + trava scroll
+  useEffect(() => {
+    if (!modal) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" && !loading) setModal(null); };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [modal, loading]);
+
+  function abrir(p: PlanoAssinatura) {
+    setErro("");
+    setModal(p);
+  }
+
+  async function irParaCheckout(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!modal) return;
+    const fd = new FormData(e.currentTarget);
+    const nome = String(fd.get("nome") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    const telefone = String(fd.get("telefone") || "").trim();
+    if (!nome || !email || !telefone) {
+      setErro("Preencha nome, e-mail e telefone.");
+      return;
+    }
+    setLoading(true); setErro("");
+
+    const periodo = anual ? "Anual" : "Mensal";
+    const preco = anual ? modal.precoAnual : modal.precoMensal;
+    const destino = ctaLink(modal);
+
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome, email, telefone,
+          empresa: null,
+          busca: `INTENÇÃO DE COMPRA · Plano ${modal.nome} (${periodo}) · R$${preco} · seguiu para o checkout`,
+          origem: "planos-checkout",
+        }),
+      });
+    } catch { /* segue pro checkout mesmo se o registro falhar */ }
+
+    try { localStorage.setItem("jv_plano", modal.id); } catch {}
+
+    window.location.href = destino;
+  }
+
+  const modalNode = modal && (
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 p-4 backdrop-blur-md"
+      onClick={() => !loading && setModal(null)}
+    >
+      <div
+        className="card-dark gold-border relative w-full max-w-md p-8"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={() => !loading && setModal(null)}
+          aria-label="Fechar"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white/70 transition hover:text-white"
+        >
+          <X className="h-4 w-4" />
+        </button>
+
+        <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-100">
+          Plano {modal.nome} · {anual ? "Anual" : "Mensal"}
+        </div>
+        <h3 className="mt-2 font-display text-2xl font-bold text-white">
+          Falta pouco para começar
+        </h3>
+        <p className="mt-1 text-sm text-neutral-400">
+          Preencha seus dados para seguir para o checkout seguro.
+        </p>
+
+        <form onSubmit={irParaCheckout} className="mt-6 space-y-4">
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-white/90">Nome</label>
+            <input
+              name="nome"
+              required
+              autoFocus
+              placeholder="Seu nome completo"
+              className="w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none transition focus:border-gold-3 focus:ring-1 focus:ring-gold-3"
+            />
+          </div>
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-white/90">E-mail</label>
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="voce@email.com"
+              className="w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none transition focus:border-gold-3 focus:ring-1 focus:ring-gold-3"
+            />
+          </div>
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-white/90">Telefone</label>
+            <input
+              name="telefone"
+              required
+              placeholder="(00) 00000-0000"
+              className="w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none transition focus:border-gold-3 focus:ring-1 focus:ring-gold-3"
+            />
+          </div>
+
+          {erro && <p className="text-sm text-red-400">{erro}</p>}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn-gold flex w-full items-center justify-center gap-2 px-6 py-4 text-sm uppercase tracking-widest disabled:opacity-60"
+          >
+            {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Indo pro checkout…</> : <>Ir para o checkout <ArrowRight className="h-4 w-4" /></>}
+          </button>
+          <p className="text-center text-[11px] text-neutral-500">
+            Seus dados são só para acompanharmos seu pedido.
+          </p>
+        </form>
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -40,7 +176,7 @@ export default function PlanosAssinatura() {
           />
         </button>
         <span className={`text-sm font-medium ${anual ? "text-gold-metal" : "text-neutral-500"}`}>
-          Anual <span className="text-gold-100">(2 meses grátis)</span>
+          Anual <span className="text-gold-100">(melhor preço)</span>
         </span>
       </div>
 
@@ -88,16 +224,15 @@ export default function PlanosAssinatura() {
                 ))}
               </ul>
 
-              <a
-                href={ctaLink(p)}
-                target="_blank"
-                rel="noopener"
+              <button
+                type="button"
+                onClick={() => abrir(p)}
                 className={`mt-8 inline-flex w-full items-center justify-center px-6 py-4 text-sm uppercase tracking-widest ${
                   p.destaque ? "btn-gold" : "btn-outline-gold"
                 }`}
               >
                 {p.cta}
-              </a>
+              </button>
             </div>
           );
         })}
@@ -106,6 +241,9 @@ export default function PlanosAssinatura() {
       <p className="mt-8 text-center text-xs text-neutral-500">
         Sem custo de criação · Cancele quando quiser · Entrega em até 48h
       </p>
+
+      {/* Modal via portal no body (escapa de ancestrais com transform) */}
+      {mounted && modalNode ? createPortal(modalNode, document.body) : null}
     </div>
   );
 }

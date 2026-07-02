@@ -3,6 +3,10 @@ import Reveal from "@/components/Reveal";
 import Logo from "@/components/Logo";
 import PlanosAssinatura from "@/components/PlanosAssinatura";
 import ModelosGaleria from "@/components/ModelosGaleria";
+import Marquee from "@/components/sections/Marquee";
+import UnicornBackground from "@/components/backgrounds/UnicornBackground";
+import GridGlow from "@/components/backgrounds/GridGlow";
+import Testimonials from "@/components/sections/Testimonials";
 import { SITE } from "@/lib/site";
 import {
   INCLUSO_TODOS, COMPARACAO, COMO_FUNCIONA, PARA_QUEM, FAQ_ASSINATURA,
@@ -21,6 +25,15 @@ export const metadata: Metadata = {
 };
 
 const PARA_QUEM_ICON = [Stethoscope, Store, TrendingUp];
+
+const MARQUEE_A = [
+  "SITE NO AR EM 48H", "CRIAÇÃO SEM CUSTO", "HOSPEDAGEM INCLUSA",
+  "DOMÍNIO PRÓPRIO", "SSL SEGURO", "FEITO PRA VENDER", "SUPORTE DE VERDADE",
+];
+const MARQUEE_B = [
+  "PAGUE SÓ A MENSALIDADE", "MANUTENÇÃO INCLUSA", "CANCELE QUANDO QUISER",
+  "SEO NO GOOGLE", "WHATSAPP INTEGRADO", "DESIGN SOB MEDIDA", "ENTREGA RÁPIDA",
+];
 
 export default function PlanosPage() {
   const wa = SITE.whatsapp
@@ -47,23 +60,24 @@ export default function PlanosPage() {
       <main>
         {/* ===== HERO ===== */}
         <section className="section-dark relative overflow-hidden bg-dark pt-36 pb-24">
+          <UnicornBackground projectId="N9XzvQXu7fA5SY2ewADJ" dim={0.55} className="!z-0" />
           <div
-            className="pointer-events-none absolute inset-0"
+            className="pointer-events-none absolute inset-0 z-[1]"
             style={{ background: "radial-gradient(70% 60% at 50% 0%, rgba(201,162,75,0.14), transparent 65%)" }}
           />
           <div className="relative z-10 mx-auto max-w-4xl px-6 text-center md:px-10">
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-gold-3/50 bg-white/5 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-100 backdrop-blur-md">
-                <Zap className="h-3.5 w-3.5" /> Site por assinatura
+                <Zap className="h-3.5 w-3.5" /> O site do seu negócio, por assinatura
               </span>
               <h1 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-                Seu site profissional no ar{" "}
-                <span className="text-gold-shine">em 48 horas.</span>
+                Seu site pronto pra vender{" "}
+                <span className="text-gold-shine">no ar em 48 horas.</span>
               </h1>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-neutral-300">
-                Desenvolvemos seu site <strong className="text-white">100% grátis</strong>. Você paga
-                apenas uma assinatura fixa e acessível para manter tudo no ar — com hospedagem,
-                suporte e manutenção inclusos.
+                Nós desenhamos, escrevemos e publicamos o seu site <strong className="text-white">sem cobrar
+                pela criação</strong>. Você entra só com uma mensalidade enxuta que mantém tudo de pé:
+                hospedagem, suporte e ajustes inclusos.
               </p>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
                 <a href="#planos" className="btn-gold px-8 py-4 text-sm uppercase tracking-widest">
@@ -74,9 +88,9 @@ export default function PlanosPage() {
                 </a>
               </div>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.18em] text-neutral-400">
-                <span className="flex items-center gap-2"><Check className="h-4 w-4 text-gold-100" /> Criação zero custo</span>
-                <span className="flex items-center gap-2"><Check className="h-4 w-4 text-gold-100" /> Hospedagem inclusa</span>
-                <span className="flex items-center gap-2"><Check className="h-4 w-4 text-gold-100" /> Entrega em 48h</span>
+                <span className="flex items-center gap-2"><Check className="h-4 w-4 text-gold-100" /> Você não paga pra criar</span>
+                <span className="flex items-center gap-2"><Check className="h-4 w-4 text-gold-100" /> Hospedagem e domínio inclusos</span>
+                <span className="flex items-center gap-2"><Check className="h-4 w-4 text-gold-100" /> No ar em 48h</span>
               </div>
             </Reveal>
           </div>
@@ -86,10 +100,10 @@ export default function PlanosPage() {
         <section className="border-y border-black/10 bg-surface py-12">
           <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 text-center md:grid-cols-4 md:px-10">
             {[
-              { v: "48h", l: "para o site no ar" },
-              { v: "R$ 0", l: "de custo de criação" },
-              { v: "100%", l: "manutenção inclusa" },
-              { v: "24/7", l: "site rápido e seguro" },
+              { v: "48h", l: "até publicar" },
+              { v: "R$ 0", l: "pela criação" },
+              { v: "100%", l: "do suporte incluso" },
+              { v: "24/7", l: "no ar, rápido e seguro" },
             ].map((s) => (
               <Reveal key={s.l}>
                 <div className="font-display text-3xl font-bold text-gold-deep md:text-4xl">{s.v}</div>
@@ -99,13 +113,15 @@ export default function PlanosPage() {
           </div>
         </section>
 
+        <Marquee words={MARQUEE_A} />
+
         {/* ===== COMPARAÇÃO ===== */}
-        <section className="bg-grid relative bg-base py-28">
+        <section className="bg-grid relative bg-base py-20">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <Reveal className="text-center">
-              <div className="section-label">[ POR QUE ASSINATURA ]</div>
+              <div className="section-label">[ COMPARE VOCÊ MESMO ]</div>
               <h2 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight md:text-5xl">
-                O jeito antigo de fazer site <span className="text-gold-metal">ficou no passado.</span>
+                Tem caminho melhor do que gastar caro <span className="text-gold-metal">— ou se virar sozinho.</span>
               </h2>
             </Reveal>
             <div className="mt-14 grid gap-6 lg:grid-cols-3">
@@ -149,7 +165,7 @@ export default function PlanosPage() {
                     ))}
                   </ul>
                   <a href="#planos" className="btn-gold mt-7 inline-flex w-full items-center justify-center px-6 py-3.5 text-xs uppercase tracking-widest">
-                    Escolher este método
+                    Quero esse caminho
                   </a>
                 </div>
               </Reveal>
@@ -158,12 +174,12 @@ export default function PlanosPage() {
         </section>
 
         {/* ===== PARA QUEM É ===== */}
-        <section className="bg-dots relative border-t border-black/10 bg-surface py-28">
+        <section className="bg-dots relative border-t border-black/10 bg-surface py-20">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <Reveal>
               <div className="section-label">[ PARA QUEM É ]</div>
               <h2 className="mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight md:text-5xl">
-                Feito pra quem precisa vender confiança <span className="text-gold-metal">sem perder semanas.</span>
+                Presença profissional <span className="text-gold-metal">pra ontem.</span>
               </h2>
             </Reveal>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -185,17 +201,19 @@ export default function PlanosPage() {
           </div>
         </section>
 
+        <Marquee words={MARQUEE_B} reverse />
+
         {/* ===== MODELOS ===== */}
-        <section id="modelos" className="bg-grid relative border-t border-black/10 bg-base py-28">
+        <section id="modelos" className="bg-grid relative border-t border-black/10 bg-base py-20">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <Reveal className="text-center">
-              <div className="section-label">[ MODELOS ]</div>
+              <div className="section-label">[ TRABALHOS ENTREGUES ]</div>
               <h2 className="mx-auto mt-4 max-w-2xl font-display text-4xl font-bold tracking-tight md:text-5xl">
-                Estruturas provadas em <span className="text-gold-metal">conversão.</span>
+                Alguns trabalhos que já <span className="text-gold-metal">entregamos.</span>
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-neutral-600">
-                Escolha um nicho. Personalizamos com a sua marca, suas cores e seus textos.
-                Clique para ver o modelo rodando de verdade.
+                Sites reais, no ar, feitos pra vender. Clique em qualquer um para ver
+                rodando de verdade.
               </p>
             </Reveal>
             <Reveal delay={120} className="mt-12">
@@ -205,12 +223,12 @@ export default function PlanosPage() {
         </section>
 
         {/* ===== COMO FUNCIONA ===== */}
-        <section id="como-funciona" className="bg-grid relative bg-base py-28">
+        <section id="como-funciona" className="bg-grid relative bg-base py-20">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <Reveal className="text-center">
               <div className="section-label">[ COMO FUNCIONA ]</div>
               <h2 className="mx-auto mt-4 max-w-2xl font-display text-4xl font-bold tracking-tight md:text-5xl">
-                Um caminho simples até seu site <span className="text-gold-metal">publicado.</span>
+                Do briefing ao ar, <span className="text-gold-metal">sem enrolação.</span>
               </h2>
             </Reveal>
             <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -232,17 +250,19 @@ export default function PlanosPage() {
           </div>
         </section>
 
+        <Marquee words={MARQUEE_A} reverse />
+
         {/* ===== O QUE ESTÁ INCLUSO ===== */}
-        <section className="relative border-t border-black/10 bg-surface py-28">
+        <section className="relative border-t border-black/10 bg-surface py-20">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <Reveal>
               <div className="section-label">[ O QUE ESTÁ INCLUSO ]</div>
               <h2 className="mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight md:text-5xl">
-                Tudo que seu site precisa pra parecer <span className="text-gold-metal">profissional desde o 1º dia.</span>
+                Já vem tudo pronto pra você <span className="text-gold-metal">não se preocupar com nada.</span>
               </h2>
               <p className="mt-4 max-w-2xl text-neutral-600">
-                Você não precisa juntar freelancer, hospedagem, domínio e manutenção em contratos
-                separados. Está tudo na assinatura.
+                Nada de juntar freelancer, hospedagem, domínio e manutenção em cantos diferentes.
+                Está tudo numa assinatura só.
               </p>
             </Reveal>
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -262,7 +282,7 @@ export default function PlanosPage() {
         </section>
 
         {/* ===== PLANOS ===== */}
-        <section id="planos" className="section-dark relative overflow-hidden bg-dark py-28">
+        <section id="planos" className="section-dark relative overflow-hidden bg-dark py-20">
           <div
             className="pointer-events-none absolute inset-0"
             style={{ background: "radial-gradient(70% 60% at 50% 0%, rgba(201,162,75,0.12), transparent 65%)" }}
@@ -271,10 +291,10 @@ export default function PlanosPage() {
             <Reveal className="text-center">
               <div className="section-label">[ PLANOS ]</div>
               <h2 className="mx-auto mt-4 max-w-2xl font-display text-4xl font-bold tracking-tight md:text-5xl">
-                Simples e <span className="text-gold-shine">transparente.</span>
+                Preço na mesa, <span className="text-gold-shine">sem pegadinha.</span>
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-neutral-300">
-                Não pague pelo desenvolvimento. Escolha só como manter seu site no ar.
+                A criação é por nossa conta. Você só escolhe como quer manter tudo rodando.
               </p>
             </Reveal>
             <Reveal delay={120} className="mt-14">
@@ -284,19 +304,19 @@ export default function PlanosPage() {
         </section>
 
         {/* ===== SEGURANÇA ===== */}
-        <section className="bg-dots relative bg-base py-24">
+        <section className="bg-dots relative bg-base py-20">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <Reveal>
               <div className="section-label">[ SEGURANÇA ]</div>
               <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold tracking-tight md:text-5xl">
-                Sem susto, sem taxa escondida, <span className="text-gold-metal">sem abandono depois da entrega.</span>
+                Sem pegadinha, sem taxa surpresa <span className="text-gold-metal">e sem a gente sumir depois.</span>
               </h2>
             </Reveal>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {[
-                { icon: ShieldCheck, t: "Cancele quando quiser", d: "Assinatura simples e transparente, sem multa para sair." },
-                { icon: Clock, t: "Manutenção inclusa", d: "Ajustes, suporte e atualizações dentro do plano escolhido." },
-                { icon: Rocket, t: "Publicado com cuidado", d: "Site seguro, responsivo, com SSL e pronto para receber visitas." },
+                { icon: ShieldCheck, t: "Cancele quando quiser", d: "Mensalidade transparente, sem multa e sem drama pra sair." },
+                { icon: Clock, t: "Manutenção inclusa", d: "Ajustes, suporte e atualizações fazem parte do plano." },
+                { icon: Rocket, t: "Entregue com capricho", d: "Rápido, responsivo, com SSL e pronto pra receber gente." },
               ].map((s, i) => (
                 <Reveal key={s.t} delay={i * 100}>
                   <div className="card-dark h-full p-7">
@@ -312,8 +332,13 @@ export default function PlanosPage() {
           </div>
         </section>
 
+        <Marquee words={MARQUEE_B} />
+
+        {/* ===== DEPOIMENTOS ===== */}
+        <Testimonials />
+
         {/* ===== FAQ ===== */}
-        <section id="faq" className="bg-grid relative border-t border-black/10 bg-surface py-28">
+        <section id="faq" className="bg-grid relative border-t border-black/10 bg-surface py-20">
           <div className="mx-auto max-w-3xl px-6 md:px-10">
             <Reveal className="text-center">
               <div className="section-label">[ FAQ ]</div>
@@ -339,20 +364,17 @@ export default function PlanosPage() {
 
         {/* ===== CTA FINAL ===== */}
         <section className="section-dark relative overflow-hidden bg-dark py-28">
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{ background: "radial-gradient(70% 70% at 50% 50%, rgba(201,162,75,0.16), transparent 65%)" }}
-          />
+          <GridGlow />
           <div className="relative z-10 mx-auto max-w-3xl px-6 text-center md:px-10">
             <Reveal>
               <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold-100">
-                Comece hoje, sem custo de criação
+                Bora começar? A criação é por nossa conta
               </span>
               <h2 className="mx-auto mt-5 max-w-2xl font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-                Pronto pra ter seu site <span className="text-gold-shine">no ar em 48h?</span>
+                Seu site pode estar <span className="text-gold-shine">no ar já esta semana.</span>
               </h2>
               <p className="mt-5 text-neutral-300">
-                Sem custo de criação. Sem dor de cabeça. Só resultado.
+                Sem custo de criação, sem dor de cabeça. Só o seu site pronto pra trabalhar por você.
               </p>
               <div className="mt-9 flex flex-col items-center gap-3">
                 <a href={wa} target="_blank" rel="noopener" className="btn-gold px-9 py-4 text-sm uppercase tracking-widest">
