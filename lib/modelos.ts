@@ -14,6 +14,8 @@ export type Modelo = {
 };
 
 export const MODELOS: Modelo[] = [
+  { id: "demo-adv-essencial", nome: "Dra. Helena Martins · Modelo Advogados", nicho: "Advocacia", embed: "https://jvwebstudio.agency/advogados/demo-essencial", thumb: "https://image.thum.io/get/width/1200/crop/900/https://jvwebstudio.agency/advogados/demo-essencial" },
+  { id: "ana-noronha", nome: "Ana Noronha Engenharia", nicho: "Engenharia", embed: "https://www.ananoronha.eng.br/", thumb: "https://image.thum.io/get/width/1200/crop/900/https://www.ananoronha.eng.br/" },
   { id: "dr-rafael-cordeiro", nome: "Dr. Rafael Cordeiro", nicho: "Saúde", embed: "https://rafa-cordeiro-site.vercel.app/", thumb: "https://image.thum.io/get/width/1200/crop/900/https://rafa-cordeiro-site.vercel.app/" },
   { id: "alma-fotografia", nome: "Alma Fotografia", nicho: "Fotografia", embed: "https://site-alma-fotografia.vercel.app/", thumb: "https://image.thum.io/get/width/1200/crop/900/https://site-alma-fotografia.vercel.app/" },
   { id: "barbearia-oldschool", nome: "Barbearia Old School", nicho: "Barbearia", embed: "https://barbeariaoldschoolhz.vercel.app/", thumb: "https://image.thum.io/get/width/1200/crop/900/https://barbeariaoldschoolhz.vercel.app/" },
