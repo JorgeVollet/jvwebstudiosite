@@ -77,46 +77,80 @@ const AREAS = [
     icone: Scale,
     nome: "Societário e M&A",
     desc: "Acordos de sócios, reorganizações, compra e venda de participações. O desenho societário decide quem manda e quem responde.",
+    guia: "/advogados/demo-autoridade/acordo-de-socios",
   },
   {
     icone: Landmark,
     nome: "Tributário estratégico",
     desc: "Planejamento lícito, defesa em autuações e recuperação de tributos pagos indevidamente nos últimos 5 anos.",
+    guia: "/advogados/demo-autoridade/recuperacao-de-creditos-tributarios",
   },
   {
     icone: FileSignature,
     nome: "Contratos empresariais",
     desc: "Fornecimento, distribuição, prestação de serviços, NDA. O contrato certo evita o litígio que custaria dez vezes mais.",
+    guia: "/advogados/demo-autoridade/contratos-empresariais",
   },
   {
     icone: LifeBuoy,
     nome: "Reestruturação e recuperação judicial",
     desc: "Crise não se administra com improviso. Plano de reestruturação, mediação com credores e recuperação quando necessária.",
+    guia: "/advogados/demo-autoridade/recuperacao-judicial",
   },
   {
     icone: Shield,
     nome: "Holding e planejamento patrimonial",
     desc: "Estrutura societária que organiza o patrimônio, planeja a sucessão e protege a família do risco da atividade.",
+    guia: "/advogados/demo-autoridade/holding-familiar",
   },
   {
     icone: Gavel,
     nome: "Contencioso empresarial",
     desc: "Quando o litígio é inevitável, ele é conduzido com estratégia processual e foco no resultado econômico da disputa.",
+    guia: "/advogados/demo-autoridade/contencioso-empresarial",
   },
 ];
 
-/** A guia real fica em ./recuperacao-de-creditos-tributarios — as demais são
- *  listadas como catálogo (no site de um cliente real, cada área ganha a sua). */
+/** As 6 páginas-guia do site: uma por área de atuação, todas navegáveis.
+ *  A do tributário abre em destaque; o conteúdo mora em guias-data.ts. */
 const GUIAS = [
   {
     titulo: "Recuperação de créditos tributários",
+    area: "Tributário",
     resumo: "O que é, quais empresas podem revisar os últimos 5 anos e como o processo funciona na prática.",
     href: "/advogados/demo-autoridade/recuperacao-de-creditos-tributarios",
-    real: true,
+    destaque: true,
   },
-  { titulo: "Holding familiar: quando faz sentido", resumo: "Custos, estrutura e o passo a passo de uma constituição bem feita." },
-  { titulo: "Recuperação judicial sem mitos", resumo: "O que a lei permite, prazos reais e o que muda no dia a dia da empresa." },
-  { titulo: "Acordo de sócios: as 9 cláusulas que evitam guerra", resumo: "O documento que resolve a disputa antes de ela existir." },
+  {
+    titulo: "Acordo de sócios: as cláusulas que evitam guerra",
+    area: "Societário e M&A",
+    resumo: "O documento que resolve a disputa antes de ela existir, cenário por cenário.",
+    href: "/advogados/demo-autoridade/acordo-de-socios",
+  },
+  {
+    titulo: "Contratos que protegem de verdade",
+    area: "Contratos empresariais",
+    resumo: "Os erros que aparecem toda semana e o que revisar antes de assinar.",
+    href: "/advogados/demo-autoridade/contratos-empresariais",
+  },
+  {
+    titulo: "Recuperação judicial sem mitos",
+    area: "Reestruturação",
+    resumo: "O que a lei permite, os sinais de alerta e por que chegar cedo amplia as opções.",
+    href: "/advogados/demo-autoridade/recuperacao-judicial",
+  },
+  {
+    titulo: "Holding familiar: quando faz sentido",
+    area: "Patrimonial",
+    resumo: "O que ela resolve, o passo a passo e os limites que os anúncios não contam.",
+    href: "/advogados/demo-autoridade/holding-familiar",
+  },
+  {
+    titulo: "Empresa processada: as primeiras 72 horas",
+    area: "Contencioso",
+    resumo: "Prazos, primeiros passos e a decisão fria entre acordo e defesa.",
+    href: "/advogados/demo-autoridade/contencioso-empresarial",
+  },
 ];
 
 const CREDENCIAIS = [
@@ -332,15 +366,19 @@ export default function DemoAutoridade() {
                 const Icone = a.icone;
                 return (
                   <Reveal key={a.nome} delay={i * 60}>
-                    <div className="group flex gap-6 py-8 transition-colors">
+                    <a href={a.guia} className="group flex gap-6 py-8 transition-colors">
                       <Icone className="mt-1 h-6 w-6 shrink-0 text-[#C9A24B] transition-colors group-hover:text-[#F5D76E]" strokeWidth={1.5} />
                       <div>
                         <h3 className="text-xl text-[#F2F0EA] transition-colors group-hover:text-[#F5D76E]" style={SERIF}>
                           {a.nome}
                         </h3>
                         <p className="mt-3 max-w-[52ch] text-[14.5px] leading-relaxed text-[#A6A29A]">{a.desc}</p>
+                        <span className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C9A24B] transition-colors group-hover:text-[#F5D76E]">
+                          Ler o guia da área
+                          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                        </span>
                       </div>
-                    </div>
+                    </a>
                   </Reveal>
                 );
               })}
@@ -357,18 +395,18 @@ export default function DemoAutoridade() {
                 Cada área ganha uma <span className="lex-ouro">página-guia inteira</span>, escrita para quem procura.
               </h2>
               <p className="mt-6 max-w-[60ch] text-[15px] leading-relaxed text-[#A6A29A]">
-                É assim que o site trabalha sozinho: quando um empresário pesquisa o problema, encontra o guia, e o guia apresenta o escritório. A primeira está aberta para navegar.
+                É assim que o site trabalha sozinho: quando um empresário pesquisa o problema, encontra o guia, e o guia apresenta o escritório. As seis estão abertas, navegue em qualquer uma.
               </p>
             </Reveal>
 
             <div className="mt-14 grid gap-4 md:grid-cols-2">
               {GUIAS.map((g, i) =>
-                g.real ? (
+                g.destaque ? (
                   <Reveal key={g.titulo} className="md:col-span-2">
                     <a href={g.href} className="block">
                       <NoirSpotlight className="group flex flex-col justify-between gap-6 rounded-[3px] border border-[#D4AF37]/35 bg-gradient-to-br from-[#161410] to-[#111110] p-9 transition hover:border-[#F5D76E]/60 md:flex-row md:items-center">
                         <div>
-                          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#F5D76E]">Guia aberta · navegue agora</p>
+                          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#F5D76E]">{g.area} · comece por esta</p>
                           <h3 className="mt-3 text-2xl leading-snug text-[#F2F0EA] md:text-3xl" style={SERIF}>{g.titulo}</h3>
                           <p className="mt-3 max-w-[58ch] text-[14.5px] leading-relaxed text-[#A6A29A]">{g.resumo}</p>
                         </div>
@@ -380,12 +418,18 @@ export default function DemoAutoridade() {
                     </a>
                   </Reveal>
                 ) : (
-                  <Reveal key={g.titulo} delay={i * 70}>
-                    <div className="flex h-full flex-col rounded-[3px] border border-white/10 bg-[#121212] p-8">
-                      <h3 className="text-xl leading-snug text-[#F2F0EA]" style={SERIF}>{g.titulo}</h3>
-                      <p className="mt-3 flex-1 text-[14px] leading-relaxed text-[#A6A29A]">{g.resumo}</p>
-                      <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-[#A6A29A]/70">Publicada no site do cliente real</p>
-                    </div>
+                  <Reveal key={g.titulo} delay={(i % 2) * 70}>
+                    <a href={g.href} className="block h-full">
+                      <NoirSpotlight className="group flex h-full flex-col rounded-[3px] border border-white/10 bg-[#121212] p-8 transition-colors hover:border-[#D4AF37]/40">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#C9A24B]">{g.area}</p>
+                        <h3 className="mt-3 text-xl leading-snug text-[#F2F0EA] transition-colors group-hover:text-[#F5D76E]" style={SERIF}>{g.titulo}</h3>
+                        <p className="mt-3 flex-1 text-[14px] leading-relaxed text-[#A6A29A]">{g.resumo}</p>
+                        <span className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C9A24B] transition-colors group-hover:text-[#F5D76E]">
+                          Ler a guia
+                          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                        </span>
+                      </NoirSpotlight>
+                    </a>
                   </Reveal>
                 )
               )}

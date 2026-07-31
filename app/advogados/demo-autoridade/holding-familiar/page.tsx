@@ -4,7 +4,7 @@ import { GUIAS_CONTEUDO } from "../guias-data";
 
 /* Página-guia da área · conteúdo em guias-data.ts · visual em GuiaTemplate.tsx */
 
-const guia = GUIAS_CONTEUDO["recuperacao-de-creditos-tributarios"];
+const guia = GUIAS_CONTEUDO["holding-familiar"];
 
 export const metadata: Metadata = {
   title: guia.metaTitle,
@@ -12,6 +12,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function GuiaRecuperacaoTributaria() {
+export default function GuiaHoldingFamiliar() {
   return <GuiaTemplate guia={guia} />;
 }
