@@ -49,7 +49,7 @@ const SECOES: { titulo: string; campos: string[] }[] = [
   { titulo: "Área de atuação 2", campos: ["A2 nome", "A2 cliente", "A2 situacoes", "A2 processo", "A2 prazos", "A2 faq"] },
   { titulo: "Área de atuação 3", campos: ["A3 nome", "A3 cliente", "A3 situacoes", "A3 processo", "A3 prazos", "A3 faq"] },
   { titulo: "Credibilidade", campos: ["Credenciais", "Numeros", "Orgulho", "Tempo equipe", "Conteudos links", "Data importante"] },
-  { titulo: "Visual e tom", campos: ["Tema", "Cores", "Tom", "Palavras imagem", "Metafora escritorio", "Identidade existente", "Fotos", "Referencias", "Odeia sites", "Sentir saida"] },
+  { titulo: "Visual e tom", campos: ["Tema", "Referencia visual", "Referencia oque", "Cores", "Tom", "Palavras imagem", "Metafora escritorio", "Identidade existente", "Fotos", "Referencias", "Odeia sites", "Sentir saida"] },
   { titulo: "Fechamento", campos: ["Nao pode faltar", "Essencial extra", "Origem"] },
 ];
 

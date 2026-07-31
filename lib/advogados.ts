@@ -6,8 +6,10 @@
 /** WhatsApp exclusivo da campanha (atendido pelo OpenClaw). */
 export const ADV_WHATS = "5547999234449";
 
-/** Meta Pixel da campanha — cole o ID quando criar no Gerenciador de Eventos. */
-export const ADV_PIXEL_ID = "";
+/** Meta Pixel da campanha (conjunto de dados "JV Web Studio — Site"), criado em 31/07/2026.
+ *  Alimenta o público de remarketing "visitantes de /advogados" e mede a etapa do site
+ *  (PageView, Contact, InitiateCheckout, AddPaymentInfo) — ver components/advogados/AdvPixel.tsx. */
+export const ADV_PIXEL_ID = "915682440927042";
 
 /** Lote promocional — atualize `restantes` 2x por semana (urgência REAL). */
 export const ADV_LOTE = { total: 10, restantes: 10 };
