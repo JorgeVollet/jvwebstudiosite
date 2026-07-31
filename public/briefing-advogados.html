@@ -6,11 +6,20 @@
 <title>Briefing · Sites para Advogados — JV WEB STUDIO</title>
 <meta name="robots" content="noindex, nofollow" />
 <!--
-  FORMSPREE: crie o form em https://formspree.io, copie o ID e troque FORMSPREE_ID_AQUI
-  no <script> lá embaixo (ex.: xzzabcde).
-  ACESSO: a página abre só com ?k=jv9x2k7p (mesmo código das páginas pós-compra).
-  Configure o redirect do Mercado Pago para:
-  https://jvwebstudio.agency/briefing-advogados.html?k=jv9x2k7p&plano=essencial (ou autoridade)
+  ENVIO DUPLO (configurado em 31/07/2026):
+    1) Formspree  → https://formspree.io/f/mkodylea  (mesmo form do briefing da Pri)
+    2) Painel JV  → POST /api/leads com origem "briefing-adv", que aparece em
+                    /admin/campanha-adv com o briefing inteiro aberto por cliente.
+  O Formspree é quem decide sucesso ou erro na tela. O painel roda em paralelo e,
+  se falhar, não trava o cliente — a resposta já está garantida no e-mail.
+
+  ACESSO: abre com ?k=jv9x2k7p OU quando a URL traz os parâmetros de retorno do
+  Mercado Pago (payment_id, status...), para quem pagou nunca ver tela de bloqueio.
+
+  REDIRECT DO MERCADO PAGO (é um só para todos os links, não dá para separar por plano):
+  https://jvwebstudio.agency/briefing-advogados.html?k=jv9x2k7p
+  Por isso a pergunta 9 ("Qual plano você adquiriu?") é obrigatória e ganha destaque
+  quando a URL não traz ?plano=. É ela que identifica o plano contratado.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -174,11 +183,12 @@
       <div class="q"><label><span class="num">8.</span>Já tem site ou domínio? Qual?</label>
         <input type="text" name="site_atual" placeholder="ex.: meunome.adv.br — ou 'não tenho'" /></div>
     </div>
-    <div class="q"><label><span class="num">9.</span>Qual plano você adquiriu?</label>
+    <div class="q" id="qPlano"><label><span class="num">9.</span>Qual plano você adquiriu? <span class="tag">obrigatório</span></label>
       <div class="opts">
-        <label><input type="radio" name="plano" value="Site Essencial" /> Site Essencial (one page)</label>
-        <label><input type="radio" name="plano" value="Site Autoridade" /> Site Autoridade (multi page + SEO)</label>
+        <label><input type="radio" name="plano" value="Site Essencial" required /> Site Essencial (one page)</label>
+        <label><input type="radio" name="plano" value="Site Autoridade" required /> Site Autoridade (multi page + SEO)</label>
       </div>
+      <p id="dicaPlano" style="display:none;margin-top:8px;font-size:13px;color:#e4c67f;">É por aqui que a gente sabe qual site montar para você — marque o plano que acabou de pagar.</p>
     </div>
   </section>
 
@@ -389,6 +399,9 @@
   <div class="hp"><label>Não preencha<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
   <input type="hidden" name="_subject" value="Novo briefing — Site para Advogado (Mês do Advogado)" />
   <input type="hidden" name="plano_url" id="planoUrl" value="" />
+  <!-- Guarda o que o Mercado Pago devolver na URL (payment_id, status, etc.) para
+       conseguir casar o briefing com o pagamento sem depender da memória de ninguém. -->
+  <input type="hidden" name="retorno_pagamento" id="retornoPagamento" value="" />
 
   <div class="submit-wrap">
     <button type="submit" class="send-btn" id="sendBtn">Enviar meu briefing</button>
@@ -423,16 +436,31 @@
 </div>
 
 <script>
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID_AQUI";
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mkodylea"; // mesmo form do briefing da Pri
+  const PAINEL_ENDPOINT = "/api/leads";                          // salva no /admin → Campanha ADV
   const ACESSO = "jv9x2k7p"; // mesmo código das páginas pós-compra (lib/acesso.ts)
 
-  // Gate simples: sem ?k= correto, mostra a tela restrita (barra acesso casual).
   const params = new URLSearchParams(location.search);
-  if (params.get('k') !== ACESSO) {
+
+  /* Guarda o que o Mercado Pago devolver na URL. O redirect do MP é ÚNICO para todos
+     os links, então ele não diz qual plano foi comprado — mas costuma trazer
+     payment_id/status, e isso já permite casar o briefing com o pagamento. */
+  const CHAVES_MP = ['payment_id','collection_id','collection_status','preference_id',
+                     'merchant_order_id','external_reference','payment_type','status'];
+  const veioDoPagamento = CHAVES_MP.some((c) => params.has(c));
+  const retorno = [];
+  params.forEach((v, k) => { if (k !== 'k' && v) retorno.push(k + '=' + v); });
+  document.getElementById('retornoPagamento').value = retorno.join(' / ');
+
+  /* Gate: abre com o ?k= correto OU quando a pessoa chega do checkout do Mercado Pago
+     (se o MP reescrever a query e comer o ?k=, quem pagou não pode levar tela de bloqueio). */
+  if (params.get('k') !== ACESSO && !veioDoPagamento) {
     document.getElementById('gate').style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
-  // Pré-seleciona o plano vindo da URL (?plano=essencial|autoridade) e registra no envio.
+
+  /* Se a URL trouxer ?plano=, pré-seleciona. Sem ele, a pergunta 9 fica em destaque —
+     é ela que passa a dizer qual plano foi comprado. */
   const planoParam = (params.get('plano') || '').toLowerCase();
   if (planoParam) {
     document.getElementById('planoUrl').value = planoParam;
@@ -440,6 +468,11 @@
       planoParam.startsWith('aut') ? 'input[name="plano"][value="Site Autoridade"]'
                                    : 'input[name="plano"][value="Site Essencial"]');
     if (radio) radio.checked = true;
+  } else {
+    document.getElementById('dicaPlano').style.display = 'block';
+    const q = document.getElementById('qPlano');
+    q.style.borderLeft = '3px solid #e4c67f';
+    q.style.paddingLeft = '14px';
   }
 
   const bar = document.getElementById('progress');
@@ -452,24 +485,63 @@
   const btn = document.getElementById('sendBtn');
   const errBox = document.getElementById('formError');
 
+  /* Serializa o briefing inteiro numa linha "Chave: valor | Chave: valor".
+     É esse o formato que o painel /admin sabe reabrir em pares legíveis
+     (ver parseBriefing em app/admin/LeadsTable.tsx). Barras e quebras de linha
+     dentro das respostas viram " / " para não quebrar o separador. */
+  function serializarBriefing(fd) {
+    const partes = [];
+    for (const [chave, valor] of fd.entries()) {
+      if (chave.startsWith('_')) continue;              // honeypot e _subject
+      const texto = String(valor).trim();
+      if (!texto) continue;
+      const rotulo = chave.replace(/_/g, ' ');
+      partes.push(
+        rotulo.charAt(0).toUpperCase() + rotulo.slice(1) + ': ' +
+        texto.replace(/[|\r\n]+/g, ' / ')
+      );
+    }
+    return partes.join(' | ');
+  }
+
+  /* Salva também no painel da JV (Supabase, via /api/leads).
+     Roda em paralelo e NUNCA bloqueia o cliente: se falhar, o Formspree
+     já garantiu a entrega por e-mail. */
+  function salvarNoPainel(fd) {
+    const plano = fd.get('plano') || fd.get('plano_url') || '';
+    return fetch(PAINEL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome: (fd.get('nome_completo') || '').trim() || 'Briefing sem nome',
+        telefone: (fd.get('whatsapp') || '').trim() || 'não informado',
+        email: (fd.get('email') || '').trim() || 'nao-informado@jvwebstudio.agency',
+        empresa: (fd.get('nome_site') || '').trim() || null,
+        instagram: (fd.get('redes') || '').trim() || null,
+        origem: 'briefing-adv',
+        cupom: String(plano).trim() || null,
+        busca: serializarBriefing(fd),
+      }),
+    }).catch(() => { /* silencioso de propósito */ });
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     errBox.style.display = 'none';
-    if (FORMSPREE_ENDPOINT.includes('FORMSPREE_ID_AQUI')) {
-      alert('⚙️ Configure o ID do Formspree no <script> antes de usar.');
-      return;
-    }
     btn.disabled = true;
     const original = btn.textContent;
     btn.textContent = 'Enviando…';
+    const fd = new FormData(form);
     try {
+      // 1) Formspree é o canal que não pode falhar — é ele que decide sucesso ou erro.
       const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
+        method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
       });
-      if (res.ok) {
-        document.getElementById('done').style.display = 'flex';
-        window.scrollTo({top:0, behavior:'smooth'});
-      } else { throw new Error('nok'); }
+      if (!res.ok) throw new Error('nok');
+      // 2) Painel da JV, em paralelo. Se cair, o briefing já está no e-mail.
+      salvarNoPainel(fd);
+      document.getElementById('done').style.display = 'flex';
+      window.scrollTo({top:0, behavior:'smooth'});
     } catch (err) {
       errBox.style.display = 'block';
       btn.disabled = false;

@@ -33,7 +33,7 @@ export const ADV_DEADLINE = "2026-08-31T23:59:59-03:00";
 export const ADV_PAGAMENTO = {
   essencial: {
     pix: "https://mpago.la/2qCFSFJ",
-    cartao: "https://mpago.li/21HU2ti",
+    cartao: "https://mpago.li/2zF3PBr",
   },
   autoridade: {
     pix: "https://mpago.la/1hmh1KN",

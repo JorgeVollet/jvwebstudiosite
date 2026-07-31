@@ -57,6 +57,9 @@ export default async function AdminDashboard() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          <Link href="/admin/campanha-adv" className="btn-outline-gold px-5 py-2.5 text-xs uppercase tracking-widest">
+            Campanha ADV
+          </Link>
           <Link href="/admin/seo" className="btn-outline-gold px-5 py-2.5 text-xs uppercase tracking-widest">
             Gestão SEO
           </Link>
