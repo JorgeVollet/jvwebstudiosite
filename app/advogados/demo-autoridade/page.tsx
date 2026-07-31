@@ -4,6 +4,7 @@ import Reveal from "@/components/advogados/demo/DemoReveal";
 import DemoCountUp from "@/components/advogados/demo/DemoCountUp";
 import DemoParallax, { DemoHeroFade } from "@/components/advogados/demo/DemoParallax";
 import { NoirHeader, NoirFaq, NoirSpotlight } from "./interativos";
+import NoirFooter from "./NoirFooter";
 import { Scale, Landmark, FileSignature, LifeBuoy, Shield, Gavel, MessageCircle, ArrowRight, Check } from "lucide-react";
 
 /* ============================================================================
@@ -567,21 +568,8 @@ export default function DemoAutoridade() {
         </section>
       </main>
 
-      {/* Rodapé */}
-      <footer className="border-t lex-fio bg-[#0A0A0B] py-12 text-center">
-        <p className="text-xl tracking-[0.08em] text-[#F2F0EA]" style={SERIF}>
-          MEIRELLES<span className="text-[#D4AF37]"> ADVOCACIA</span>
-        </p>
-        <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-[#A6A29A]/70">
-          OAB/SC 00.000 · Publicidade em conformidade com o Provimento 205/2021 do CFOAB
-        </p>
-        <p className="mt-5 text-[11px] text-[#A6A29A]/70">
-          Site demonstrativo com conteúdo fictício ·{" "}
-          <a href="/advogados" className="text-[#F5D76E] underline underline-offset-4 hover:text-white">
-            feito pela JV Web Studio. Quero um site assim
-          </a>
-        </p>
-      </footer>
+      {/* Rodapé imponente com a marca d'água MA (compartilhado com as guias) */}
+      <NoirFooter wa={WA} />
 
       {/* WhatsApp flutuante */}
       <a

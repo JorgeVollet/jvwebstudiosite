@@ -18,12 +18,25 @@ const LINKS = [
 /** Cabeçalho noir: nasce como vidro escuro sobre o hero e ganha corpo
  *  quando a pessoa passa da primeira tela. IntersectionObserver na
  *  sentinela #hero-fim — nenhum scroll listener. */
-export function NoirHeader({ wa, serif }: { wa: string; serif: React.CSSProperties }) {
+export function NoirHeader({
+  wa,
+  serif,
+  base = "",
+}: {
+  wa: string;
+  serif: React.CSSProperties;
+  /** Nas páginas internas, prefixo absoluto para os links de âncora (ex.: "/advogados/demo-autoridade"). */
+  base?: string;
+}) {
   const [solido, setSolido] = useState(false);
 
   useEffect(() => {
     const alvo = document.getElementById("hero-fim");
-    if (!alvo) return;
+    if (!alvo) {
+      // Página interna, sem hero: o cabeçalho já nasce sólido.
+      setSolido(true);
+      return;
+    }
     const io = new IntersectionObserver(
       ([e]) => setSolido(!e.isIntersecting),
       { rootMargin: "-110px 0px 999px 0px", threshold: 0 }
@@ -41,7 +54,7 @@ export function NoirHeader({ wa, serif }: { wa: string; serif: React.CSSProperti
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#inicio" className="leading-tight">
+        <a href={base ? base : "#inicio"} className="leading-tight">
           <span className="block text-lg tracking-[0.06em] text-[#F2F0EA]" style={{ ...serif, fontWeight: 600 }}>
             MEIRELLES<span className="text-[#D4AF37]"> ADVOCACIA</span>
           </span>
@@ -49,7 +62,7 @@ export function NoirHeader({ wa, serif }: { wa: string; serif: React.CSSProperti
 
         <nav className="hidden items-center gap-7 text-[13.5px] md:flex">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="text-[#A6A29A] transition-colors hover:text-[#F2F0EA]">
+            <a key={l.href} href={`${base}${l.href}`} className="text-[#A6A29A] transition-colors hover:text-[#F2F0EA]">
               {l.label}
             </a>
           ))}

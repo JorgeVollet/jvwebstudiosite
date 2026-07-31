@@ -1,18 +1,22 @@
 import Reveal from "@/components/advogados/demo/DemoReveal";
-import { ArrowLeft, MessageCircle, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageCircle, Check } from "lucide-react";
 import { cinzel } from "./fonts";
+import { NoirHeader } from "./interativos";
+import NoirFooter from "./NoirFooter";
 import type { Guia } from "./guias-data";
 import { GUIAS_CONTEUDO, GUIAS_ORDEM } from "./guias-data";
 
 /* ============================================================================
    TEMPLATE DAS PÁGINAS-GUIA · demo Autoridade (tema Lex)
-   O mesmo esqueleto visual para as 6 áreas — é assim que o Autoridade escala:
-   estrutura de SEO idêntica (H1 com a pergunta, headings, FAQ com JSON-LD),
-   conteúdo 100% próprio por área (vem de guias-data.ts).
+   Mesmo esqueleto para as 6 áreas, em composição LARGA: capítulos com título
+   fixo à esquerda, listas em duas colunas, passos em quatro. Header e rodapé
+   idênticos aos da home. Conteúdo em guias-data.ts.
 ============================================================================ */
 
 const SERIF = { fontFamily: "var(--font-cinzel), Georgia, serif" };
 const SERIF_MED = { ...SERIF, fontWeight: 500 };
+
+const BASE = "/advogados/demo-autoridade";
 
 export default function GuiaTemplate({ guia }: { guia: Guia }) {
   const WA = `https://wa.me/5547999234449?text=${encodeURIComponent(
@@ -29,6 +33,7 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
       <style>{`
         .lex-root{--gold:#D4AF37;--gold-soft:#F5D76E;--gold-deep:#C9A24B;}
         .lex-root ::selection{background:rgba(212,175,55,.28);}
+        .lex-grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
         .lex-ouro{background:linear-gradient(112deg,#F5D76E 8%,#D4AF37 38%,#8f6f1f 52%,#F5D76E 78%);-webkit-background-clip:text;background-clip:text;color:transparent;}
         .lex-fio{border-color:rgba(212,175,55,.22);}
         @media (prefers-reduced-motion: no-preference){
@@ -36,6 +41,8 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
           .lex-root .reveal.in{opacity:1;transform:none;}
         }
       `}</style>
+
+      <div className="lex-grain" aria-hidden />
 
       {/* Schema FAQPage: o "SEO técnico" do plano Autoridade, demonstrado de verdade */}
       <script
@@ -60,153 +67,189 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
         </a>
       </div>
 
-      <main className="mx-auto max-w-3xl px-6 pb-28 pt-[92px]">
-        {/* Volta */}
-        <a
-          href="/advogados/demo-autoridade"
-          className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-[#A6A29A] transition hover:text-[#F5D76E]"
-        >
-          <ArrowLeft className="h-4 w-4" /> Meirelles Advocacia
-        </a>
+      {/* Cabeçalho: o mesmo da home, já sólido nas páginas internas */}
+      <NoirHeader wa={WA} serif={SERIF} base={BASE} />
 
-        {/* Cabeça da guia */}
-        <header className="mt-10">
-          <p className="text-xs uppercase tracking-[0.32em] text-[#C9A24B]">Guia · {guia.area}</p>
-          <h1 className="mt-6 text-[2.2rem] leading-[1.12] md:text-5xl" style={SERIF_MED}>
-            {guia.h1.antes}
-            <span className="lex-ouro">{guia.h1.ouro}</span>
-            {guia.h1.depois ?? ""}
-          </h1>
-          <p className="mt-6 text-[16px] leading-relaxed text-[#A6A29A]">{guia.intro}</p>
+      <main className="pt-[130px]">
+        {/* ============ ABERTURA · larga, com fio de capítulo ============ */}
+        <header className="mx-auto max-w-6xl px-6 pb-16 pt-10">
+          <a
+            href={BASE}
+            className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-[#A6A29A] transition hover:text-[#F5D76E]"
+          >
+            <ArrowLeft className="h-4 w-4" /> Meirelles Advocacia
+          </a>
+          <div className="mt-10 border-l-2 border-[#D4AF37]/50 pl-6 md:pl-10">
+            <p className="text-xs uppercase tracking-[0.32em] text-[#C9A24B]">Guia · {guia.area}</p>
+            <h1 className="mt-6 max-w-[26ch] text-4xl leading-[1.08] md:text-6xl" style={SERIF_MED}>
+              {guia.h1.antes}
+              <span className="lex-ouro">{guia.h1.ouro}</span>
+              {guia.h1.depois ?? ""}
+            </h1>
+            <p className="mt-8 max-w-[72ch] text-[16.5px] leading-relaxed text-[#A6A29A] md:text-lg">{guia.intro}</p>
+          </div>
         </header>
 
-        {/* Entenda */}
-        <section className="mt-16">
-          <Reveal>
-            <h2 className="text-2xl md:text-3xl" style={SERIF}>{guia.entenda.titulo}</h2>
-            <div className="mt-5 space-y-4 text-[15.5px] leading-relaxed text-[#CFCBC2]">
-              {guia.entenda.paragrafos.map((p) => (
-                <p key={p.slice(0, 24)}>{p}</p>
+        {/* ============ ENTENDA · capítulo fixo à esquerda, prosa à direita ============ */}
+        <section className="border-t lex-fio bg-[#0D0D0E]">
+          <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-[4fr_8fr] md:gap-16">
+            <div className="md:sticky md:top-36 md:self-start">
+              <Reveal>
+                <h2 className="max-w-[16ch] text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
+                  {guia.entenda.titulo}
+                </h2>
+              </Reveal>
+            </div>
+            <Reveal delay={100}>
+              <div className="space-y-5 text-[16px] leading-relaxed text-[#CFCBC2] md:text-[17px]">
+                {guia.entenda.paragrafos.map((p) => (
+                  <p key={p.slice(0, 24)}>{p}</p>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ============ LISTA · duas colunas de verificação ============ */}
+        <section className="border-t lex-fio">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <Reveal>
+              <h2 className="max-w-[28ch] text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
+                {guia.lista.titulo}
+              </h2>
+            </Reveal>
+            <div className="mt-12 grid gap-x-14 gap-y-6 md:grid-cols-2">
+              {guia.lista.itens.map((item, i) => (
+                <Reveal key={item} delay={(i % 2) * 80}>
+                  <div className="flex gap-4 border-b border-white/[0.06] pb-6 text-[15.5px] leading-relaxed text-[#CFCBC2]">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-[#C9A24B]" />
+                    {item}
+                  </div>
+                </Reveal>
               ))}
             </div>
-          </Reveal>
+          </div>
         </section>
 
-        {/* Lista com checks */}
-        <section className="mt-16">
-          <Reveal>
-            <h2 className="text-2xl md:text-3xl" style={SERIF}>{guia.lista.titulo}</h2>
-            <ul className="mt-6 space-y-4">
-              {guia.lista.itens.map((item) => (
-                <li key={item} className="flex gap-4 text-[15px] leading-relaxed text-[#CFCBC2]">
-                  <Check className="mt-1 h-4 w-4 shrink-0 text-[#C9A24B]" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </section>
-
-        {/* Passos */}
-        <section className="mt-16">
-          <Reveal>
-            <h2 className="text-2xl md:text-3xl" style={SERIF}>{guia.passos.titulo}</h2>
-          </Reveal>
-          <div className="mt-8 grid gap-8 sm:grid-cols-2">
-            {guia.passos.itens.map((p, i) => (
-              <Reveal key={p.n} delay={i * 80}>
-                <div className="rounded-[3px] border border-white/10 bg-[#121212] p-7">
-                  <span aria-hidden className="block text-4xl text-[#2E2A20]" style={SERIF}>{p.n}</span>
-                  <h3 className="mt-3 text-lg text-[#F2F0EA]" style={SERIF}>{p.t}</h3>
+        {/* ============ PASSOS · quatro colunas, numerais romanos ============ */}
+        <section className="border-t lex-fio bg-[#0D0D0E]">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <Reveal>
+              <h2 className="text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
+                {guia.passos.titulo}
+              </h2>
+            </Reveal>
+            <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+              {guia.passos.itens.map((p, i) => (
+                <Reveal key={p.n} delay={i * 90}>
+                  <span aria-hidden className="block text-5xl text-[#2E2A20]" style={SERIF}>{p.n}</span>
+                  <h3 className="mt-4 text-xl text-[#F2F0EA]" style={SERIF}>{p.t}</h3>
                   <p className="mt-3 text-[14px] leading-relaxed text-[#A6A29A]">{p.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        {/* Destaque */}
-        <section className="mt-16">
-          <Reveal>
-            <div className="rounded-[3px] border lex-fio bg-gradient-to-br from-[#161410] to-[#111110] p-8">
-              <h2 className="text-2xl md:text-3xl" style={SERIF}>{guia.destaque.titulo}</h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-[#CFCBC2]">{guia.destaque.texto}</p>
+                </Reveal>
+              ))}
             </div>
-          </Reveal>
-        </section>
-
-        {/* FAQ */}
-        <section className="mt-16">
-          <Reveal>
-            <h2 className="text-2xl md:text-3xl" style={SERIF}>Perguntas frequentes</h2>
-          </Reveal>
-          <div className="mt-8 space-y-10">
-            {guia.faq.map((f, i) => (
-              <Reveal key={f.q} delay={i * 60}>
-                <h3 className="text-lg text-[#F5D76E]" style={SERIF}>{f.q}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#A6A29A]">{f.a}</p>
-              </Reveal>
-            ))}
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="mt-20 border-t lex-fio pt-14 text-center">
-          <Reveal>
-            <h2 className="mx-auto max-w-[24ch] text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
-              {guia.cta.antes}
-              <span className="lex-ouro">{guia.cta.ouro}</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-[46ch] text-[15px] leading-relaxed text-[#A6A29A]">{guia.cta.texto}</p>
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener"
-              className="mt-9 inline-flex items-center gap-3 rounded-full bg-gradient-to-b from-[#F5D76E] to-[#C9A24B] px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-[#171204] shadow-[0_16px_44px_-14px_rgba(212,175,55,.55)] transition hover:-translate-y-[2px]"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Falar com o escritório
-            </a>
-          </Reveal>
+        {/* ============ DESTAQUE · faixa larga de ouro ============ */}
+        <section className="relative overflow-hidden border-y lex-fio">
+          <div className="absolute inset-0 bg-[radial-gradient(65%_130%_at_18%_120%,rgba(212,175,55,.13),transparent_70%)]" />
+          <div className="relative mx-auto max-w-6xl px-6 py-20">
+            <Reveal>
+              <div className="max-w-[76ch]">
+                <h2 className="text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
+                  <span className="lex-ouro">{guia.destaque.titulo}</span>
+                </h2>
+                <p className="mt-6 text-[16px] leading-relaxed text-[#CFCBC2] md:text-[17px]">{guia.destaque.texto}</p>
+              </div>
+            </Reveal>
+          </div>
         </section>
 
-        {/* Continue lendo: links internos entre guias (a malha que o Google percorre) */}
-        <section className="mt-20 border-t border-white/10 pt-10">
-          <p className="text-xs uppercase tracking-[0.28em] text-[#A6A29A]">Continue lendo</p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            {outras.map((o) => (
+        {/* ============ FAQ · duas colunas ============ */}
+        <section className="bg-[#0D0D0E]">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <Reveal>
+              <h2 className="text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
+                Perguntas frequentes
+              </h2>
+            </Reveal>
+            <div className="mt-12 grid gap-x-16 gap-y-12 md:grid-cols-2">
+              {guia.faq.map((f, i) => (
+                <Reveal key={f.q} delay={(i % 2) * 70}>
+                  <h3 className="text-xl text-[#F5D76E]" style={SERIF}>{f.q}</h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-[#A6A29A]">{f.a}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============ CTA ============ */}
+        <section className="relative overflow-hidden border-t lex-fio">
+          <div className="absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_115%,rgba(212,175,55,.16),transparent_70%)]" />
+          <div className="relative mx-auto max-w-4xl px-6 py-28 text-center">
+            <Reveal>
+              <h2 className="mx-auto max-w-[24ch] text-4xl leading-tight md:text-5xl" style={SERIF_MED}>
+                {guia.cta.antes}
+                <span className="lex-ouro">{guia.cta.ouro}</span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-[46ch] text-[15px] leading-relaxed text-[#A6A29A]">{guia.cta.texto}</p>
               <a
-                key={o.slug}
-                href={`/advogados/demo-autoridade/${o.slug}`}
-                className="group rounded-[3px] border border-white/10 bg-[#121212] p-5 transition-colors hover:border-[#D4AF37]/40"
+                href={WA}
+                target="_blank"
+                rel="noopener"
+                className="mt-10 inline-flex items-center gap-3 rounded-full bg-gradient-to-b from-[#F5D76E] to-[#C9A24B] px-10 py-5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#171204] shadow-[0_18px_50px_-14px_rgba(212,175,55,.55)] transition hover:-translate-y-[2px]"
               >
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#C9A24B]">{o.area}</p>
-                <p className="mt-2 text-[15px] leading-snug text-[#F2F0EA] transition-colors group-hover:text-[#F5D76E]" style={SERIF}>
-                  {o.h1.antes}
-                  {o.h1.ouro}
-                  {o.h1.depois ?? ""}
-                </p>
+                <MessageCircle className="h-5 w-5" />
+                Falar com o escritório
               </a>
-            ))}
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ============ CONTINUE LENDO · malha interna entre guias ============ */}
+        <section className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-6 py-16">
+            <p className="text-xs uppercase tracking-[0.28em] text-[#A6A29A]">Continue lendo</p>
+            <div className="mt-7 grid gap-4 md:grid-cols-3">
+              {outras.map((o) => (
+                <a
+                  key={o.slug}
+                  href={`${BASE}/${o.slug}`}
+                  className="group flex flex-col justify-between rounded-[3px] border border-white/10 bg-[#121212] p-6 transition-colors hover:border-[#D4AF37]/40"
+                >
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#C9A24B]">{o.area}</p>
+                    <p className="mt-3 text-[16px] leading-snug text-[#F2F0EA] transition-colors group-hover:text-[#F5D76E]" style={SERIF}>
+                      {o.h1.antes}
+                      {o.h1.ouro}
+                      {o.h1.depois ?? ""}
+                    </p>
+                  </div>
+                  <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C9A24B] transition-colors group-hover:text-[#F5D76E]">
+                    Ler a guia
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
       </main>
 
-      {/* Rodapé */}
-      <footer className="border-t lex-fio bg-[#0A0A0B] py-12 text-center">
-        <p className="text-xl tracking-[0.08em] text-[#F2F0EA]" style={SERIF}>
-          MEIRELLES<span className="text-[#D4AF37]"> ADVOCACIA</span>
-        </p>
-        <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-[#A6A29A]/70">
-          OAB/SC 00.000 · Publicidade em conformidade com o Provimento 205/2021 do CFOAB
-        </p>
-        <p className="mt-5 text-[11px] text-[#A6A29A]/70">
-          Página demonstrativa com conteúdo fictício e informativo, sem valor de parecer jurídico ·{" "}
-          <a href="/advogados" className="text-[#F5D76E] underline underline-offset-4 hover:text-white">
-            feita pela JV Web Studio. Quero um site assim
-          </a>
-        </p>
-      </footer>
+      <NoirFooter wa={WA} />
+
+      {/* WhatsApp flutuante */}
+      <a
+        href={WA}
+        target="_blank"
+        rel="noopener"
+        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#F5D76E] to-[#C9A24B] text-[#171204] shadow-[0_14px_40px_-10px_rgba(212,175,55,.6)] transition hover:scale-105"
+      >
+        <MessageCircle className="h-6 w-6" />
+        <span className="sr-only">Falar com o escritório</span>
+      </a>
     </div>
   );
 }
