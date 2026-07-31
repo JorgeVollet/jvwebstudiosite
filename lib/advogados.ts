@@ -15,13 +15,30 @@ export const ADV_LOTE = { total: 10, restantes: 10 };
 /** Data de encerramento da condição (23:59 de 31/08, horário de Brasília). */
 export const ADV_DEADLINE = "2026-08-31T23:59:59-03:00";
 
-/** Links de pagamento do Mercado Pago — cole aqui quando criar.
- *  Enquanto estiverem vazios (""), os botões de pagar caem no WhatsApp automaticamente.
+/** Links de pagamento do Mercado Pago — criados em 30/07/2026.
+ *  Se algum ficar vazio (""), o botão correspondente cai no WhatsApp automaticamente.
+ *
+ *  Valores dos links no painel do Mercado Pago:
+ *    Essencial à vista .......... R$ 897,00
+ *    Essencial parcelado ........ R$ 1.174,80  → 12x de R$ 97,90 sem acréscimo
+ *    Autoridade à vista ......... R$ 1.997,00
+ *    Autoridade parcelado ....... R$ 2.500,00  → 12x de R$ 208,33 sem acréscimo
+ *
+ *  O parcelado tem valor maior que o à vista porque o custo do "sem juros" é do
+ *  vendedor. Em 30/07 o Autoridade parcelado subiu de R$ 2.388 para R$ 2.500 —
+ *  a R$ 2.388 o líquido ficava ABAIXO do preço à vista.
+ *
  *  IMPORTANTE: configure o retorno pós-pagamento (back_url/redirect) de cada link para:
  *  https://jvwebstudio.agency/briefing-advogados.html?k=jv9x2k7p&plano=essencial (ou autoridade) */
 export const ADV_PAGAMENTO = {
-  essencial: { pix: "", cartao: "" },
-  autoridade: { pix: "", cartao: "" },
+  essencial: {
+    pix: "https://mpago.la/2qCFSFJ",
+    cartao: "https://mpago.li/21HU2ti",
+  },
+  autoridade: {
+    pix: "https://mpago.la/1hmh1KN",
+    cartao: "https://mpago.li/2KnwXBr",
+  },
 };
 
 /** Destino pós-pagamento — o briefing oficial (gate ?k= igual às páginas pós-compra). */
@@ -146,7 +163,7 @@ export const ADV_PLANOS: AdvPlano[] = [
     conceito: "Multi page + SEO avançado",
     precoDe: "R$ 3.497",
     precoPor: "R$ 1.997",
-    parcela: "12x de R$ 199",
+    parcela: "12x de R$ 208,33",
     economia: "R$ 1.500",
     off: "43% OFF",
     destaque: true,
