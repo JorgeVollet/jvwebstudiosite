@@ -8,6 +8,8 @@
 export type Guia = {
   slug: string;
   area: string;
+  /** Imagem de capa da guia (chave de LEX_IMG) — cada área ganha a sua. */
+  capa: "livro" | "sinete" | "marmore" | "couro" | "balancas" | "guilloche";
   metaTitle: string;
   metaDesc: string;
   /** H1 em três pedaços: texto normal + trecho em ouro + texto normal (opcional) */
@@ -26,6 +28,7 @@ export const GUIAS_CONTEUDO: Record<string, Guia> = {
   "recuperacao-de-creditos-tributarios": {
     slug: "recuperacao-de-creditos-tributarios",
     area: "Tributário estratégico",
+    capa: "marmore",
     metaTitle: "Recuperação de créditos tributários: sua empresa pode ter dinheiro a receber",
     metaDesc:
       "Guia direto sobre recuperação de tributos pagos indevidamente: quem tem direito, como funciona a análise e o prazo de 5 anos. Site demonstrativo da JV Web Studio.",
@@ -91,6 +94,7 @@ export const GUIAS_CONTEUDO: Record<string, Guia> = {
   "acordo-de-socios": {
     slug: "acordo-de-socios",
     area: "Societário e M&A",
+    capa: "sinete",
     metaTitle: "Acordo de sócios: as cláusulas que evitam a guerra societária",
     metaDesc:
       "Guia prático sobre acordo de sócios: o que é, as cláusulas essenciais e por que o melhor momento de assinar é enquanto a sociedade vai bem. Site demonstrativo da JV Web Studio.",
@@ -161,6 +165,7 @@ export const GUIAS_CONTEUDO: Record<string, Guia> = {
   "contratos-empresariais": {
     slug: "contratos-empresariais",
     area: "Contratos empresariais",
+    capa: "livro",
     metaTitle: "Contratos empresariais: o guia para não assinar o próximo problema",
     metaDesc:
       "Guia prático de contratos empresariais: os erros mais comuns, o que revisar antes de assinar e como montar uma rotina de minutas. Site demonstrativo da JV Web Studio.",
@@ -229,6 +234,7 @@ export const GUIAS_CONTEUDO: Record<string, Guia> = {
   "recuperacao-judicial": {
     slug: "recuperacao-judicial",
     area: "Reestruturação e recuperação judicial",
+    capa: "couro",
     metaTitle: "Recuperação judicial sem mitos: o que a lei realmente permite",
     metaDesc:
       "Guia sem mitos sobre reestruturação e recuperação judicial: o que a lei permite, os sinais de alerta e por que chegar cedo amplia as opções. Site demonstrativo da JV Web Studio.",
@@ -295,6 +301,7 @@ export const GUIAS_CONTEUDO: Record<string, Guia> = {
   "holding-familiar": {
     slug: "holding-familiar",
     area: "Holding e planejamento patrimonial",
+    capa: "guilloche",
     metaTitle: "Holding familiar: quando faz sentido e quando é só moda",
     metaDesc:
       "Guia honesto sobre holding familiar: o que é, quando faz sentido, o passo a passo da constituição e os limites da proteção patrimonial. Site demonstrativo da JV Web Studio.",
@@ -361,6 +368,7 @@ export const GUIAS_CONTEUDO: Record<string, Guia> = {
   "contencioso-empresarial": {
     slug: "contencioso-empresarial",
     area: "Contencioso empresarial",
+    capa: "balancas",
     metaTitle: "Empresa processada: o que fazer nas primeiras 72 horas",
     metaDesc:
       "Guia prático para empresas citadas em processo: prazos, primeiros passos, acordo versus defesa e o Domicílio Judicial Eletrônico. Site demonstrativo da JV Web Studio.",

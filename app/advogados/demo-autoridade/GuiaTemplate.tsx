@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, MessageCircle, Check } from "lucide-react";
 import { cinzel } from "./fonts";
 import { NoirHeader } from "./interativos";
 import NoirFooter from "./NoirFooter";
+import LexBg from "./LexBg";
 import type { Guia } from "./guias-data";
 import { GUIAS_CONTEUDO, GUIAS_ORDEM } from "./guias-data";
 
@@ -17,6 +18,21 @@ const SERIF = { fontFamily: "var(--font-cinzel), Georgia, serif" };
 const SERIF_MED = { ...SERIF, fontWeight: 500 };
 
 const BASE = "/advogados/demo-autoridade";
+
+/** Segunda imagem da página: deslocada 3 posições no ciclo, então nunca repete a capa
+ *  e muda de guia para guia. Só dois momentos com imagem por página — o resto respira. */
+const CICLO = ["livro", "sinete", "marmore", "couro", "balancas", "guilloche"] as const;
+function segundaImagem(capa: (typeof CICLO)[number]) {
+  return CICLO[(CICLO.indexOf(capa) + 3) % CICLO.length];
+}
+
+/** Fechamento: alterna entre os dois objetos fotografados (livro e sinete),
+ *  nunca repetindo o que já abriu a página. */
+function imagemCta(capa: (typeof CICLO)[number]) {
+  if (capa === "livro") return "sinete" as const;
+  if (capa === "sinete") return "livro" as const;
+  return CICLO.indexOf(capa) % 2 === 0 ? ("livro" as const) : ("sinete" as const);
+}
 
 export default function GuiaTemplate({ guia }: { guia: Guia }) {
   const WA = `https://wa.me/5547999234449?text=${encodeURIComponent(
@@ -70,9 +86,13 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
       {/* Cabeçalho: o mesmo da home, já sólido nas páginas internas */}
       <NoirHeader wa={WA} serif={SERIF} base={BASE} />
 
-      <main className="pt-[130px]">
-        {/* ============ ABERTURA · larga, com fio de capítulo ============ */}
-        <header className="mx-auto max-w-6xl px-6 pb-16 pt-10">
+      <main>
+        {/* ============ ABERTURA · capa da área full bleed, larga ============ */}
+        <header className="relative overflow-hidden pt-[130px]">
+          <LexBg img={guia.capa} opacity={0.4} veu="esquerda" posicao="center 45%" prioridade />
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0B0B0C] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0B0B0C] to-transparent" />
+          <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-10">
           <a
             href={BASE}
             className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-[#A6A29A] transition hover:text-[#F5D76E]"
@@ -88,12 +108,14 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
             </h1>
             <p className="mt-8 max-w-[72ch] text-[16.5px] leading-relaxed text-[#A6A29A] md:text-lg">{guia.intro}</p>
           </div>
+          </div>
         </header>
 
         {/* ============ ENTENDA · capítulo fixo à esquerda, prosa à direita ============ */}
-        <section className="border-t lex-fio bg-[#0D0D0E]">
-          <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-[4fr_8fr] md:gap-16">
-            <div className="md:sticky md:top-36 md:self-start">
+        {/* Respiro: fundo sólido. Sem overflow-hidden (desativaria o sticky do título). */}
+        <section className="relative border-t lex-fio bg-[#0D0D0E]">
+          <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-[4fr_8fr] md:gap-16">
+            <div className="md:sticky md:top-40 md:self-start md:pb-16">
               <Reveal>
                 <h2 className="max-w-[16ch] text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
                   {guia.entenda.titulo}
@@ -111,8 +133,8 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
         </section>
 
         {/* ============ LISTA · duas colunas de verificação ============ */}
-        <section className="border-t lex-fio">
-          <div className="mx-auto max-w-6xl px-6 py-20">
+        <section className="relative border-t lex-fio">
+          <div className="relative mx-auto max-w-6xl px-6 py-20">
             <Reveal>
               <h2 className="max-w-[28ch] text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
                 {guia.lista.titulo}
@@ -132,8 +154,8 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
         </section>
 
         {/* ============ PASSOS · quatro colunas, numerais romanos ============ */}
-        <section className="border-t lex-fio bg-[#0D0D0E]">
-          <div className="mx-auto max-w-6xl px-6 py-20">
+        <section className="relative border-t lex-fio bg-[#0D0D0E]">
+          <div className="relative mx-auto max-w-6xl px-6 py-20">
             <Reveal>
               <h2 className="text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
                 {guia.passos.titulo}
@@ -153,6 +175,7 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
 
         {/* ============ DESTAQUE · faixa larga de ouro ============ */}
         <section className="relative overflow-hidden border-y lex-fio">
+          <LexBg img={segundaImagem(guia.capa)} opacity={0.32} veu="esquerda" posicao="center 55%" />
           <div className="absolute inset-0 bg-[radial-gradient(65%_130%_at_18%_120%,rgba(212,175,55,.13),transparent_70%)]" />
           <div className="relative mx-auto max-w-6xl px-6 py-20">
             <Reveal>
@@ -167,8 +190,8 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
         </section>
 
         {/* ============ FAQ · duas colunas ============ */}
-        <section className="bg-[#0D0D0E]">
-          <div className="mx-auto max-w-6xl px-6 py-20">
+        <section className="relative bg-[#0D0D0E]">
+          <div className="relative mx-auto max-w-6xl px-6 py-20">
             <Reveal>
               <h2 className="text-3xl leading-tight md:text-4xl" style={SERIF_MED}>
                 Perguntas frequentes
@@ -187,6 +210,7 @@ export default function GuiaTemplate({ guia }: { guia: Guia }) {
 
         {/* ============ CTA ============ */}
         <section className="relative overflow-hidden border-t lex-fio">
+          <LexBg img={imagemCta(guia.capa)} opacity={0.3} veu="baixo" posicao="center 55%" />
           <div className="absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_115%,rgba(212,175,55,.16),transparent_70%)]" />
           <div className="relative mx-auto max-w-4xl px-6 py-28 text-center">
             <Reveal>

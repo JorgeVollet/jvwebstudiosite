@@ -1,5 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { GUIAS_CONTEUDO, GUIAS_ORDEM } from "./guias-data";
+import LexBg from "./LexBg";
 
 /* ============================================================================
    RODAPÉ NOIR · demo Autoridade (tema Lex)
@@ -22,6 +23,9 @@ const NOMES_GUIAS: Record<string, string> = {
 export default function NoirFooter({ wa }: { wa: string }) {
   return (
     <footer className="relative overflow-hidden border-t lex-fio bg-[#080809]">
+      {/* Couro por baixo de tudo: dá matéria ao rodapé sem roubar leitura */}
+      <LexBg img="couro" opacity={0.13} veu="auto" posicao="center 30%" />
+
       {/* Marca d'água MA: monograma gigante sangrando pela direita */}
       <span
         aria-hidden

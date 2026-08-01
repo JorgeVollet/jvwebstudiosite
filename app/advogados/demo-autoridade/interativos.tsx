@@ -60,9 +60,13 @@ export function NoirHeader({
           </span>
         </a>
 
-        <nav className="hidden items-center gap-7 text-[13.5px] md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {LINKS.map((l) => (
-            <a key={l.href} href={`${base}${l.href}`} className="text-[#A6A29A] transition-colors hover:text-[#F2F0EA]">
+            <a
+              key={l.href}
+              href={`${base}${l.href}`}
+              className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#A6A29A] transition-colors hover:text-[#F5D76E]"
+            >
               {l.label}
             </a>
           ))}
