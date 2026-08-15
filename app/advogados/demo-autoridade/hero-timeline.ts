@@ -38,7 +38,6 @@ export const T = {
 
   fio: [0.86, 1.0] as Janela,
   veuAlivia: [0.66, 0.92] as Janela,
-  headerSai: [0.72, 0.88] as Janela,
   cueSai: [0.005, 0.06] as Janela,
 
   /** quanto o scrub persegue o scroll: menor = mais arrastado */
@@ -54,16 +53,15 @@ export const T = {
 
 export const TRILHAS = {
   m: { dir: 'm', frames: 90, poster: 'poster-m.webp' },
+  /** 1920px: a resolução nativa do vídeo — uma trilha só para todo desktop */
   d: { dir: 'd', frames: 150, poster: 'poster.webp' },
-  x: { dir: 'x', frames: 150, poster: 'poster.webp' },
 } as const;
 
 export type TrilhaId = keyof typeof TRILHAS;
 
-/** Escolhe a trilha pelo espaço real de tela e pela densidade de pixels. */
-export function escolherTrilha(largura: number, dpr: number): TrilhaId {
-  if (largura < 820) return 'm';
-  return largura >= 1280 && dpr >= 1.5 ? 'x' : 'd';
+/** Escolhe a trilha pelo espaço real de tela. */
+export function escolherTrilha(largura: number): TrilhaId {
+  return largura < 820 ? 'm' : 'd';
 }
 
 export const caminhoFrame = (t: TrilhaId, i: number) =>

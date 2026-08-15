@@ -47,7 +47,6 @@ export default function HeroScroll({ wa }: { wa: string }) {
   const fio = useRef<HTMLDivElement | null>(null);
   const cue = useRef<HTMLDivElement | null>(null);
   const veu = useRef<HTMLDivElement | null>(null);
-  const barraTopo = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const canvas = cv.current;
@@ -58,7 +57,7 @@ export default function HeroScroll({ wa }: { wa: string }) {
 
     const menosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const dpr = Math.min(window.devicePixelRatio || 1, T.dprMax);
-    const trilha: TrilhaId = escolherTrilha(window.innerWidth, window.devicePixelRatio || 1);
+    const trilha: TrilhaId = escolherTrilha(window.innerWidth);
     const N = TRILHAS[trilha].frames;
     const quadros: (HTMLImageElement | null)[] = new Array(N).fill(null);
 
@@ -188,7 +187,6 @@ export default function HeroScroll({ wa }: { wa: string }) {
       const q = faixa(p, [T.respiro[1], 1]);
       pintar(Math.round(q * (N - 1)), p);
 
-      if (barraTopo.current) barraTopo.current.style.opacity = String(1 - faixa(p, T.headerSai));
       if (cue.current) cue.current.style.opacity = String(1 - faixa(p, T.cueSai));
       if (veu.current) veu.current.style.opacity = String(lerp(1, 0.18, suaveDupla(faixa(p, T.veuAlivia))));
       if (coluna.current) coluna.current.style.transform = `translate3d(0,${-p * 34}px,0)`;
@@ -367,21 +365,21 @@ export default function HeroScroll({ wa }: { wa: string }) {
         <div aria-hidden className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0B0B0C] via-[#0B0B0C]/70 to-transparent" />
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0B0B0C] to-transparent" />
 
-        <div className="pointer-events-none absolute inset-0 z-10 flex items-center pt-[97px]">
-          <div className="mx-auto grid w-full max-w-6xl gap-14 px-6 pb-20 md:grid-cols-[7fr_5fr] md:items-center md:gap-8">
+        <div className="pointer-events-none absolute inset-0 z-10 flex items-center pt-[104px] md:pt-[97px]">
+          <div className="mx-auto grid w-full max-w-6xl gap-14 px-6 pb-14 md:grid-cols-[7fr_5fr] md:items-center md:gap-8 md:pb-20">
             <div ref={coluna}>
-              <p ref={kicker} className="text-xs uppercase tracking-[0.32em] text-[#A6A29A]">
+              <p ref={kicker} className="text-[10.5px] uppercase tracking-[0.22em] text-[#A6A29A] md:text-xs md:tracking-[0.32em]">
                 Advocacia empresarial, tributária e societária
               </p>
-              <h1 className="mt-7 text-[2.6rem] leading-[1.06] tracking-tight md:text-6xl" style={SERIF_MED}>
+              <h1 className="mt-5 text-[clamp(1.65rem,7.4vw,2.1rem)] leading-[1.08] tracking-tight sm:text-[2.4rem] md:mt-7 md:text-6xl md:leading-[1.06]" style={SERIF_MED}>
                 <span ref={l1} className="block">Empresas fortes</span>
                 <span ref={l2} className="block">não improvisam</span>
                 <span ref={l3} className="lex-ouro block">no jurídico.</span>
               </h1>
-              <p ref={sub} className="mt-7 max-w-[46ch] text-[15.5px] leading-relaxed text-[#A6A29A]">
+              <p ref={sub} className="mt-5 max-w-[46ch] text-[14.5px] leading-relaxed text-[#A6A29A] md:mt-7 md:text-[15.5px]">
                 Prevenção e confronto na medida certa, para quem tem patrimônio a proteger e decisões grandes a tomar.
               </p>
-              <div ref={acoes} className="pointer-events-auto mt-10 flex flex-wrap items-center gap-4">
+              <div ref={acoes} className="pointer-events-auto mt-8 flex flex-wrap items-center gap-4 md:mt-10">
                 <a
                   href={wa}
                   target="_blank"

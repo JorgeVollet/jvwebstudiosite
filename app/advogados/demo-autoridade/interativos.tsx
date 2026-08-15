@@ -29,6 +29,26 @@ export function NoirHeader({
   base?: string;
 }) {
   const [solido, setSolido] = useState(false);
+  const [oculto, setOculto] = useState(false);
+
+  /* Some ao descer, volta ao subir: no celular o cabeçalho comia o topo do hero. */
+  useEffect(() => {
+    let ultimo = window.scrollY;
+    let agendado = false;
+    const aoRolar = () => {
+      if (agendado) return;
+      agendado = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y > ultimo + 4 && y > 140) setOculto(true);
+        else if (y < ultimo - 4) setOculto(false);
+        ultimo = y;
+        agendado = false;
+      });
+    };
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    return () => window.removeEventListener("scroll", aoRolar);
+  }, []);
 
   useEffect(() => {
     const alvo = document.getElementById("hero-fim");
@@ -47,15 +67,17 @@ export function NoirHeader({
 
   return (
     <header
-      className={`fixed inset-x-0 top-[33px] z-50 border-b transition-colors duration-500 ${
+      className={`fixed inset-x-0 top-[33px] z-50 border-b transition-[transform,background-color,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(.16,1,.3,1)] ${
+        oculto ? "-translate-y-[calc(100%+40px)]" : "translate-y-0"
+      } ${
         solido
           ? "border-[#D4AF37]/25 bg-[#0B0B0C]/92 backdrop-blur-md"
           : "border-white/10 bg-[#0B0B0C]/35 backdrop-blur-[6px]"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-3 md:py-4">
         <a href={base ? base : "#inicio"} className="leading-tight">
-          <span className="block text-lg tracking-[0.06em] text-[#F2F0EA]" style={{ ...serif, fontWeight: 600 }}>
+          <span className="block whitespace-nowrap text-[15px] tracking-[0.06em] text-[#F2F0EA] md:text-lg" style={{ ...serif, fontWeight: 600 }}>
             MEIRELLES<span className="text-[#D4AF37]"> ADVOCACIA</span>
           </span>
         </a>
@@ -76,9 +98,10 @@ export function NoirHeader({
           href={wa}
           target="_blank"
           rel="noopener"
-          className="rounded-full border border-[#D4AF37]/60 bg-transparent px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#F5D76E] transition duration-300 hover:-translate-y-[1px] hover:border-[#F5D76E] hover:bg-[#D4AF37]/10"
+          className="shrink-0 whitespace-nowrap rounded-full border border-[#D4AF37]/60 bg-transparent px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#F5D76E] transition duration-300 hover:-translate-y-[1px] hover:border-[#F5D76E] hover:bg-[#D4AF37]/10 md:px-5 md:py-2.5 md:text-xs md:tracking-[0.14em]"
         >
-          Falar com o escritório
+          <span className="md:hidden">Falar</span>
+          <span className="hidden md:inline">Falar com o escritório</span>
         </a>
       </div>
     </header>
