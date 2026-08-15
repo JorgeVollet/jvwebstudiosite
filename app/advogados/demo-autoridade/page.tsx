@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { cinzel } from "./fonts";
 import Reveal from "@/components/advogados/demo/DemoReveal";
 import DemoCountUp from "@/components/advogados/demo/DemoCountUp";
-import DemoParallax, { DemoHeroFade } from "@/components/advogados/demo/DemoParallax";
 import { NoirHeader, NoirFaq, NoirSpotlight } from "./interativos";
 import NoirFooter from "./NoirFooter";
 import LexBg, { LEX_IMG } from "./LexBg";
+import HeroScroll from "./HeroScroll";
 import { Scale, Landmark, FileSignature, LifeBuoy, Shield, Gavel, MessageCircle, ArrowRight, Check } from "lucide-react";
 
 /* ============================================================================
@@ -217,7 +217,9 @@ const FAQ = [
 export default function DemoAutoridade() {
   return (
     <div className={`lex-root ${cinzel.variable} bg-[#0B0B0C] text-[#F2F0EA]`}>
-      <style>{`
+      {/* CSS do tema injetado como HTML cru: com children de texto o React
+          escapa as aspas no servidor e não no cliente, o que quebra a hidratação. */}
+      <style dangerouslySetInnerHTML={{ __html: `
         .lex-root{--gold:#D4AF37;--gold-soft:#F5D76E;--gold-deep:#C9A24B;}
         .lex-root ::selection{background:rgba(212,175,55,.28);}
         /* Grão de filme sobre tudo: overlay fixo, sem custo de repaint no scroll */
@@ -226,6 +228,8 @@ export default function DemoAutoridade() {
         .lex-ouro{background:linear-gradient(112deg,#F5D76E 8%,#D4AF37 38%,#8f6f1f 52%,#F5D76E 78%);-webkit-background-clip:text;background-clip:text;color:transparent;}
         /* Filete dourado padrão */
         .lex-fio{border-color:rgba(212,175,55,.22);}
+        @keyframes lexDesce{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(.2);transform-origin:bottom}}
+        .lex-desce{animation:lexDesce 2.2s ease-in-out infinite;}
         /* Moldura spotlight: o brilho segue o cursor (variáveis vindas do NoirSpotlight) */
         .lex-root .noir-spot{position:relative;}
         .lex-root .noir-spot::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(212,175,55,.14),transparent 65%);}
@@ -234,7 +238,7 @@ export default function DemoAutoridade() {
           .lex-root .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
           .lex-root .reveal.in{opacity:1;transform:none;}
         }
-      `}</style>
+` }} />
 
       <div className="lex-grain" aria-hidden />
 
@@ -248,79 +252,7 @@ export default function DemoAutoridade() {
       <NoirHeader wa={WA} serif={SERIF} />
 
       <main>
-        {/* ============ HERO · o livro de couro dourado full bleed, manifesto à esquerda ============ */}
-        <section id="inicio" className="relative flex min-h-[100dvh] items-center overflow-hidden pt-[97px]">
-          {/* Foto do hero com parallax lento: o livro desce mais devagar que o scroll */}
-          <DemoParallax speed={0.07} className="absolute inset-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={LEX_IMG.livro}
-              alt=""
-              aria-hidden
-              loading="eager"
-              className="absolute inset-0 h-full w-full scale-[1.06] object-cover object-[68%_center] opacity-[0.85] md:object-[center_58%]"
-            />
-          </DemoParallax>
-          {/* Véu: escuro sólido à esquerda para o manifesto, transparente sobre o livro */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0C] via-[#0B0B0C]/88 to-[#0B0B0C]/25" />
-          {/* No celular a foto vira fundo: escurece por inteiro para o texto respirar */}
-          <div className="absolute inset-0 bg-[#0B0B0C]/72 md:hidden" />
-          <div className="absolute inset-0 bg-[radial-gradient(58%_70%_at_78%_30%,rgba(212,175,55,.10),transparent_70%)]" />
-          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0B0B0C] via-[#0B0B0C]/70 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0B0B0C] to-transparent" />
-
-          <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-14 px-6 pb-20 md:grid-cols-[7fr_5fr] md:items-center md:gap-8">
-            <DemoHeroFade>
-              <Reveal>
-                <p className="text-xs uppercase tracking-[0.32em] text-[#A6A29A]">
-                  Advocacia empresarial, tributária e societária
-                </p>
-                <h1 className="mt-7 text-[2.6rem] leading-[1.06] tracking-tight md:text-6xl" style={SERIF_MED}>
-                  Empresas fortes
-                  <br />
-                  não improvisam
-                  <br />
-                  <span className="lex-ouro">no jurídico.</span>
-                </h1>
-                <p className="mt-7 max-w-[46ch] text-[15.5px] leading-relaxed text-[#A6A29A]">
-                  Prevenção e confronto na medida certa, para quem tem patrimônio a proteger e decisões grandes a tomar.
-                </p>
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <a
-                    href={WA}
-                    target="_blank"
-                    rel="noopener"
-                    className="rounded-full bg-gradient-to-b from-[#F5D76E] to-[#C9A24B] px-8 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-[#171204] shadow-[0_14px_40px_-12px_rgba(212,175,55,.5)] transition hover:-translate-y-[2px] hover:shadow-[0_18px_48px_-12px_rgba(212,175,55,.65)]"
-                  >
-                    Falar com o escritório
-                  </a>
-                  <a href="#areas" className="group inline-flex items-center gap-2 px-2 py-4 text-[13px] uppercase tracking-[0.14em] text-[#A6A29A] transition hover:text-[#F5D76E]">
-                    Conhecer as áreas
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </div>
-              </Reveal>
-            </DemoHeroFade>
-
-            {/* Estela de vidro: o monograma volta como placa translúcida e o livro
-                continua visível, desfocado, por trás dela. */}
-            <Reveal delay={160} className="hidden md:block">
-              <NoirSpotlight className="relative ml-auto flex aspect-[3/4.2] w-full max-w-[320px] flex-col items-center justify-between overflow-hidden rounded-[3px] border border-[#D4AF37]/35 bg-[#0B0B0C]/40 px-8 py-10 shadow-[0_34px_90px_-34px_rgba(0,0,0,0.95)] backdrop-blur-md">
-                {/* Refração: brilho de vidro descendo do topo e filete interno */}
-                <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.09] via-transparent to-black/25" />
-                <div aria-hidden className="pointer-events-none absolute inset-[1px] rounded-[2px] border border-white/10" />
-
-                <span className="relative text-[10px] uppercase tracking-[0.5em] text-[#C9A24B]">MMVIII</span>
-                <span aria-hidden className="lex-ouro relative text-[9rem] leading-none" style={SERIF}>M</span>
-                <div className="relative w-full border-t border-[#D4AF37]/30 pt-6 text-center">
-                  <p className="text-[13px] uppercase tracking-[0.26em] text-[#F2F0EA]" style={SERIF}>Meirelles</p>
-                  <p className="mt-2 text-[10px] uppercase tracking-[0.3em] text-[#A6A29A]">Advocacia empresarial</p>
-                </div>
-              </NoirSpotlight>
-            </Reveal>
-          </div>
-          <div id="hero-fim" aria-hidden className="absolute inset-x-0 bottom-0 h-px" />
-        </section>
+        <HeroScroll wa={WA} />
 
         {/* ============ NÚMEROS · fio fino sobre couro ============ */}
         <section className="relative overflow-hidden border-y lex-fio">
