@@ -35,6 +35,9 @@ export const T = {
   /** no celular a placa grande brigaria com o texto: nasce selo */
   cardViraSeloMobile: [0.3, 0.44] as Janela,
   cardEntraMobile: [0.26, 0.36] as Janela,
+  /** no fim do mergulho o quadro fica quase vazio: o selo cresce e ocupa
+   *  o escuro à esquerda, virando parte da composição */
+  cardCresceMobile: [0.8, 0.96] as Janela,
 
   fio: [0.86, 1.0] as Janela,
   veuAlivia: [0.66, 0.92] as Janela,

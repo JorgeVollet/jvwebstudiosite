@@ -133,20 +133,40 @@ export default function HeroScroll({ wa }: { wa: string }) {
       const cont = conteudoCard.current;
       if (!c || !rect || !cont) return;
       const estreito = W < 820;
-      const t = suaveDupla(faixa(p, estreito ? T.cardViraSeloMobile : T.cardViraSelo));
-      const largA = estreito ? 62 : Math.min(320, W * 0.26);
-      const largB = estreito ? 62 : 84;
-      const w = lerp(largA, largB, t);
-      const h = w * lerp(estreito ? 1 : 4.2 / 3, 1, t);
-      const right = lerp(estreito ? T.seloRight : W * 0.06, T.seloRight, t);
-      const top = lerp(estreito ? H - h - T.seloBottom : (H - h) / 2 + 24, H - h - T.seloBottom, t);
+
+      let w: number;
+      let h: number;
+      let right: number;
+      let top: number;
+      let densidade: number; // 0 = selo pequeno, 1 = placa inteira com os textos
+      let fadeTextos: number;
+
+      if (estreito) {
+        // celular: nasce selo no canto e, no fim do mergulho, cresce para dentro
+        // do vazio escuro à esquerda — a marca vira parte da composição
+        const t = suaveDupla(faixa(p, T.cardCresceMobile));
+        w = lerp(62, Math.min(196, W * 0.48), t);
+        h = w * lerp(1, 4.2 / 3, t);
+        right = lerp(T.seloRight, Math.max(18, W - w - 22), t);
+        top = lerp(H - h - T.seloBottom, H - h - 128, t);
+        densidade = t;
+        fadeTextos = t;
+      } else {
+        const t = suaveDupla(faixa(p, T.cardViraSelo));
+        w = lerp(Math.min(320, W * 0.26), 84, t);
+        h = w * lerp(4.2 / 3, 1, t);
+        right = lerp(W * 0.06, T.seloRight, t);
+        top = lerp((H - h) / 2 + 24, H - h - T.seloBottom, t);
+        densidade = 1 - t;
+        fadeTextos = 1 - suave(faixa(p, T.cardTextosSai));
+      }
 
       c.style.width = `${w}px`;
       c.style.height = `${h}px`;
       c.style.right = `${right}px`;
       c.style.top = `${top}px`;
       c.style.opacity = String(faixa(p, estreito ? T.cardEntraMobile : T.cardEntra));
-      c.style.willChange = t > 0.001 && t < 0.999 ? 'width,height,top' : 'auto';
+      c.style.willChange = densidade > 0.001 && densidade < 0.999 ? 'width,height,top,right' : 'auto';
 
       const perim = 2 * (w + h);
       const d = suave(faixa(p, T.cardMoldura));
@@ -155,25 +175,24 @@ export default function HeroScroll({ wa }: { wa: string }) {
       rect.style.strokeDasharray = String(perim);
       rect.style.strokeDashoffset = String(perim * (1 - d));
 
-      cont.style.padding = `${lerp(8, 0, t)}% ${lerp(8, 0, t)}% ${lerp(7, 0, t)}%`;
-      cont.style.justifyContent = t > 0.6 ? 'center' : 'space-between';
+      cont.style.padding = `${lerp(0, 8, densidade)}% ${lerp(0, 8, densidade)}% ${lerp(0, 7, densidade)}%`;
+      cont.style.justifyContent = densidade < 0.4 ? 'center' : 'space-between';
 
       if (mono.current) {
         const m = suave(faixa(p, T.cardMono));
-        mono.current.style.fontSize = `${w * (t > 0.6 ? 0.52 : 0.46)}px`;
+        mono.current.style.fontSize = `${w * lerp(0.52, 0.46, densidade)}px`;
         mono.current.style.opacity = String(m);
         mono.current.style.filter = `blur(${lerp(14, 0, m)}px)`;
         mono.current.style.transform = `translate3d(0,${lerp(26, 0, m)}px,0)`;
       }
 
-      const fade = estreito ? 0 : 1 - suave(faixa(p, T.cardTextosSai));
-      const tx = suave(faixa(p, T.cardTextos));
+      const tx = suave(faixa(p, T.cardTextos)) * fadeTextos;
       if (ano.current) {
-        ano.current.style.opacity = String(tx * fade);
+        ano.current.style.opacity = String(tx);
         ano.current.style.fontSize = `${Math.max(7, w * 0.032)}px`;
       }
       if (rodape.current) {
-        rodape.current.style.opacity = String(tx * fade);
+        rodape.current.style.opacity = String(tx);
         rodape.current.style.paddingTop = `${w * 0.075}px`;
         rodape.current.style.transform = `translate3d(0,${lerp(14, 0, tx)}px,0)`;
         const nome = rodape.current.querySelector('b');
