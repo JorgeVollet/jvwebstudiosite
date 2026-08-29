@@ -4,7 +4,7 @@ export const SITE = {
   tagline: "SITES · SISTEMAS WEB · AUTOMAÇÕES N8N",
   email: "jorgehenriquevollet@gmail.com",
   instagram: "jvwebstudio",
-  url: "https://jvwebstudio.com.br",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.jvwebstudio.agency",
   founder: "Jorge Henrique",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "",
   location: "Brasil · 100% Online",

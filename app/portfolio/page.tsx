@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Portfólio — Projetos & Cases",
   description:
     "Projetos reais entregues pela JV WEB STUDIO: sites, e-commerce, sistemas web e automações. Veja cada um rodando de verdade.",
+  alternates: { canonical: "/portfolio" },
 };
 
 export default function PortfolioIndex() {

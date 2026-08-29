@@ -13,6 +13,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${p.client} — Portfólio`,
     description: p.desc,
+    alternates: { canonical: `/portfolio/${p.slug}` },
   };
 }
 

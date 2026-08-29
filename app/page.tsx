@@ -18,6 +18,10 @@ import Testimonials from "@/components/sections/Testimonials";
 import Pacotes from "@/components/sections/Pacotes";
 import Contact from "@/components/sections/Contact";
 
+// Canonical da home. As demais rotas indexáveis declaram o seu em cada page.tsx;
+// o resto do site é noindex de propósito (campanha, demos, pós-compra, admin).
+export const metadata = { alternates: { canonical: "/" } };
+
 export default function Home() {
   return (
     <>

@@ -46,16 +46,15 @@ export const metadata: Metadata = {
     title: "JV WEB STUDIO — Soluções digitais construídas para escalar",
     description:
       "Sites profissionais, sistemas sob medida e automações N8N. Performance real, código próprio e entrega no prazo.",
-    images: [{ url: "/og.svg", width: 1200, height: 630, alt: "JV WEB STUDIO" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, type: "image/png", alt: "JV WEB STUDIO" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "JV WEB STUDIO",
     description: "Soluções digitais construídas para escalar.",
-    images: ["/og.svg"],
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: SITE.url },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
