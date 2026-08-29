@@ -38,7 +38,7 @@ create table if not exists public.seo_settings (
   description   text default 'Estúdio digital de alta performance. Sites profissionais, sistemas web sob medida e automações N8N.',
   keywords      text default 'criação de sites, sistemas web, automação N8N, landing page, e-commerce',
   og_image      text default '/og.png',
-  canonical     text default 'https://jvwebstudio.com.br',
+  canonical     text default 'https://www.jvwebstudio.agency',
   robots        text default 'index, follow',
   ga_id         text,                 -- Google Analytics
   gsc_token     text,                 -- Search Console verification

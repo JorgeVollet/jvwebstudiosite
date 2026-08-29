@@ -43,7 +43,7 @@ npm run dev                  # http://localhost:3000
 NEXT_PUBLIC_SUPABASE_URL=https://SEU-PROJETO.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...
-NEXT_PUBLIC_SITE_URL=https://jvwebstudio.com.br
+NEXT_PUBLIC_SITE_URL=https://www.jvwebstudio.agency
 NEXT_PUBLIC_WHATSAPP=5547999999999     # DDI+DDD+numero
 INSTAGRAM_ACCESS_TOKEN=                # opcional (feed real)
 INSTAGRAM_USER_ID=                     # opcional
