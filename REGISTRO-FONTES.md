@@ -11,6 +11,7 @@
 | Demo Advogados · Tema Aurum (Dra. Helena) | **Geogira** (300-700, acervo próprio, pack Loogofonts) | Inter | — | aplicada em 29/07/2026 |
 | Demo Advogados · Tema Lex (Dr. Meirelles, Autoridade) | **Cinzel** (400-700, OFL/Google, self-host via @fontsource) | Inter | — | aplicada em 31/07/2026 |
 | Site da Pri (Autoridade, advogada) | *reservar uma diferente dos demos* | — | — | aguardando briefing |
+| Site Albuquerque & Contadores (Belém-PA) | **Cinzel** (400..700 variável, Google Fonts) — repetida do demo Lex **a pedido do cliente**, que viu o demo e quis a mesma | Inter | — | aplicada em 26/08/2026 |
 
 ## Acervo próprio (packs comprados, extraídos em 29/07/2026 — 99 fontes)
 
