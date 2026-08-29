@@ -10,6 +10,20 @@ export const SITE = {
   location: "Brasil · 100% Online",
 };
 
+/**
+ * Google Analytics 4 — ID de medição, no formato G-XXXXXXXXXX.
+ * Onde achar: analytics.google.com → Administrador → Fluxos de dados → seu site.
+ * Enquanto estiver vazio, nenhum script de analytics é carregado.
+ */
+export const GA_ID = "";
+
+/**
+ * Google Search Console — token do método de verificação "tag HTML".
+ * É só o valor de dentro do content="...", não a tag inteira.
+ * Enquanto estiver vazio, nenhuma meta de verificação é emitida.
+ */
+export const GSC_TOKEN = "";
+
 export const HERO = {
   badge: "ESTÚDIO DIGITAL · 2026",
   titleTop: "Soluções digitais",

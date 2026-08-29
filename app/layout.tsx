@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Space_Mono, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
-import { SITE } from "@/lib/site";
+import { SITE, GSC_TOKEN } from "@/lib/site";
+import Analytics from "@/components/Analytics";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -55,6 +56,8 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },
+  // Emite <meta name="google-site-verification"> só quando o token existe.
+  verification: GSC_TOKEN ? { google: GSC_TOKEN } : undefined,
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -93,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
